@@ -1,3 +1,7 @@
+* {
+  transition: 0.25s;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,59 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#split-container {
+  display: flex;
+}
+
+#split-container > * {
+  flex: 1;
+}
+
+code {
+  background: black;
+  color: lime;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+h1 code {
+  padding: 0.1em;
+}
+
+button {
+  background: lightgrey;
+  color: black;
+  padding: 0.5em;
+  font-weight: bold;
+  border-radius: 0.5em;
+}
+
+button:hover {
+  background: lime;
+}
+
+textarea, .react-markdown {
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.react-markdown {
+  text-align: left;
+  background: black;
+  display: inline-block
+}
+
+.react-markdown code {
+  display: inline-block;
+}
+
+#ideas .react-markdown > * {
+  float: left;
+}
+
+.idea-button {
+  border: none;
 }
