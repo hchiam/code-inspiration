@@ -1,6 +1,4 @@
-# Learning Code Inspiration
-
-Just one of the things I'm learning. <https://github.com/hchiam/learning>
+# Code Inspiration
 
 Capture snippets of code inspiration while on the go.
 
