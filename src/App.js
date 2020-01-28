@@ -41,8 +41,16 @@ function App() {
     window.open('mailto:test@example.com?subject=Idea&body=' + idea);
   };
   const addSpecialCharacters = (characters) => {
-    setInput(input + characters);
-    focusTextArea();
+    const cursorPosition = document.querySelector('textarea').selectionStart;
+    const newInput = input.split('');
+    newInput.splice(cursorPosition, 0, characters);
+    setInput(newInput.join(''));
+    const textarea = document.getElementById('input');
+    textarea.value = newInput.join('');
+    textarea.focus();
+    const start = cursorPosition + characters.length;
+    const end = start - 1;
+    textarea.setSelectionRange(start, end);
   };
   return (
     <div className="App">
@@ -50,13 +58,14 @@ function App() {
         <h1>Capture <code>code</code> ideas:</h1>
         <div id="split-container" className="wrap-elements-if-too-wide">
           <div>
-            <textarea onInput={(e) => setInput(e.target.value)}
+            <textarea id="input"
+                      onInput={(e) => setInput(e.target.value)}
                       onKeyDown={checkCommandEnter}
                       value={input}
                       placeholder="type code here"
                       autoFocus/>
             <div>
-              <button onClick={() => addSpecialCharacters('const  = () => {}')}>fn</button>
+              <button onClick={() => addSpecialCharacters('const  = () => ;')}>fn</button>
               <button onClick={() => addSpecialCharacters('()')}>()</button>
               <button onClick={() => addSpecialCharacters('[]')}>[]</button>
               <button onClick={() => addSpecialCharacters('{}')}>&#123;&#125;</button>
