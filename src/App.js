@@ -34,7 +34,24 @@ function App() {
     focusTextArea();
   };
   const saveIdea = (code) => {
-    window.open('mailto:test@example.com?subject=Idea&body=' + encodeURIComponent(code));
+    const urlAcceptableString = encodeURIComponent(code) // handles most
+      .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
+      .replace(/"/g, '%22')
+      .replace(/#/g, '%23')
+      .replace(/\$/g, '%24')
+      .replace(/%/g, '%25')
+      .replace(/&/g, '%26')
+      .replace(/'/g, '%27')
+      .replace(/\(/g, '%28')
+      .replace(/\)/g, '%29')
+      .replace(/\*/g, '%2A')
+      .replace(/-/g, '%2D')
+      .replace(/\./g, '%2E')
+      .replace(/</g, '%3C')
+      .replace(/>/g, '%3E')
+      .replace(/_/g, '%3F')
+      .replace(/~/g, '%7E')
+    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString);
   };
   const checkCommandEnter = (event) => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
