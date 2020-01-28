@@ -33,8 +33,8 @@ function App() {
     setDisplayOptionTimestamp(-1);
     focusTextArea();
   };
-  const emailIdea = (code) => {
-    const urlAcceptableString = encodeURIComponent(code) // handles most
+  const urlAcceptableString = (code) => {
+    return encodeURIComponent(code) // handles most
       .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
       .replace(/"/g, '%22')
       .replace(/#/g, '%23')
@@ -51,7 +51,27 @@ function App() {
       .replace(/>/g, '%3E')
       .replace(/_/g, '%3F')
       .replace(/~/g, '%7E')
-    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString);
+  };
+  const saveIdea = (code) => {
+    if (code === '') return;
+    try {
+      const fileName = 'idea.js';
+      const tempElem = document.createElement('a');
+      tempElem.setAttribute('href', 'data:text/plain;charset=utf-8,' + urlAcceptableString(code));
+      tempElem.setAttribute('download', fileName);
+      if (document.createEvent) {
+        const event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        tempElem.dispatchEvent(event);
+      } else {
+        tempElem.click();
+      }
+    } catch(err) {
+      window.open('data:text/txt;charset=utf-8,' + escape(code), 'newdoc');
+    }
+  };
+  const emailIdea = (code) => {
+    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(code));
   };
   const checkCommandEnter = (event) => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
@@ -117,7 +137,8 @@ function App() {
                showOptions={showOptions}
                hideOptions={hideOptions}
                deleteIdea={deleteIdea}
-               emailIdea={emailIdea}/>
+               emailIdea={emailIdea}
+               saveIdea={saveIdea}/>
       </header>
     </div>
   );

@@ -32,6 +32,13 @@ function Ideas(props) {
                       }}
                       aria-label="Email this idea"
                       >Email</button>
+                  <button onClick={() => props.saveIdea(idea.code)}className="idea-button"
+                      style={{
+                        width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
+                        height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
+                      }}
+                      aria-label="Save this idea as a JavaScript file"
+                      >Save</button>
                 </div>
                 <code className="language-js">{idea.code}</code>
               </pre>
