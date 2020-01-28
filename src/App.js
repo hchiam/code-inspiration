@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Capture <code>code</code> inspiration:</h1>
+        <h1>Capture <code>code</code> ideas:</h1>
         <div id="split-container">
           <div>
             <textarea onInput={(e) => setInput(e.target.value)}

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import emailIcon from '../email.png';
 import Draggable from 'react-draggable';
 
 function Ideas(props) {
@@ -18,11 +19,21 @@ function Ideas(props) {
                     onMouseEnter={(e) => props.showOptions(e, index)}
                     onMouseLeave={props.hideOptions}
                     title="Psst! You can drag me around the screen.">
-                <button onClick={() => props.deleteIdea(index)}className="idea-button"
-                        style={{width: matchesIndex(index) ? '3em' : 0}}
-                        >X</button>
-                <code class="language-js"
-                      >{idea}</code>
+                <div className="vertical-row">
+                  <button onClick={() => props.deleteIdea(index)}className="idea-button"
+                          style={{
+                            width: matchesIndex(index) ? '2rem' : 0,
+                            height: matchesIndex(index) ? '2rem' : 0,
+                          }}
+                          >X</button>
+                  <img onClick={() => props.saveIdea(index)}className="idea-button"
+                      style={{
+                        width: matchesIndex(index) ? '2rem' : 0,
+                        height: matchesIndex(index) ? '2rem' : 0,
+                      }}
+                      src={emailIcon} alt="Email" />
+                </div>
+                <code class="language-js">{idea}</code>
               </pre>
             </div>
           </Draggable>

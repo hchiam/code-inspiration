@@ -74,7 +74,7 @@ button:hover {
 }
 
 textarea {
-  height: 10em;
+  min-height: 1em;
 }
 
 textarea, .react-markdown {
@@ -86,6 +86,8 @@ textarea, .react-markdown {
 
 textarea:hover {
   border-radius: 0;
+  min-height: 10em;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .react-markdown {
@@ -106,4 +108,8 @@ textarea:hover {
   padding: 0;
   height: 3em;
   border: none;
+}
+
+.vertical-row > * {
+  display: block;
 }
