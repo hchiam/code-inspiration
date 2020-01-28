@@ -3,9 +3,8 @@ import '../App.css';
 import Draggable from 'react-draggable';
 
 function Ideas(props) {
-  // const [ideas, setIdeas] = React.useState(props.ideas);
-  const focusTextArea = () => {
-    document.querySelector('textarea').focus();
+  const matchesIndex = (index) => {
+    return props.displayOptionIndex === index;
   };
   return (
     <div id="ideas">
