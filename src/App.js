@@ -40,17 +40,27 @@ function App() {
   const saveIdea = (idea) => {
     window.open('mailto:test@example.com?subject=Idea&body=' + idea);
   };
+  const addSpecialCharacters = (characters) => {
+    setInput(input + characters);
+    focusTextArea();
+  };
   return (
     <div className="App">
       <header className="App-header">
         <h1>Capture <code>code</code> ideas:</h1>
-        <div id="split-container">
+        <div id="split-container" className="wrap-elements-if-too-wide">
           <div>
             <textarea onInput={(e) => setInput(e.target.value)}
                       onKeyDown={checkCommandEnter}
                       value={input}
                       placeholder="type code here"
                       autoFocus/>
+            <div>
+              <button onClick={() => addSpecialCharacters('const  = () => {}')}>fn</button>
+              <button onClick={() => addSpecialCharacters('()')}>()</button>
+              <button onClick={() => addSpecialCharacters('[]')}>[]</button>
+              <button onClick={() => addSpecialCharacters('{}')}>&#123;&#125;</button>
+            </div>
             <button onClick={resetInput}
                     style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
                     >Add idea</button>
