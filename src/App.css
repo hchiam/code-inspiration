@@ -84,6 +84,7 @@ textarea {
   min-height: 1em;
   background: rgb(24, 26, 27);
   color: whitesmoke;
+  font-size: 1em;
 }
 
 textarea,

@@ -12,6 +12,7 @@ function App() {
   };
   const resetInput = () => {
     const textarea = document.querySelector('textarea');
+    textarea.classList.remove('expand');
     // exit early if no input
     if (textarea.value === '') {
       textarea.focus();
