@@ -10,11 +10,6 @@ function App() {
   const focusTextArea = () => {
     document.querySelector('textarea').focus();
   };
-  const checkCommandEnter = (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
-      resetInput();
-    }
-  };
   const resetInput = () => {
     const textarea = document.querySelector('textarea');
     // exit early if no input
@@ -40,6 +35,19 @@ function App() {
   const saveIdea = (idea) => {
     window.open('mailto:test@example.com?subject=Idea&body=' + idea);
   };
+  const checkCommandEnter = (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
+      resetInput();
+    }
+  };
+  const expandTextarea = () => {
+    const textarea = document.querySelector('textarea');
+    if (textarea.value) {
+      textarea.classList.add('expand');
+    } else {
+      textarea.classList.remove('expand');
+    }
+  };
   const addSpecialCharacters = (characters) => {
     const cursorPosition = document.querySelector('textarea').selectionStart;
     const newInput = input.split('');
@@ -59,7 +67,7 @@ function App() {
         <div id="split-container" className="wrap-elements-if-too-wide">
           <div>
             <textarea id="input"
-                      onInput={(e) => setInput(e.target.value)}
+                      onInput={(e) => {expandTextarea();setInput(e.target.value)}}
                       onKeyDown={checkCommandEnter}
                       value={input}
                       placeholder="type code here"
