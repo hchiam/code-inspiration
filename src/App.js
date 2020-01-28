@@ -67,7 +67,7 @@ function App() {
         <div id="split-container" className="wrap-elements-if-too-wide">
           <div>
             <textarea id="input"
-                      onInput={(e) => {expandTextarea();setInput(e.target.value)}}
+                      onChange={(e) => {expandTextarea();setInput(e.target.value)}}
                       onKeyDown={checkCommandEnter}
                       value={input}
                       placeholder="type code here"
@@ -90,7 +90,7 @@ function App() {
           </div>
           <pre className="react-markdown"
               style={{display: input !== '' ? 'block' : 'none'}}>
-            <code class="language-js">{input}</code>
+            <code className="language-js">{input}</code>
           </pre>
         </div>
         <p style={{display: ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>

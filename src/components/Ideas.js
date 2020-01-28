@@ -11,10 +11,9 @@ function Ideas(props) {
       {
         props.ideas.map((idea, index) =>
           // (Note: include just one element within Draggable. Use div to show on new line.)
-          <Draggable>
+          <Draggable key={index}>
             <div>
               <pre className="react-markdown"
-                    key={index}
                     onMouseEnter={(e) => props.showOptions(e, index)}
                     onMouseLeave={props.hideOptions}
                     title="Psst! You can drag me around the screen.">
@@ -34,7 +33,7 @@ function Ideas(props) {
                       aria-label="Email this idea"
                       >Email</button>
                 </div>
-                <code class="language-js">{idea}</code>
+                <code className="language-js">{idea}</code>
               </pre>
             </div>
           </Draggable>

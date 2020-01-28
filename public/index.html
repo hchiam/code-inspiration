@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Code Inspiration</title>
+    <link rel="shortcut icon" href="htc.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script href="src/components/Ideas.js"></script>
+    <link rel="stylesheet" href="src/App.css">
+    <script href="src/App.js"></script>
+    <link rel="stylesheet" href="src/index.css">
+    <script href="src/index.js"></script>
+    <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('service-worker.js', {scope: ''})
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

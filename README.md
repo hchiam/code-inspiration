@@ -6,13 +6,16 @@ Capture snippets of code inspiration while on the go.
 
 ## Run locally
 
+Just once:
+
 ```bash
 npm install
 ```
 
-and then
+and then:
 
 ```bash
+npm run my-build
 npm start
 ```
 

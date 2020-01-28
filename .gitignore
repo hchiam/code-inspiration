@@ -17,3 +17,5 @@ yarn-debug.log*
 yarn-error.log*
 
 your_first_commit.sh
+
+public/src

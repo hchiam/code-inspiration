@@ -1,0 +1,18 @@
+{
+  "short_name": "code-inspiration",
+  "name": "code-inspiration",
+  "description": "Capture snippets of code inspiration while on the go.",
+  "icons": [
+    {
+      "src": "htc.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "rgb(32,32,32)",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "rgb(32,32,32)",
+  "prefer_related_applications": false
+}
