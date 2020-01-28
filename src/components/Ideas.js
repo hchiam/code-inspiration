@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import emailIcon from '../email.png';
 import Draggable from 'react-draggable';
 
 function Ideas(props) {

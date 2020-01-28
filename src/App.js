@@ -11,7 +11,7 @@ function App() {
     document.querySelector('textarea').focus();
   };
   const checkCommandEnter = (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.keyCode == 13) {
+    if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
       resetInput();
     }
   };
