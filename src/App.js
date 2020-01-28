@@ -33,8 +33,8 @@ function App() {
     setDisplayOptionTimestamp(-1);
     focusTextArea();
   };
-  const saveIdea = (idea) => {
-    window.open('mailto:test@example.com?subject=Idea&body=' + idea);
+  const saveIdea = (code) => {
+    window.open('mailto:test@example.com?subject=Idea&body=' + encodeURIComponent(code));
   };
   const checkCommandEnter = (event) => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
