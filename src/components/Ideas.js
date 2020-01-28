@@ -25,7 +25,7 @@ function Ideas(props) {
                           }}
                           aria-label="Delete this idea"
                           >X</button>
-                  <button onClick={() => props.saveIdea(idea.code)}className="idea-button"
+                  <button onClick={() => props.emailIdea(idea.code)}className="idea-button"
                       style={{
                         width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
                         height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,

@@ -33,7 +33,7 @@ function App() {
     setDisplayOptionTimestamp(-1);
     focusTextArea();
   };
-  const saveIdea = (code) => {
+  const emailIdea = (code) => {
     const urlAcceptableString = encodeURIComponent(code) // handles most
       .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
       .replace(/"/g, '%22')
@@ -117,7 +117,7 @@ function App() {
                showOptions={showOptions}
                hideOptions={hideOptions}
                deleteIdea={deleteIdea}
-               saveIdea={saveIdea}/>
+               emailIdea={emailIdea}/>
       </header>
     </div>
   );
