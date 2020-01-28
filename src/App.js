@@ -6,7 +6,7 @@ function App() {
   const initialInput = '';
   const [input, setInput] = React.useState(initialInput);
   const [ideas, setIdeas] = React.useState([]);
-  const [displayOptionIndex, setDisplayOptionIndex] = React.useState(-1);
+  const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
   const focusTextArea = () => {
     document.querySelector('textarea').focus();
   };
@@ -19,18 +19,18 @@ function App() {
       return;
     }
     setInput('');
-    setIdeas(ideas.concat(input));
+    setIdeas(ideas.concat({code: input, timestamp: new Date().getTime()}));
     textarea.focus();
   };
-  const showOptions = (e, index) => {
-    setDisplayOptionIndex(index);
+  const showOptions = (timestamp) => {
+    setDisplayOptionTimestamp(timestamp);
   };
   const hideOptions = () => {
-    setDisplayOptionIndex(-1);
+    setDisplayOptionTimestamp(-1);
   }
-  const deleteIdea = (index) => {
-    setIdeas(ideas.filter((e, id) => id !== index));
-    setDisplayOptionIndex(-1);
+  const deleteIdea = (timestamp) => {
+    setIdeas(ideas.filter((e) => e.timestamp !== timestamp));
+    setDisplayOptionTimestamp(-1);
     focusTextArea();
   };
   const saveIdea = (idea) => {
@@ -96,7 +96,7 @@ function App() {
         </div>
         <p style={{display: ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
         <Ideas ideas={ideas}
-               displayOptionIndex={displayOptionIndex}
+               displayOptionTimestamp={displayOptionTimestamp}
                showOptions={showOptions}
                hideOptions={hideOptions}
                deleteIdea={deleteIdea}
