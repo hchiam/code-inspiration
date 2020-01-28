@@ -14,7 +14,7 @@ function Ideas(props) {
           <Draggable key={index}>
             <div>
               <pre className="react-markdown"
-                    onMouseEnter={(e) => props.showOptions(e, index)}
+                    onMouseOver={(e) => props.showOptions(e, index)}
                     onMouseLeave={props.hideOptions}
                     title="Psst! You can drag me around the screen.">
                 <div className="vertical-row">
