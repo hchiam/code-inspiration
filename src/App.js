@@ -4,23 +4,12 @@ import Ideas from './components/Ideas';
 
 function App() {
   const initialInput = '';
+  const initialIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
   const [input, setInput] = React.useState(initialInput);
-  const [ideas, setIdeas] = React.useState([]);
+  const [ideas, setIdeas] = React.useState(initialIdeas); // also updateIdeasLocalStorage
   const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
   const focusTextArea = () => {
     document.querySelector('textarea').focus();
-  };
-  const resetInput = () => {
-    const textarea = document.querySelector('textarea');
-    textarea.classList.remove('expand');
-    // exit early if no input
-    if (textarea.value === '') {
-      textarea.focus();
-      return;
-    }
-    setInput('');
-    setIdeas(ideas.concat({code: input, timestamp: new Date().getTime()}));
-    textarea.focus();
   };
   const showOptions = (timestamp) => {
     setDisplayOptionTimestamp(timestamp);
@@ -28,11 +17,6 @@ function App() {
   const hideOptions = () => {
     setDisplayOptionTimestamp(-1);
   }
-  const deleteIdea = (timestamp) => {
-    setIdeas(ideas.filter((e) => e.timestamp !== timestamp));
-    setDisplayOptionTimestamp(-1);
-    focusTextArea();
-  };
   const urlAcceptableString = (code) => {
     return encodeURIComponent(code) // handles most
       .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
@@ -52,6 +36,33 @@ function App() {
       .replace(/_/g, '%3F')
       .replace(/~/g, '%7E')
   };
+  const updateIdeasLocalStorage = (newIdeas) => {
+    localStorage.setItem('ideas', JSON.stringify(newIdeas));
+  };
+  const addIdea = () => {
+    const textarea = document.querySelector('textarea');
+    textarea.classList.remove('expand');
+    // exit early if no input
+    if (textarea.value === '') {
+      textarea.focus();
+      return;
+    }
+    setInput('');
+    const newIdeas = ideas.concat({code: input, timestamp: new Date().getTime()});
+    setIdeas(newIdeas);
+    updateIdeasLocalStorage(newIdeas);
+    textarea.focus();
+  };
+  const deleteIdea = (timestamp) => {
+    const newIdeas = ideas.filter((e) => e.timestamp !== timestamp);
+    setIdeas(newIdeas);
+    updateIdeasLocalStorage(newIdeas);
+    setDisplayOptionTimestamp(-1);
+    focusTextArea();
+  };
+  const emailIdea = (code) => {
+    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(code));
+  };
   const saveIdea = (code) => {
     if (code === '') return;
     try {
@@ -70,12 +81,9 @@ function App() {
       window.open('data:text/txt;charset=utf-8,' + escape(code), 'newdoc');
     }
   };
-  const emailIdea = (code) => {
-    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(code));
-  };
   const checkCommandEnter = (event) => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
-      resetInput();
+      addIdea();
     }
   };
   const expandTextarea = () => {
@@ -122,7 +130,7 @@ function App() {
               <button onClick={() => addSpecialCharacters('""')}
                       aria-label="add quotation marks">""</button>
             </div>
-            <button onClick={resetInput}
+            <button onClick={addIdea}
                     style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
                     >Add idea</button>
           </div>
