@@ -5,7 +5,8 @@ import Ideas from './components/Ideas';
 function App() {
   const initialInput = '';
   const initialIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
-  const [input, setInput] = React.useState(initialInput);
+  const [input, setInput] = React.useState(initialInput); // also updatePreview
+  const [preview, setPreview] = React.useState('');
   const [ideas, setIdeas] = React.useState(initialIdeas); // also updateIdeasLocalStorage
   const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
   const focusTextArea = () => {
@@ -48,6 +49,7 @@ function App() {
       return;
     }
     setInput('');
+    setPreview('');
     const newIdeas = ideas.concat({code: input, timestamp: new Date().getTime()});
     setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
@@ -110,13 +112,25 @@ function App() {
       textarea.classList.remove('expand');
     }
   };
+  const combineCamelCase = () => {
+    // TODO: input redux variable -> preview redux variable
+    //   <code className="language-js">{input}</code>
+    // should be:
+    //   <code className="language-js">{preview}</code>
+  };
+  const updatePreview = (overrideInput) => { // (overrideInput is optional)
+    combineCamelCase();
+    setPreview(overrideInput || input);
+  };
   const addSpecialCharacters = (characters) => {
     const cursorPosition = document.querySelector('textarea').selectionStart;
-    const newInput = input.split('');
+    let newInput = input.split('');
     newInput.splice(cursorPosition, 0, characters);
-    setInput(newInput.join(''));
+    newInput = newInput.join('')
+    setInput(newInput);
+    setPreview(newInput);
     const textarea = document.getElementById('input');
-    textarea.value = newInput.join('');
+    textarea.value = newInput;
     textarea.focus();
     const start = cursorPosition + characters.length;
     const end = start - 1;
@@ -129,7 +143,7 @@ function App() {
         <div id="split-container" className="wrap-elements-if-too-wide">
           <div>
             <textarea id="input"
-                      onChange={(e) => {expandTextarea();setInput(e.target.value)}}
+                      onChange={(e) => {expandTextarea();setInput(e.target.value);updatePreview(e.target.value);}}
                       onKeyDown={checkCommandEnter}
                       value={input}
                       placeholder="type code here"
@@ -152,7 +166,7 @@ function App() {
           </div>
           <pre className="react-markdown"
               style={{display: input !== '' ? 'block' : 'none'}}>
-            <code className="language-js">{input}</code>
+            <code className="language-js">{preview}</code>
           </pre>
         </div>
         <p style={{display: ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
