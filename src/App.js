@@ -69,6 +69,7 @@ function App() {
               <button onClick={() => addSpecialCharacters('()')}>()</button>
               <button onClick={() => addSpecialCharacters('[]')}>[]</button>
               <button onClick={() => addSpecialCharacters('{}')}>&#123;&#125;</button>
+              <button onClick={() => addSpecialCharacters('""')}>""</button>
             </div>
             <button onClick={resetInput}
                     style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
