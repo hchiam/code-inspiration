@@ -1,7 +1,8 @@
 {
-  "name": "app",
-  "version": "0.1.0",
+  "name": "code-inspiration",
+  "version": "1.0.0",
   "private": true,
+  "description": "Capture snippets of code inspiration while on the go.",
   "dependencies": {
     "create-react-app": "^3.2.0",
     "react": "^16.9.0",
