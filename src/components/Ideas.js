@@ -11,7 +11,7 @@ function Ideas(props) {
     <div id="ideas">
       {
         props.ideas.map((idea, index) =>
-          // (note: include just one element within Draggable)
+          // (Note: include just one element within Draggable. Use div to show on new line.)
           <Draggable>
             <div>
               <pre className="react-markdown"
@@ -25,7 +25,6 @@ function Ideas(props) {
                 <code class="language-js"
                       >{idea}</code>
               </pre>
-              <br/>
             </div>
           </Draggable>
         )
