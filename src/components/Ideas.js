@@ -20,7 +20,7 @@ function Ideas(props) {
                     onMouseLeave={props.hideOptions}
                     title="Psst! You can drag me around the screen.">
                 <button onClick={() => props.deleteIdea(index)}className="idea-button"
-                        style={{display: props.displayOptionIndex === index ? 'block' : 'none'}}
+                        style={{width: matchesIndex(index) ? '3em' : 0}}
                         >X</button>
                 <code class="language-js"
                       >{idea}</code>
