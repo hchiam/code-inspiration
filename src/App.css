@@ -81,7 +81,7 @@ textarea, .react-markdown {
 .react-markdown {
   text-align: left;
   background: black;
-  display: inline-block
+  display: inline-block;
 }
 
 .react-markdown code {

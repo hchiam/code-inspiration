@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Draggable from 'react-draggable';
+import Ideas from './components/Ideas';
 
 function App() {
   const initialInput = '';
@@ -10,8 +10,14 @@ function App() {
   const focusTextArea = () => {
     document.querySelector('textarea').focus();
   };
-  const updateInput = () => {
+  const checkCommandEnter = (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.keyCode == 13) {
+      resetInput();
+    }
+  };
+  const resetInput = () => {
     const textarea = document.querySelector('textarea');
+    // exit early if no input
     if (textarea.value === '') {
       textarea.focus();
       return;
@@ -22,10 +28,10 @@ function App() {
   };
   const showOptions = (e, index) => {
     setDisplayOptionIndex(index);
-    setTimeout(() => {
-      setDisplayOptionIndex(-1);
-    }, 1000);
   };
+  const hideOptions = () => {
+    setDisplayOptionIndex(-1);
+  }
   const deleteIdea = (index) => {
     setIdeas(ideas.filter((e, id) => id !== index));
     setDisplayOptionIndex(-1);
@@ -41,11 +47,13 @@ function App() {
         <div id="split-container">
           <div>
             <textarea onInput={(e) => setInput(e.target.value)}
+                      onKeyDown={checkCommandEnter}
                       value={input}
                       placeholder="type code here"
                       autoFocus/>
-            <button onClick={updateInput}
-                    style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}>Add idea</button>
+            <button onClick={resetInput}
+                    style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
+                    >Add idea</button>
           </div>
           <pre className="react-markdown"
               style={{display: input !== '' ? 'block' : 'none'}}>
@@ -53,24 +61,12 @@ function App() {
           </pre>
         </div>
         <p style={{display: ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
-        <div id="ideas">
-          {
-            ideas.map((idea, index) =>
-              // (note: include just one element within Draggable)
-              <Draggable>
-                <pre className="react-markdown"
-                     key={index}
-                     onMouseEnter={(e) => showOptions(e, index)}
-                     title="Psst! You can drag me around the screen.">
-                  <button className="idea-button"
-                          style={{display: displayOptionIndex === index ? 'block' : 'none'}}
-                          onClick={() => deleteIdea(index)}>X</button>
-                  <code class="language-js">{idea}</code>
-                </pre>
-              </Draggable>
-            )
-          }
-        </div>
+        <Ideas ideas={ideas}
+               displayOptionIndex={displayOptionIndex}
+               showOptions={showOptions}
+               hideOptions={hideOptions}
+               deleteIdea={deleteIdea}
+               saveIdea={saveIdea}/>
       </header>
     </div>
   );
