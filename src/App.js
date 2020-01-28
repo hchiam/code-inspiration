@@ -37,8 +37,8 @@ function App() {
     setDisplayOptionIndex(-1);
     focusTextArea();
   };
-  const saveIdea = (index) => {
-    // TODO
+  const saveIdea = (idea) => {
+    window.open('mailto:test@example.com?subject=Idea&body=' + idea);
   };
   return (
     <div className="App">

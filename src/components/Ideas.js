@@ -22,16 +22,16 @@ function Ideas(props) {
                 <div className="vertical-row">
                   <button onClick={() => props.deleteIdea(index)}className="idea-button"
                           style={{
-                            width: matchesIndex(index) ? '2rem' : 0,
-                            height: matchesIndex(index) ? '2rem' : 0,
+                            width: matchesIndex(index) ? '2.5rem' : 0,
+                            height: matchesIndex(index) ? '2.5rem' : 0,
                           }}
                           >X</button>
-                  <img onClick={() => props.saveIdea(index)}className="idea-button"
+                  <button onClick={() => props.saveIdea(idea)}className="idea-button"
                       style={{
-                        width: matchesIndex(index) ? '2rem' : 0,
-                        height: matchesIndex(index) ? '2rem' : 0,
+                        width: matchesIndex(index) ? '2.5rem' : 0,
+                        height: matchesIndex(index) ? '2.5rem' : 0,
                       }}
-                      src={emailIcon} alt="Email" />
+                      >Email</button>
                 </div>
                 <code class="language-js">{idea}</code>
               </pre>
