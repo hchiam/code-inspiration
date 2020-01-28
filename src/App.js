@@ -65,11 +65,16 @@ function App() {
                       placeholder="type code here"
                       autoFocus/>
             <div>
-              <button onClick={() => addSpecialCharacters('const  = () => ;')}>fn</button>
-              <button onClick={() => addSpecialCharacters('()')}>()</button>
-              <button onClick={() => addSpecialCharacters('[]')}>[]</button>
-              <button onClick={() => addSpecialCharacters('{}')}>&#123;&#125;</button>
-              <button onClick={() => addSpecialCharacters('""')}>""</button>
+              <button onClick={() => addSpecialCharacters('const  = () => ;')}
+                      aria-label="add ES6 function">fn</button>
+              <button onClick={() => addSpecialCharacters('()')}
+                      aria-label="add round brackets">()</button>
+              <button onClick={() => addSpecialCharacters('[]')}
+                      aria-label="add square brackets">[]</button>
+              <button onClick={() => addSpecialCharacters('{}')}
+                      aria-label="add curly brackets">&#123;&#125;</button>
+              <button onClick={() => addSpecialCharacters('""')}
+                      aria-label="add quotation marks">""</button>
             </div>
             <button onClick={resetInput}
                     style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}

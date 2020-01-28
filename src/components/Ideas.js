@@ -24,12 +24,14 @@ function Ideas(props) {
                             width: matchesIndex(index) ? '2.5rem' : 0,
                             height: matchesIndex(index) ? '2.5rem' : 0,
                           }}
+                          aria-label="Delete this idea"
                           >X</button>
                   <button onClick={() => props.saveIdea(idea)}className="idea-button"
                       style={{
                         width: matchesIndex(index) ? '2.5rem' : 0,
                         height: matchesIndex(index) ? '2.5rem' : 0,
                       }}
+                      aria-label="Email this idea"
                       >Email</button>
                 </div>
                 <code class="language-js">{idea}</code>

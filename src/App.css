@@ -68,8 +68,8 @@ h1 code {
 }
 
 button {
-  background: lightgrey;
-  color: black;
+  background: rgb(37, 39, 41);
+  color: whitesmoke;
   padding: 1em;
   font-weight: bold;
   border-radius: 0.5em;
@@ -82,6 +82,8 @@ button:hover {
 
 textarea {
   min-height: 1em;
+  background: rgb(24, 26, 27);
+  color: whitesmoke;
 }
 
 textarea, .react-markdown {
