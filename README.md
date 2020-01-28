@@ -1,6 +1,8 @@
-# Code Inspiration
+# [Code Inspiration](https://code-inspiration.glitch.me)
 
 Capture snippets of code inspiration while on the go.
+
+<https://code-inspiration.glitch.me>
 
 ## Run locally
 
