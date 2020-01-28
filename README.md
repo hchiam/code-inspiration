@@ -7,13 +7,13 @@ Capture snippets of code inspiration while on the go.
 ## Run locally
 
 ```bash
-yarn
+npm install
 ```
 
 and then
 
 ```bash
-yarn start
+npm start
 ```
 
 ## Extra info
