@@ -63,19 +63,29 @@ h1 code {
 button {
   background: lightgrey;
   color: black;
-  padding: 0.5em;
+  padding: 1em;
   font-weight: bold;
   border-radius: 0.5em;
+  border: none;
 }
 
 button:hover {
   background: lime;
 }
 
+textarea {
+  height: 10em;
+}
+
 textarea, .react-markdown {
+  border: none;
   border-radius: 0.5em;
   padding: 0.5em;
   margin: 0.5em;
+}
+
+textarea:hover {
+  border-radius: 0;
 }
 
 .react-markdown {
@@ -93,5 +103,7 @@ textarea, .react-markdown {
 }
 
 .idea-button {
+  padding: 0;
+  height: 3em;
   border: none;
 }
