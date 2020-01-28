@@ -18,27 +18,30 @@ function Ideas(props) {
                     onMouseLeave={props.hideOptions}
                     title="Psst! You can drag me around the screen.">
                 <div className="vertical-row">
-                  <button onClick={() => props.deleteIdea(idea.timestamp)}className="idea-button"
+                  <button onClick={() => props.deleteIdea(idea)}
+                          className="idea-button"
                           style={{
                             width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
                             height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
                           }}
                           aria-label="Delete this idea"
                           >X</button>
-                  <button onClick={() => props.emailIdea(idea.code)}className="idea-button"
-                      style={{
-                        width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
-                        height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
-                      }}
-                      aria-label="Email this idea"
-                      >Email</button>
-                  <button onClick={() => props.saveIdea(idea.code)}className="idea-button"
-                      style={{
-                        width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
-                        height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
-                      }}
-                      aria-label="Save this idea as a JavaScript file"
-                      >Save</button>
+                  <button onClick={() => props.emailIdea(idea)}
+                          className="idea-button"
+                          style={{
+                            width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
+                            height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
+                          }}
+                          aria-label="Email this idea"
+                          >Email</button>
+                  <button onClick={() => props.saveIdea(idea)}
+                          className="idea-button"
+                          style={{
+                            width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
+                            height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0,
+                          }}
+                          aria-label="Save this idea as a JavaScript file"
+                          >Save</button>
                 </div>
                 <code className="language-js">{idea.code}</code>
               </pre>

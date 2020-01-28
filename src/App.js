@@ -53,20 +53,36 @@ function App() {
     updateIdeasLocalStorage(newIdeas);
     textarea.focus();
   };
-  const deleteIdea = (timestamp) => {
-    const newIdeas = ideas.filter((e) => e.timestamp !== timestamp);
+  const deleteIdea = (idea) => {
+    if (!idea.timestamp) {
+      alert('Error - could not find timestamp for this idea.');
+      return;
+    }
+    const timestampOfIdeaToDelete = idea.timestamp;
+    const newIdeas = ideas.filter((e) => e.timestamp !== timestampOfIdeaToDelete);
     setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     setDisplayOptionTimestamp(-1);
     focusTextArea();
   };
-  const emailIdea = (code) => {
-    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(code));
+  const emailIdea = (idea) => {
+    if (!idea.code || idea.code === '') {
+      alert('Error - could not find code for this idea.');
+      return;
+    }
+    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(idea.code));
   };
-  const saveIdea = (code) => {
-    if (code === '') return;
+  const saveIdea = (idea) => {
+    if (!idea.code || idea.code === '') {
+      alert('Error - could not find code for this idea.');
+      return;
+    } else if (!idea.timestamp) {
+      alert('Error - could not find timestamp for this idea.');
+      return;
+    }
+    const code = idea.code;
     try {
-      const fileName = 'idea.js';
+      const fileName = `idea-${idea.timestamp}.js`;
       const tempElem = document.createElement('a');
       tempElem.setAttribute('href', 'data:text/plain;charset=utf-8,' + urlAcceptableString(code));
       tempElem.setAttribute('download', fileName);
