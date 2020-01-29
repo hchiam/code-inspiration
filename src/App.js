@@ -5,9 +5,11 @@ import Ideas from './components/Ideas';
 function App() {
   const initialInput = '';
   const initialIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
+  const initialSuggestion = {suggestion: '', start: -1, stop: -1};
   const [input, setInput] = React.useState(initialInput); // also updatePreview
   const [preview, setPreview] = React.useState('');
   const [ideas, setIdeas] = React.useState(initialIdeas); // also updateIdeasLocalStorage
+  const [suggestion, setSuggestion] = React.useState(initialSuggestion);
   const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
   const focusTextArea = () => {
     document.querySelector('textarea').focus();
@@ -50,7 +52,7 @@ function App() {
     }
     setInput('');
     setPreview('');
-    const newIdeas = ideas.concat({code: input, timestamp: new Date().getTime()});
+    const newIdeas = ideas.concat({code: preview, timestamp: new Date().getTime()});
     setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     textarea.focus();
@@ -112,21 +114,56 @@ function App() {
       textarea.classList.remove('expand');
     }
   };
-  const combineCamelCase = () => {
-    // TODO: input redux variable -> preview redux variable
-    //   <code className="language-js">{input}</code>
-    // should be:
-    //   <code className="language-js">{preview}</code>
+  const isSpecialWord = (word) => {
+    const keyWords = [ // TODO: maybe import this array from another file ???
+      'const', 'let', 'var', 'function', 'if', 'for',
+    ];
+    if (keyWords.includes(word)) return true;
+    if (/^\W+$/.test(word)) return true;
+    return false;
+  };
+  const combineCamelCase = (overrideInput) => {
+    const words = (overrideInput || input).split(' ');
+    if (words.length < 2) return;
+    // TODO: search around where user typed, not blindly through the whole thing
+    for (let i = 0; i < words.length - 1; i++) {
+      const left = words[i];
+      const right = words[i+1];
+      const alreadySeparateWords = left && /\W$/.test(left);
+      if (left && right && !alreadySeparateWords && !isSpecialWord(left) && !isSpecialWord(right)) {
+        const newSuggestion = left + right[0].toUpperCase() + right.slice(1);
+        const startSelection = words.slice(0, i).join(' ').length + (i==0 ? 0 : 1);
+        const stopSelection = startSelection + words[i].length + 1 + words[i+1].length;
+        setSuggestion({
+          suggestion: newSuggestion,
+          start: startSelection,
+          stop: stopSelection,
+        });
+        const ariaLabel = `use suggestion: "${newSuggestion}", with no spaces between`
+        document.getElementById('suggestion-button').setAttribute('aria-label', ariaLabel);
+      }
+    }
   };
   const updatePreview = (overrideInput) => { // (overrideInput is optional)
-    combineCamelCase();
+    combineCamelCase(overrideInput);
     setPreview(overrideInput || input);
+  };
+  const replaceRange = (original, start, stop, substitute) => {
+    return original.substring(0, start) + substitute + original.substring(stop);
+  }
+  const useSuggestion = () => {
+    let newInput = replaceRange(input, suggestion.start, suggestion.stop, suggestion.suggestion);
+    setInput(newInput);
+    setPreview(newInput);
+    const textarea = document.getElementById('input');
+    textarea.focus();
+    setSuggestion(initialSuggestion);
   };
   const addSpecialCharacters = (characters) => {
     const cursorPosition = document.querySelector('textarea').selectionStart;
     let newInput = input.split('');
     newInput.splice(cursorPosition, 0, characters);
-    newInput = newInput.join('')
+    newInput = newInput.join('');
     setInput(newInput);
     setPreview(newInput);
     const textarea = document.getElementById('input');
@@ -144,7 +181,7 @@ function App() {
           <div>
             <textarea id="input"
                       onChange={(e) => {expandTextarea();setInput(e.target.value);updatePreview(e.target.value);}}
-                      onKeyDown={checkCommandEnter}
+                      onKeyDown={(e) => checkCommandEnter(e)}
                       value={input}
                       placeholder="type code here"
                       autoFocus/>
@@ -159,6 +196,10 @@ function App() {
                       aria-label="add curly brackets">&#123;&#125;</button>
               <button onClick={() => addSpecialCharacters('""')}
                       aria-label="add quotation marks">""</button>
+              <button id="suggestion-button"
+                      onClick={useSuggestion}
+                      style={{display: suggestion.suggestion ? 'inline-block' : 'none'}}
+                      aria-label="use suggestion">{suggestion.suggestion}</button>
             </div>
             <button onClick={addIdea}
                     style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
