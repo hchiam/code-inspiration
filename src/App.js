@@ -115,7 +115,7 @@ function App() {
     }
   };
   const isSpecialWord = (word) => {
-    const keyWords = [ // TODO: maybe import this array from another file ???
+    const keyWords = [
       'const', 'let', 'var', 'function', 'if', 'for',
     ];
     if (keyWords.includes(word)) return true;
@@ -132,7 +132,7 @@ function App() {
       const alreadySeparateWords = left && /\W$/.test(left);
       if (left && right && !alreadySeparateWords && !isSpecialWord(left) && !isSpecialWord(right)) {
         const newSuggestion = left + right[0].toUpperCase() + right.slice(1);
-        const startSelection = words.slice(0, i).join(' ').length + (i==0 ? 0 : 1);
+        const startSelection = words.slice(0, i).join(' ').length + (i===0 ? 0 : 1);
         const stopSelection = startSelection + words[i].length + 1 + words[i+1].length;
         setSuggestion({
           suggestion: newSuggestion,
@@ -159,7 +159,7 @@ function App() {
     textarea.focus();
     setSuggestion(initialSuggestion);
   };
-  const addSpecialCharacters = (characters) => {
+  const addSpecialCharacters = (characters, putCursorBack) => {
     const cursorPosition = document.querySelector('textarea').selectionStart;
     let newInput = input.split('');
     newInput.splice(cursorPosition, 0, characters);
@@ -170,8 +170,9 @@ function App() {
     textarea.value = newInput;
     textarea.focus();
     const start = cursorPosition + characters.length;
-    const end = start - 1;
+    const end = start - (putCursorBack || 1);
     textarea.setSelectionRange(start, end);
+    expandTextarea();
   };
   return (
     <div className="App">
@@ -186,7 +187,7 @@ function App() {
                       placeholder="type code here"
                       autoFocus/>
             <div>
-              <button onClick={() => addSpecialCharacters('const  = () => ;')}
+              <button onClick={() => addSpecialCharacters('const  = () => {\n  \n};', 16)}
                       aria-label="add ES6 function">fn</button>
               <button onClick={() => addSpecialCharacters('()')}
                       aria-label="add round brackets">()</button>
