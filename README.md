@@ -4,6 +4,8 @@ Capture snippets of code inspiration while on the go.
 
 <https://code-inspiration.glitch.me>
 
+[![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration)
+
 ## Run locally
 
 Just once:
