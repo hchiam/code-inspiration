@@ -20,6 +20,7 @@ before_script:
   - npm run my-build
 
 script:
+  # this doesn't work locally for me, but it works in Travis CI:
   - (react-scripts start) & (npm run side-test)
 
 notifications:
