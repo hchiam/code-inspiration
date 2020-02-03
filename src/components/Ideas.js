@@ -4,9 +4,6 @@ import Draggable from 'react-draggable';
 import CollapsingButton from './CollapsingButton';
 
 function Ideas(props) {
-  const matchesTimestamp = (timestamp) => {
-    return props.displayOptionTimestamp === timestamp;
-  };
   return (
     <div id="ideas">
       {
