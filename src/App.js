@@ -187,7 +187,7 @@ function App() {
                       value={input}
                       placeholder="type code here"
                       autoFocus/>
-            <div>
+            <div id="shortcut-buttons-group">
               <button onClick={() => addSpecialCharacters('const  = () => {\n  \n};', 16)}
                       aria-label="add ES6 function">fn</button>
               <button onClick={() => addSpecialCharacters('()')}
@@ -203,12 +203,14 @@ function App() {
                       style={{display: suggestion.suggestion ? 'inline-block' : 'none'}}
                       aria-label="use suggestion">{suggestion.suggestion}</button>
             </div>
-            <button onClick={addIdea}
+            <button id="add-idea-button"
+                    onClick={addIdea}
                     style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
                     >Add idea</button>
           </div>
-          <pre className="react-markdown"
-              style={{display: input !== '' ? 'block' : 'none'}}>
+          <pre id="preview"
+               className="react-markdown"
+               style={{display: input !== '' ? 'block' : 'none'}}>
             <code className="language-js">{preview}</code>
           </pre>
         </div>

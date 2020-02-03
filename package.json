@@ -10,12 +10,14 @@
     "react-draggable": "^4.2.0"
   },
   "devDependencies": {
-    "react-scripts": "^3.3.1"
+    "react-scripts": "^3.3.1",
+    "selenium-side-runner": "^3.16.0"
   },
   "scripts": {
     "start": "npm run my-build; react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "side-test": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" test.side",
     "eject": "react-scripts eject",
     "my-build": "mkdir public/src || true; cp -r src/* public/src"
   },

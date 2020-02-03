@@ -1,0 +1,176 @@
+{
+  "id": "01d80733-d784-497f-b378-fb3a960bf454",
+  "version": "2.0",
+  "name": "test",
+  "url": "http://localhost:3000",
+  "tests": [{
+    "id": "5d1cc335-3038-4b09-b992-cf27647a2667",
+    "name": "test",
+    "commands": [{
+      "id": "9f0228e1-3797-4066-aa31-25f93dc61c99",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4a1143d2-ea27-41e0-b81f-ddf3d86e982f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x643",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e88db2b-523d-424f-a77e-72027f656823",
+      "comment": "",
+      "command": "click",
+      "target": "css=#shortcut-buttons-group > button:nth-child(1)",
+      "targets": [
+        ["css=#shortcut-buttons-group > button:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='shortcut-buttons-group']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'fn')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9574a7f-bdb2-4869-b0fc-3b45f90265b1",
+      "comment": "",
+      "command": "type",
+      "target": "id=input",
+      "targets": [
+        ["id=input", "id"],
+        ["css=#input", "css:finder"],
+        ["xpath=//textarea[@id='input']", "xpath:attributes"],
+        ["xpath=//div[@id='split-container']/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "const say hi = () => {\\n  \\n};"
+    }, {
+      "id": "3f6e67cb-8ba6-49ee-99fc-0a7a6f137e04",
+      "comment": "",
+      "command": "click",
+      "target": "id=suggestion-button",
+      "targets": [
+        ["id=suggestion-button", "id"],
+        ["css=#suggestion-button", "css:finder"],
+        ["xpath=//button[@id='suggestion-button']", "xpath:attributes"],
+        ["xpath=//div[@id='shortcut-buttons-group']/button[6]", "xpath:idRelative"],
+        ["xpath=//button[6]", "xpath:position"],
+        ["xpath=//button[contains(.,'sayHi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8193d298-64ce-4547-861e-fbc352150973",
+      "comment": "",
+      "command": "type",
+      "target": "id=input",
+      "targets": [
+        ["id=input", "id"],
+        ["css=#input", "css:finder"],
+        ["xpath=//textarea[@id='input']", "xpath:attributes"],
+        ["xpath=//div[@id='split-container']/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "const sayHi = () => {\\n  alert\\n};"
+    }, {
+      "id": "e9673318-82a9-4ba3-b1ef-3770f0a5b769",
+      "comment": "",
+      "command": "click",
+      "target": "css=#shortcut-buttons-group > button:nth-child(2)",
+      "targets": [
+        ["css=#shortcut-buttons-group > button:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='shortcut-buttons-group']/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'()')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e5f3a67-9cd8-4e70-b7dc-ea8920f88765",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='shortcut-buttons-group']/button[5]", "xpath:idRelative"],
+        ["xpath=//button[5]", "xpath:position"],
+        ["xpath=//button[contains(.,'\"\"')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "20580975-ee16-46c0-aa69-7395adf8b97f",
+      "comment": "",
+      "command": "type",
+      "target": "id=input",
+      "targets": [
+        ["id=input", "id"],
+        ["css=#input", "css:finder"],
+        ["xpath=//textarea[@id='input']", "xpath:attributes"],
+        ["xpath=//div[@id='split-container']/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "const sayHi = () => {\\n  alert(\"Hi!\");\\n};"
+    }, {
+      "id": "9f49aed9-26d1-48db-b47f-7b6aacc0eee6",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-idea-button",
+      "targets": [
+        ["id=add-idea-button", "id"],
+        ["css=#add-idea-button", "css:finder"],
+        ["xpath=//button[@id='add-idea-button']", "xpath:attributes"],
+        ["xpath=//div[@id='split-container']/div/button", "xpath:idRelative"],
+        ["xpath=//header/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add idea')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "afb0416d-c7cf-4f7b-9053-9d5feab7e1c2",
+      "comment": "Both hover and click so quick headless test works",
+      "command": "",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "81af8273-74aa-4a30-8085-f506a6c52813",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.react-markdown:nth-child(1)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b0e24f9f-2801-4932-9107-653b6582ee9d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.react-markdown:nth-child(1)",
+      "targets": [
+        ["css=.idea-button:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='ideas']/div/pre/div/button", "xpath:idRelative"],
+        ["xpath=//pre/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'X')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eeea6c11-a864-4ef8-8d6b-b39015f1479c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.idea-button:nth-child(1)",
+      "targets": [
+        ["css=.idea-button:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='ideas']/div/pre/div/button", "xpath:idRelative"],
+        ["xpath=//pre/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'X')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "edcfaeef-6fb3-4349-b923-21d55c6c7543",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["5d1cc335-3038-4b09-b992-cf27647a2667"]
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}
