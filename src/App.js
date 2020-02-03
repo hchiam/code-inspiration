@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
+import ShortcutButtonsGroup from './components/ShortcutButtonsGroup';
 import Ideas from './components/Ideas';
+import ControlPanel from './components/ControlPanel';
 
 function App() {
   const initialInput = '';
@@ -179,41 +181,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Capture <code>code</code> ideas:</h1>
-        <div id="split-container" className="wrap-elements-if-too-wide">
-          <div id="control-panel">
-            <textarea id="input"
-                      onChange={(e) => {expandTextarea();setInput(e.target.value);updatePreview(e.target.value);}}
-                      onKeyDown={(e) => checkCommandEnter(e)}
-                      value={input}
-                      placeholder="type code here"
-                      autoFocus/>
-            <div id="shortcut-buttons-group">
-              <button onClick={() => addSpecialCharacters('const  = () => {\n  \n};', 16)}
-                      aria-label="add ES6 function">fn</button>
-              <button onClick={() => addSpecialCharacters('()')}
-                      aria-label="add round brackets">()</button>
-              <button onClick={() => addSpecialCharacters('[]')}
-                      aria-label="add square brackets">[]</button>
-              <button onClick={() => addSpecialCharacters('{}')}
-                      aria-label="add curly brackets">&#123;&#125;</button>
-              <button onClick={() => addSpecialCharacters('""')}
-                      aria-label="add quotation marks">""</button>
-              <button id="suggestion-button"
-                      onClick={useSuggestion}
-                      style={{display: suggestion.suggestion ? 'inline-block' : 'none'}}
-                      aria-label="use suggestion">{suggestion.suggestion}</button>
-            </div>
-            <button id="add-idea-button"
-                    onClick={addIdea}
-                    style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
-                    >Add idea</button>
-          </div>
-          <pre id="preview"
-               className="react-markdown"
-               style={{display: input !== '' ? 'block' : 'none'}}>
-            <code className="language-js">{preview}</code>
-          </pre>
-        </div>
+        <ControlPanel expandTextarea={expandTextarea}
+                      setInput={setInput}
+                      updatePreview={updatePreview}
+                      checkCommandEnter={checkCommandEnter}
+                      input={input}
+                      addSpecialCharacters={addSpecialCharacters}
+                      useSuggestion={useSuggestion}
+                      suggestion={suggestion}
+                      addIdea={addIdea}
+                      input={input}
+                      input={input}
+                      preview={preview}/>
         <p style={{display: ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
         <Ideas ideas={ideas}
                displayOptionTimestamp={displayOptionTimestamp}
