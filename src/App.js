@@ -88,7 +88,8 @@ function App() {
     try {
       const fileName = `idea-${idea.timestamp}.js`;
       const tempElem = document.createElement('a');
-      tempElem.setAttribute('href', 'data:text/plain;charset=utf-8,' + urlAcceptableString(code));
+      // use encodeURIComponent instead of urlAcceptableString since saving to file
+      tempElem.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code));
       tempElem.setAttribute('download', fileName);
       if (document.createEvent) {
         const event = document.createEvent('MouseEvents');
