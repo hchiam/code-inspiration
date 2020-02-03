@@ -180,7 +180,7 @@ function App() {
       <header className="App-header">
         <h1>Capture <code>code</code> ideas:</h1>
         <div id="split-container" className="wrap-elements-if-too-wide">
-          <div>
+          <div id="control-panel">
             <textarea id="input"
                       onChange={(e) => {expandTextarea();setInput(e.target.value);updatePreview(e.target.value);}}
                       onKeyDown={(e) => checkCommandEnter(e)}
