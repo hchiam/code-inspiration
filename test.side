@@ -125,7 +125,7 @@
       "value": ""
     }, {
       "id": "afb0416d-c7cf-4f7b-9053-9d5feab7e1c2",
-      "comment": "Both hover and click so quick headless test works",
+      "comment": "Hover & click on element so quick headless test works",
       "command": "",
       "target": "",
       "targets": [],
@@ -136,6 +136,18 @@
       "command": "mouseOver",
       "target": "css=.react-markdown:nth-child(1)",
       "targets": [],
+      "value": ""
+    }, {
+      "id": "e0ff54e9-e17d-4347-bd3c-df66aeb1ed02",
+      "comment": "",
+      "command": "click",
+      "target": "css=.language-js:nth-child(2)",
+      "targets": [
+        ["css=.language-js:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='idea-1580784165965']/pre/code", "xpath:idRelative"],
+        ["xpath=//div[2]/div/pre/code", "xpath:position"],
+        ["xpath=//code[contains(.,'const  = () => {\n  \n};')]", "xpath:innerText"]
+      ],
       "value": ""
     }, {
       "id": "b0e24f9f-2801-4932-9107-653b6582ee9d",

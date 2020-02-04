@@ -81,18 +81,23 @@ function Ideas(props) {
       window.open('data:text/txt;charset=utf-8,' + escape(code), 'newdoc');
     }
   };
+  const allowListToFillSpace = (e, timestamp) => {
+    // allow list to fill space left behind by dragged element
+    const dragged = document.querySelector(`div#idea-${timestamp}`);
+    dragged.style.position = 'absolute';
+  };
   return (
     <div id="ideas">
       <p style={{display: props.ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
       {
         props.ideas.map((idea) =>
           // (Note: include just one element within Draggable. Use div to show on new line.)
-          <Draggable key={idea.timestamp}>
-            <div>
+          <Draggable key={idea.timestamp} onStop={(e) => allowListToFillSpace(e, idea.timestamp)}>
+            <div id={"idea-" + idea.timestamp}>
               <pre className="react-markdown"
-                    onMouseOver={() => showOptions(idea.timestamp)}
-                    onMouseLeave={hideOptions}
-                    title="Psst! You can drag me around the screen.">
+                   onMouseOver={() => showOptions(idea.timestamp)}
+                   onMouseLeave={hideOptions}
+                   title="Psst! You can drag me around the screen.">
                 <div className="vertical-row">
                   <CollapsingButton idea={idea}
                                     buttonText='X'
