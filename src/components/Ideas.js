@@ -6,6 +6,13 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import CollapsingButton from './CollapsingButton';
 import expandTextarea from '../helpers/expandTextarea';
 
+import PropTypes from 'prop-types';
+
+Ideas.propTypes = {
+  ideas: PropTypes.array.isRequired,
+  setIdeas: PropTypes.func.isRequired,
+};
+
 function Ideas(props) {
   const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
   const showOptions = (timestamp) => {

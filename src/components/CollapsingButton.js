@@ -1,6 +1,15 @@
 import React from 'react';
 import '../App.css';
 
+import PropTypes from 'prop-types';
+
+CollapsingButton.propTypes = {
+  displayOptionTimestamp: PropTypes.number.isRequired,
+  idea: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+};
+
 function CollapsingButton(props) {
   const matchesTimestamp = (timestamp) => {
     return props.displayOptionTimestamp === timestamp;

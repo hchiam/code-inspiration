@@ -1,6 +1,14 @@
 import React from 'react';
 import '../App.css';
 
+import PropTypes from 'prop-types';
+
+ShortcutButtonsGroup.propTypes = {
+  addSpecialCharacters: PropTypes.func.isRequired,
+  useSuggestion: PropTypes.func.isRequired,
+  suggestion: PropTypes.object.isRequired,
+};
+
 function ShortcutButtonsGroup(props) {
   return (
     <div id="shortcut-buttons-group">

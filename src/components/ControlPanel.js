@@ -4,6 +4,13 @@ import ShortcutButtonsGroup from './ShortcutButtonsGroup';
 import Preview from './Preview';
 import expandTextarea from '../helpers/expandTextarea.js';
 
+import PropTypes from 'prop-types';
+
+ControlPanel.propTypes = {
+  ideas: PropTypes.array.isRequired,
+  setIdeas: PropTypes.func.isRequired,
+};
+
 function ControlPanel(props) {
   const initialInput = '';
   const initialSuggestion = {suggestion: '', start: -1, stop: -1};

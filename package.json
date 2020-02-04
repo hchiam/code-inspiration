@@ -5,6 +5,7 @@
   "description": "Capture snippets of code inspiration while on the go.",
   "dependencies": {
     "create-react-app": "^3.2.0",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.10.2",
     "react-draggable": "^4.2.0",
