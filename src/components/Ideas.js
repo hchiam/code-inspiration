@@ -97,54 +97,111 @@ function Ideas(props) {
     expandTextarea();
   };
   const allowListToFillSpace = (e, timestamp) => {
-    // allow list to fill space left behind by dragged element
+    // allow list to fill space left behind by dragged element:
     const dragged = document.querySelector(`div#idea-${timestamp}`);
     dragged.style.position = 'absolute';
   };
-  return (
-    <div id="ideas">
-      <p style={{display: props.ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
-      {
-        props.ideas.map((idea) =>
-          // (Note: include just one element within Draggable. Use div to show on new line.)
-          <Draggable key={idea.timestamp} onStop={(e) => allowListToFillSpace(e, idea.timestamp)}>
-            <div id={"idea-" + idea.timestamp}>
-              <pre className="react-markdown"
-                   onMouseOver={() => showOptions(idea.timestamp)}
-                   onMouseLeave={hideOptions}
-                   title="Psst! You can drag me around the screen.">
-                <div className="vertical-row">
-                  <CollapsingButton idea={idea}
-                                    buttonText='X'
-                                    action={deleteIdea}
-                                    label='Delete this idea'
-                                    displayOptionTimestamp={displayOptionTimestamp}/>
-                  <CollapsingButton idea={idea}
-                                    buttonText='Email'
-                                    action={emailIdea}
-                                    label='Email this idea'
-                                    displayOptionTimestamp={displayOptionTimestamp}/>
-                  <CollapsingButton idea={idea}
-                                    buttonText='Save'
-                                    action={saveIdea}
-                                    label='Save this idea as a JavaScript file'
-                                    displayOptionTimestamp={displayOptionTimestamp}/>
-                  <CollapsingButton idea={idea}
-                                    buttonText='Reuse'
-                                    action={pasteIdea}
-                                    label='Reuse this idea in the input area'
-                                    displayOptionTimestamp={displayOptionTimestamp}/>
-                </div>
-                <SyntaxHighlighter language="javascript" style={docco}>
-                  {idea.code}
-                </SyntaxHighlighter>
-              </pre>
+
+  // prevent dragging in mobile:
+  const likelyOnMobile = window.screen.width <= 420;
+
+  if (likelyOnMobile) {
+
+    // mobile version (no Draggable):
+    return (
+      <div id="ideas">
+        <p style={{display: props.ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
+        {
+          props.ideas.map((idea) =>
+            // (Note: include just one element within Draggable. Use div to show on new line.)
+            <div key={idea.timestamp} onStop={(e) => allowListToFillSpace(e, idea.timestamp)}>
+              <div id={"idea-" + idea.timestamp}>
+                <pre className="react-markdown"
+                     onMouseOver={() => showOptions(idea.timestamp)}
+                     onMouseLeave={hideOptions}
+                     title="Psst! You can drag me around the screen.">
+                  <div className="vertical-row">
+                    <CollapsingButton idea={idea}
+                                      buttonText='X'
+                                      action={deleteIdea}
+                                      label='Delete this idea'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                    <CollapsingButton idea={idea}
+                                      buttonText='Email'
+                                      action={emailIdea}
+                                      label='Email this idea'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                    <CollapsingButton idea={idea}
+                                      buttonText='Save'
+                                      action={saveIdea}
+                                      label='Save this idea as a JavaScript file'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                    <CollapsingButton idea={idea}
+                                      buttonText='Reuse'
+                                      action={pasteIdea}
+                                      label='Reuse this idea in the input area'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                  </div>
+                  <SyntaxHighlighter language="javascript" style={docco}>
+                    {idea.code}
+                  </SyntaxHighlighter>
+                </pre>
+              </div>
             </div>
-          </Draggable>
-        )
-      }
-    </div>
-  );
+          )
+        }
+      </div>
+    );
+
+  } else {
+
+    // desktop version (has Draggable):
+    return (
+      <div id="ideas">
+        <p style={{display: props.ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
+        {
+          props.ideas.map((idea) =>
+            // (Note: include just one element within Draggable. Use div to show on new line.)
+            <Draggable key={idea.timestamp} onStop={(e) => allowListToFillSpace(e, idea.timestamp)}>
+              <div id={"idea-" + idea.timestamp}>
+                <pre className="react-markdown"
+                    onMouseOver={() => showOptions(idea.timestamp)}
+                    onMouseLeave={hideOptions}
+                    title="Psst! You can drag me around the screen.">
+                  <div className="vertical-row">
+                    <CollapsingButton idea={idea}
+                                      buttonText='X'
+                                      action={deleteIdea}
+                                      label='Delete this idea'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                    <CollapsingButton idea={idea}
+                                      buttonText='Email'
+                                      action={emailIdea}
+                                      label='Email this idea'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                    <CollapsingButton idea={idea}
+                                      buttonText='Save'
+                                      action={saveIdea}
+                                      label='Save this idea as a JavaScript file'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                    <CollapsingButton idea={idea}
+                                      buttonText='Reuse'
+                                      action={pasteIdea}
+                                      label='Reuse this idea in the input area'
+                                      displayOptionTimestamp={displayOptionTimestamp}/>
+                  </div>
+                  <SyntaxHighlighter language="javascript" style={docco}>
+                    {idea.code}
+                  </SyntaxHighlighter>
+                </pre>
+              </div>
+            </Draggable>
+          )
+        }
+      </div>
+    );
+  }
+
 }
 
 export default Ideas;
