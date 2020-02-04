@@ -77,12 +77,23 @@ function ControlPanel(props) {
   const replaceRange = (original, start, stop, substitute) => {
     return original.substring(0, start) + substitute + original.substring(stop);
   }
+  const getLengthBeforePunctuation = (str) => {
+    // ignore first character (in case it's punctuation)
+    for (let i = str.length - 1; i > 0; i--) {
+      if (/\W/.test(str[i])) return i;
+    }
+    return str.length;
+  };
   const useSuggestion = () => {
     let newInput = replaceRange(input, suggestion.start, suggestion.stop, suggestion.suggestion);
     setInput(newInput);
     setPreview(newInput);
     const textarea = document.getElementById('input');
+    textarea.value = newInput;
     textarea.focus();
+    const newCursorPos = suggestion.start + getLengthBeforePunctuation(suggestion.suggestion);
+    textarea.setSelectionRange(newCursorPos, newCursorPos);
+    // reset
     setSuggestion(initialSuggestion);
   };
   const addSpecialCharacters = (characters, putCursorBack) => {
