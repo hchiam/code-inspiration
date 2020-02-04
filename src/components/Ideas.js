@@ -81,6 +81,16 @@ function Ideas(props) {
       window.open('data:text/txt;charset=utf-8,' + escape(code), 'newdoc');
     }
   };
+  const pasteIdea = (idea) => {
+    const textarea = document.getElementById('input');
+    const input = textarea.value;
+    const originalCursorPosition = document.querySelector('textarea').selectionStart;
+    let newInput = input.slice(0, originalCursorPosition) + idea.code + input.slice(originalCursorPosition);
+    textarea.value = newInput;
+    textarea.focus();
+    const newCursorPos = originalCursorPosition + idea.code.length;
+    textarea.setSelectionRange(originalCursorPosition, newCursorPos);
+  };
   const allowListToFillSpace = (e, timestamp) => {
     // allow list to fill space left behind by dragged element
     const dragged = document.querySelector(`div#idea-${timestamp}`);
@@ -113,6 +123,11 @@ function Ideas(props) {
                                     buttonText='Save'
                                     action={saveIdea}
                                     label='Save this idea as a JavaScript file'
+                                    displayOptionTimestamp={displayOptionTimestamp}/>
+                  <CollapsingButton idea={idea}
+                                    buttonText='Reuse'
+                                    action={pasteIdea}
+                                    label='Reuse this idea in the input area'
                                     displayOptionTimestamp={displayOptionTimestamp}/>
                 </div>
                 <code className="language-js">{idea.code}</code>
