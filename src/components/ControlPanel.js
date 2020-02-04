@@ -35,10 +35,10 @@ function ControlPanel(props) {
   };
   const isSpecialWord = (word) => {
     const keyWords = [
-      'const', 'let', 'var', 'function', 'if', 'for',
+      'const', 'let', 'var', 'function', 'if', 'for', 'import', 'from', 'export', 'default',
     ];
     if (keyWords.includes(word)) return true;
-    if (/^\W+$/.test(word)) return true;
+    if (/\W/g.test(word)) return true;
     return false;
   };
   const combineCamelCase = (overrideInput) => {
