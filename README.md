@@ -34,4 +34,4 @@ npm run side-test
 
 You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with [`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).
 
-![Dependency graph.](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
+![(Dependency graph.)](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
