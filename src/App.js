@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import ShortcutButtonsGroup from './components/ShortcutButtonsGroup';
 import Ideas from './components/Ideas';
 import ControlPanel from './components/ControlPanel';
 
@@ -12,35 +11,6 @@ function App() {
   const [preview, setPreview] = React.useState('');
   const [ideas, setIdeas] = React.useState(initialIdeas); // also updateIdeasLocalStorage
   const [suggestion, setSuggestion] = React.useState(initialSuggestion);
-  const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
-  const focusTextArea = () => {
-    document.querySelector('textarea').focus();
-  };
-  const showOptions = (timestamp) => {
-    setDisplayOptionTimestamp(timestamp);
-  };
-  const hideOptions = () => {
-    setDisplayOptionTimestamp(-1);
-  }
-  const urlAcceptableString = (code) => {
-    return encodeURIComponent(code) // handles most
-      .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
-      .replace(/"/g, '%22')
-      .replace(/#/g, '%23')
-      .replace(/\$/g, '%24')
-      .replace(/%/g, '%25')
-      .replace(/&/g, '%26')
-      .replace(/'/g, '%27')
-      .replace(/\(/g, '%28')
-      .replace(/\)/g, '%29')
-      .replace(/\*/g, '%2A')
-      .replace(/-/g, '%2D')
-      .replace(/\./g, '%2E')
-      .replace(/</g, '%3C')
-      .replace(/>/g, '%3E')
-      .replace(/_/g, '%3F')
-      .replace(/~/g, '%7E')
-  };
   const updateIdeasLocalStorage = (newIdeas) => {
     localStorage.setItem('ideas', JSON.stringify(newIdeas));
   };
@@ -58,51 +28,6 @@ function App() {
     setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     textarea.focus();
-  };
-  const deleteIdea = (idea) => {
-    if (!idea.timestamp) {
-      alert('Error - could not find timestamp for this idea.');
-      return;
-    }
-    const timestampOfIdeaToDelete = idea.timestamp;
-    const newIdeas = ideas.filter((e) => e.timestamp !== timestampOfIdeaToDelete);
-    setIdeas(newIdeas);
-    updateIdeasLocalStorage(newIdeas);
-    setDisplayOptionTimestamp(-1);
-    focusTextArea();
-  };
-  const emailIdea = (idea) => {
-    if (!idea.code || idea.code === '') {
-      alert('Error - could not find code for this idea.');
-      return;
-    }
-    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(idea.code));
-  };
-  const saveIdea = (idea) => {
-    if (!idea.code || idea.code === '') {
-      alert('Error - could not find code for this idea.');
-      return;
-    } else if (!idea.timestamp) {
-      alert('Error - could not find timestamp for this idea.');
-      return;
-    }
-    const code = idea.code;
-    try {
-      const fileName = `idea-${idea.timestamp}.js`;
-      const tempElem = document.createElement('a');
-      // use encodeURIComponent instead of urlAcceptableString since saving to file
-      tempElem.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code));
-      tempElem.setAttribute('download', fileName);
-      if (document.createEvent) {
-        const event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        tempElem.dispatchEvent(event);
-      } else {
-        tempElem.click();
-      }
-    } catch(err) {
-      window.open('data:text/txt;charset=utf-8,' + escape(code), 'newdoc');
-    }
   };
   const checkCommandEnter = (event) => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
@@ -193,14 +118,8 @@ function App() {
                       input={input}
                       input={input}
                       preview={preview}/>
-        <p style={{display: ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
         <Ideas ideas={ideas}
-               displayOptionTimestamp={displayOptionTimestamp}
-               showOptions={showOptions}
-               hideOptions={hideOptions}
-               deleteIdea={deleteIdea}
-               emailIdea={emailIdea}
-               saveIdea={saveIdea}/>
+               setIdeas={setIdeas}/>
       </header>
     </div>
   );
