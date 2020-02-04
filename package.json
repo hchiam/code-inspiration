@@ -7,7 +7,8 @@
     "create-react-app": "^3.2.0",
     "react": "^16.9.0",
     "react-dom": "^16.10.2",
-    "react-draggable": "^4.2.0"
+    "react-draggable": "^4.2.0",
+    "react-syntax-highlighter": "^12.2.1"
   },
   "devDependencies": {
     "husky": "^4.2.1",

@@ -11,6 +11,7 @@ function CollapsingButton(props) {
             style={{
               width: matchesTimestamp(props.idea.timestamp) ? '2.5rem' : 0,
               height: matchesTimestamp(props.idea.timestamp) ? '2.5rem' : 0,
+              color: matchesTimestamp(props.idea.timestamp) ? 'whitesmoke' : 'transparent',
             }}
             aria-label={props.label}
             title={props.label}

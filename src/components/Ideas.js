@@ -1,6 +1,8 @@
 import React from 'react';
 import '../App.css';
 import Draggable from 'react-draggable';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import CollapsingButton from './CollapsingButton';
 import expandTextarea from '../helpers/expandTextarea';
 
@@ -133,7 +135,9 @@ function Ideas(props) {
                                     label='Reuse this idea in the input area'
                                     displayOptionTimestamp={displayOptionTimestamp}/>
                 </div>
-                <code className="language-js">{idea.code}</code>
+                <SyntaxHighlighter language="javascript" style={docco}>
+                  {idea.code}
+                </SyntaxHighlighter>
               </pre>
             </div>
           </Draggable>

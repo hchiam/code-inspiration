@@ -63,6 +63,13 @@ code {
   word-wrap: break-word;
 }
 
+.react-markdown pre {
+  background: black !important;
+  color: lime !important;
+  margin: 0;
+  border-radius: 0.5em;
+}
+
 h1 code {
   padding: 0.1em;
 }

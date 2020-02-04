@@ -138,18 +138,6 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "e0ff54e9-e17d-4347-bd3c-df66aeb1ed02",
-      "comment": "",
-      "command": "click",
-      "target": "css=.language-js:nth-child(2)",
-      "targets": [
-        ["css=.language-js:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='idea-1580784165965']/pre/code", "xpath:idRelative"],
-        ["xpath=//div[2]/div/pre/code", "xpath:position"],
-        ["xpath=//code[contains(.,'const  = () => {\n  \n};')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "b0e24f9f-2801-4932-9107-653b6582ee9d",
       "comment": "",
       "command": "click",
@@ -162,16 +150,25 @@
       ],
       "value": ""
     }, {
-      "id": "eeea6c11-a864-4ef8-8d6b-b39015f1479c",
+      "id": "7ec05fbc-e1cb-43ba-b905-238b1a1dcdd1",
       "comment": "",
       "command": "click",
-      "target": "css=.idea-button:nth-child(1)",
-      "targets": [
-        ["css=.idea-button:nth-child(1)", "css:finder"],
-        ["xpath=//div[@id='ideas']/div/pre/div/button", "xpath:idRelative"],
-        ["xpath=//pre/div/button", "xpath:position"],
-        ["xpath=//button[contains(.,'X')]", "xpath:innerText"]
-      ],
+      "target": "css=.idea-button[title=\"Reuse this idea in the input area\"]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1a8bca39-eef3-46a5-bd66-eca85f315b1d",
+      "comment": "",
+      "command": "chooseOkOnNextConfirmation",
+      "target": "",
+      "targets": [],
+      "value": "note: BEFORE click and show confirm popup"
+    }, {
+      "id": "538aa988-30dd-4053-9076-bc3d751a240a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.idea-button[title=\"Delete this idea\"]",
+      "targets": [],
       "value": ""
     }]
   }],
