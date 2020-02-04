@@ -11,6 +11,10 @@ ControlPanel.propTypes = {
   setIdeas: PropTypes.func.isRequired,
 };
 
+ControlPanel.defaultProps = {
+  ideas: [],
+};
+
 function ControlPanel(props) {
   const initialInput = '';
   const initialSuggestion = {suggestion: '', start: -1, stop: -1};
