@@ -13,6 +13,7 @@ function CollapsingButton(props) {
               height: matchesTimestamp(props.idea.timestamp) ? '2.5rem' : 0,
             }}
             aria-label={props.label}
+            title={props.label}
             >{props.buttonText}</button>
 );
 }
