@@ -23,10 +23,6 @@ npm start
 
 ## Extra info
 
-You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with `bash show_dep_graph.sh`.
-
-![Dependency graph.](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
-
 You can run a functional test using Selenium IDE and Google Chrome:
 
 ```bash
@@ -35,3 +31,7 @@ npm start
 # And in another CLI terminal:
 npm run side-test
 ```
+
+You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with `bash show_dep_graph.sh`.
+
+![Dependency graph.](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
