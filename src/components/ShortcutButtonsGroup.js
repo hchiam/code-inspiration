@@ -2,7 +2,6 @@ import React from 'react';
 import '../App.css';
 
 function ShortcutButtonsGroup(props) {
-  // TODO: suggestion should be in control panel
   return (
     <div id="shortcut-buttons-group">
       <button onClick={() => props.addSpecialCharacters('const  = () => {\n  \n};', 16)}
