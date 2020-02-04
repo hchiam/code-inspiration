@@ -41,6 +41,7 @@ function Ideas(props) {
       alert('Error - could not find timestamp for this idea.');
       return;
     }
+    if (!window.confirm('Are you sure you want to delete this idea?')) return;
     const timestampOfIdeaToDelete = idea.timestamp;
     const newIdeas = props.ideas.filter((e) => e.timestamp !== timestampOfIdeaToDelete);
     props.setIdeas(newIdeas);
