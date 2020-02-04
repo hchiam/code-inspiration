@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import Draggable from 'react-draggable';
 import CollapsingButton from './CollapsingButton';
-import expandTextarea from '../helpers/expandTextarea.js';
+import expandTextarea from '../helpers/expandTextarea';
 
 function Ideas(props) {
   const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
