@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import ShortcutButtonsGroup from './ShortcutButtonsGroup';
 import Preview from './Preview';
+import expandTextarea from '../helpers/expandTextarea.js';
 
 function ControlPanel(props) {
   const initialInput = '';
@@ -30,14 +31,6 @@ function ControlPanel(props) {
   const checkCommandEnter = (event) => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
       addIdea();
-    }
-  };
-  const expandTextarea = () => {
-    const textarea = document.querySelector('textarea');
-    if (textarea.value) {
-      textarea.classList.add('expand');
-    } else {
-      textarea.classList.remove('expand');
     }
   };
   const isSpecialWord = (word) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import Draggable from 'react-draggable';
 import CollapsingButton from './CollapsingButton';
+import expandTextarea from '../helpers/expandTextarea.js';
 
 function Ideas(props) {
   const [displayOptionTimestamp, setDisplayOptionTimestamp] = React.useState(-1);
@@ -91,6 +92,7 @@ function Ideas(props) {
     textarea.focus();
     const newCursorPos = originalCursorPosition + idea.code.length;
     textarea.setSelectionRange(originalCursorPosition, newCursorPos);
+    expandTextarea();
   };
   const allowListToFillSpace = (e, timestamp) => {
     // allow list to fill space left behind by dragged element
