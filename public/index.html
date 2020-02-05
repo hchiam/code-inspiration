@@ -7,14 +7,20 @@
     <title>Code Inspiration</title>
     <link rel="shortcut icon" href="htc.png">
     <link rel="manifest" href="manifest.webmanifest">
-    <script href="src/components/Ideas.js"></script>
+    <script href="src/components/CollapsingButton.js"></script>
+    <script href="src/components/ControlPanel.js"></script>
+    <script href="src/components/Idea.js"></script>
+    <script href="src/components/IdeasWrapper.js"></script>
+    <script href="src/components/Preview.js"></script>
+    <script href="src/components/ShortcutButtonsGroup.js"></script>
+    <script href="src/helpers/expandTextarea.js"></script>
     <link rel="stylesheet" href="src/App.css">
     <script href="src/App.js"></script>
     <link rel="stylesheet" href="src/index.css">
     <script href="src/index.js"></script>
     <script>
       if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('service-worker.js', {scope: ''})
+        navigator.serviceWorker.register('my-service-worker.js', {scope: ''})
       }
     </script>
   </head>
