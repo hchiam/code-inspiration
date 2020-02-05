@@ -1,7 +1,13 @@
-const SW_VERSION = 'code-inspiration-version_01'; // also can serve as cache name
+const SW_VERSION = 'code-inspiration-version_02'; // also can serve as cache name
 
 const appShellURLs = [
-  '/src/components/Ideas.js',
+  '/src/components/CollapsingButton.js',
+  '/src/components/ControlPanel.js',
+  '/src/components/Idea.js',
+  '/src/components/IdeasWrapper.js',
+  '/src/components/Preview.js',
+  '/src/components/ShortcutButtonsGroup.js',
+  '/src/helpers/expandTextarea.js',
   '/src/App.css',
   '/src/App.js',
   '/src/index.css',
