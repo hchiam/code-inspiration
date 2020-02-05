@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Ideas from './components/Ideas';
+import IdeasWrapper from './components/IdeasWrapper';
 import ControlPanel from './components/ControlPanel';
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
         <h1>Capture <code>code</code> ideas:</h1>
         <ControlPanel ideas={ideas}
                       setIdeas={setIdeas}/>
-        <Ideas ideas={ideas}
-               setIdeas={setIdeas}/>
+        <IdeasWrapper ideas={ideas}
+                      setIdeas={setIdeas}/>
       </header>
     </div>
   );
