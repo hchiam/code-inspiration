@@ -1,22 +1,14 @@
-const SW_VERSION = 'code-inspiration-version_03'; // also can serve as cache name
+const SW_VERSION = 'code-inspiration-version_04'; // also can serve as cache name
 
 const appShellURLs = [
-  '/src/components/CollapsingButton.js',
-  '/src/components/ControlPanel.js',
-  '/src/components/Idea.js',
-  '/src/components/IdeasWrapper.js',
-  '/src/components/Preview.js',
-  '/src/components/ShortcutButtonsGroup.js',
-  '/src/helpers/expandTextarea.js',
   '/src/App.css',
-  '/src/App.js',
   '/src/index.css',
-  '/src/index.js',
   '/htc.png',
   '/index.html',
   '/manifest.webmanifest',
   '/static/js/bundle.js',
   '/static/js/0.chunk.js',
+  '/static/js/1.chunk.js',
   '/static/js/main.chunk.js',
 ];
 
