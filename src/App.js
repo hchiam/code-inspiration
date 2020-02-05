@@ -3,6 +3,8 @@ import './App.css';
 import IdeasWrapper from './components/IdeasWrapper';
 import ControlPanel from './components/ControlPanel';
 
+// import ReactDOMServer from 'react-dom/server';
+
 function App() {
   const initialIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
   const [ideas, setIdeas] = React.useState(initialIdeas); // also updateIdeasLocalStorage
@@ -18,5 +20,7 @@ function App() {
     </div>
   );
 }
+
+// ReactDOMServer.renderToString(<App/>);
 
 export default App;
