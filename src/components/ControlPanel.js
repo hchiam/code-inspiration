@@ -97,7 +97,7 @@ function ControlPanel(props) {
     textarea.value = newInput;
     textarea.focus();
     const newCursorPos = suggestion.start + getLengthBeforePunctuation(suggestion.suggestion);
-    textarea.setSelectionRange(newCursorPos, newCursorPos);
+    textarea.setSelectionRange(suggestion.start, newCursorPos);
     // reset
     setSuggestion(initialSuggestion);
   };
