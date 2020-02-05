@@ -49,7 +49,8 @@ function ControlPanel(props) {
       'const', 'let', 'var', 'function', 'if', 'for', 'import', 'from', 'export', 'default',
     ];
     if (keyWords.includes(word)) return true;
-    if (/\W/g.test(word)) return true;
+    const punctuationExceptAFewThings = /[^\w\s,()]/g;
+    if (punctuationExceptAFewThings.test(word)) return true;
     return false;
   };
   const combineCamelCase = (overrideInput) => {
