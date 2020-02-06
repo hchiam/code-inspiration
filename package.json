@@ -9,7 +9,8 @@
     "react": "^16.9.0",
     "react-dom": "^16.10.2",
     "react-draggable": "^4.2.0",
-    "react-syntax-highlighter": "^12.2.1"
+    "react-syntax-highlighter": "^12.2.1",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "husky": "^4.2.1",

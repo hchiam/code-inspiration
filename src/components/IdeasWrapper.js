@@ -3,6 +3,7 @@ import '../App.css';
 import Draggable from 'react-draggable';
 import Idea from './Idea';
 import expandTextarea from '../helpers/expandTextarea';
+import store from '../helpers/useRedux';
 
 import PropTypes from 'prop-types';
 
@@ -100,6 +101,8 @@ function IdeasWrapper(props) {
     const newCursorPos = originalCursorPosition + idea.code.length;
     textarea.setSelectionRange(originalCursorPosition, newCursorPos);
     expandTextarea();
+    // update Redux store:
+    store.dispatch({type: 'UPDATE_INPUT', input: newInput});
   };
   const allowListToFillSpace = (e, timestamp) => {
     // allow list to fill space left behind by dragged element:

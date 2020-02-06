@@ -3,6 +3,7 @@ import '../App.css';
 import ShortcutButtonsGroup from './ShortcutButtonsGroup';
 import Preview from './Preview';
 import expandTextarea from '../helpers/expandTextarea.js';
+import store from '../helpers/useRedux';
 
 import PropTypes from 'prop-types';
 
@@ -116,6 +117,12 @@ function ControlPanel(props) {
     textarea.setSelectionRange(start, end);
     expandTextarea();
   };
+  // listen for changes to Redux store:
+  store.subscribe(() => {
+    const newInput = store.getState().input;
+    setInput(newInput);
+    updatePreview(newInput);
+  });
   return (
     <div id="split-container" className="wrap-elements-if-too-wide">
       <div id="control-panel">
