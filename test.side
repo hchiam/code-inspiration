@@ -157,6 +157,32 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "03e7b5af-cc51-4be3-999d-9e4d9d60f0fe",
+      "comment": "Hover & click on element so quick headless test works",
+      "command": "",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dbd328b8-d25e-4863-8ffe-232d12e63bc5",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.react-markdown:nth-child(1)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4caad249-c30f-424b-8248-dbff119fef04",
+      "comment": "",
+      "command": "click",
+      "target": "css=.react-markdown:nth-child(1)",
+      "targets": [
+        ["css=.idea-button:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='ideas']/div/pre/div/button", "xpath:idRelative"],
+        ["xpath=//pre/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'X')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
       "id": "1a8bca39-eef3-46a5-bd66-eca85f315b1d",
       "comment": "",
       "command": "chooseOkOnNextConfirmation",
@@ -164,7 +190,7 @@
       "targets": [],
       "value": "note: BEFORE click and show confirm popup"
     }, {
-      "id": "538aa988-30dd-4053-9076-bc3d751a240a",
+      "id": "06263493-0a75-432b-94ee-67df3784b825",
       "comment": "",
       "command": "click",
       "target": "css=.idea-button[title=\"Delete this idea\"]",
