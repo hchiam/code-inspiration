@@ -1,6 +1,8 @@
-const SW_VERSION = 'code-inspiration-version_04'; // also can serve as cache name
+const SW_VERSION = 'code-inspiration-version_05'; // also can serve as cache name
 
 const appShellURLs = [
+  '/libraries/notyf.min.js',
+  '/libraries/notyf.min.css',
   '/src/App.css',
   '/src/index.css',
   '/htc.png',
