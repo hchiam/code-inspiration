@@ -17,7 +17,7 @@ cache:
 before_script:
   - npm install -g chromedriver
   - npm install -g selenium-side-runner
-  - npm run my-build
+  - npm run build
 
 script:
   # this doesn't work locally for me, but it works in Travis CI:
