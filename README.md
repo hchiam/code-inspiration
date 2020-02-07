@@ -17,7 +17,7 @@ npm install
 and then:
 
 ```bash
-npm run my-build
+npm run build
 npm start
 ```
 
