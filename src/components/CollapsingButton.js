@@ -25,7 +25,7 @@ function CollapsingButton(props) {
             aria-label={props.label}
             title={props.label}
             >{props.buttonText}</button>
-);
+  );
 }
 
 export default CollapsingButton;

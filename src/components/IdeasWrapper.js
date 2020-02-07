@@ -147,7 +147,9 @@ function IdeasWrapper(props) {
         {
           props.ideas.map((idea) =>
             // (Note: wrap in a div inside Draggable.)
-            <Draggable key={idea.timestamp} onStop={(e) => allowListToFillSpace(e, idea.timestamp)}>
+            <Draggable key={idea.timestamp}
+                       onStop={(e) => allowListToFillSpace(e, idea.timestamp)}
+                       handle=".react-markdown>*:not(.vertical-row)">
               <div id={"idea-" + idea.timestamp}>
                 <Idea displayOptionTimestamp={displayOptionTimestamp}
                       idea={idea}
