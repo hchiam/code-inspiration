@@ -115,43 +115,43 @@ function IdeasWrapper(props) {
     for (let i = 0; i < props.ideas.length; i++) {
       if (props.ideas[i].timestamp === timestamp) {
         const dragged = document.querySelector(`div#idea-${timestamp}`);
-        newIdeas[i].transform = dragged.style.transform;
+        const transformRegex = /^translate\((.+?)px, (.+?)px\).*/i;
+        let transform = dragged.style.transform.match(transformRegex);
+        let translateX = transform[1];
+        let translateY = transform[2];
+        // newIdeas[i].transform = dragged.style.transform;
+        newIdeas[i].translateX = translateX;
+        newIdeas[i].translateY = translateY;
+        if (translateX < -window.innerWidth/2 + dragged.offsetWidth/2) {
+          translateX = -window.innerWidth/2 + dragged.offsetWidth/2;
+        } else if (translateX > window.innerWidth/2 - dragged.offsetWidth/2) {
+          translateX = window.innerWidth/2 - dragged.offsetWidth/2;
+        }
+        if (translateY < -window.innerHeight/2 + dragged.offsetHeight/2) {
+          translateY = -window.innerHeight/2 + dragged.offsetHeight/2;
+        } else if (translateY > window.innerHeight/2 - dragged.offsetHeight/2) {
+          translateY = window.innerHeight/2 - dragged.offsetHeight/2;
+        }
+        transform = `translate(${translateX}px, ${translateY}px)`;
+        newIdeas[i].transform = transform;
+        dragged.style.transform = transform;
       }
     }
     props.setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
   };
-  const deleteTransform = (idea) => {
-    // Hacky fix: need to dynamically edit CSS sheet to get transform to work:
-    var sheets = window.document.styleSheets;
-    var lastSheet = sheets[sheets.length - 1];
-    var rules = lastSheet.cssRules || lastSheet.rules;
-    for (let i = 0; i < rules.length; i++) {
-      if (rules[i].selectorText === '#idea-' + idea.timestamp) {
-        const dragged = document.querySelector(`div#idea-${idea.timestamp}`);
-        rules[i].style.cssText = 'transform: ' + idea.transform;
-        console.log(dragged.style.transform, idea.transform);
-        return rules[i];
-      }
-    }
-  };
   const applyTransforms = () => {
     for (let i = 0; i < props.ideas.length; i++) {
       const idea = props.ideas[i];
-      // Hacky fix: need to dynamically edit CSS sheet to get transform to work:
-      var sheets = window.document.styleSheets;
-      var lastSheet = sheets[sheets.length - 1];
-      var rules = lastSheet.cssRules || lastSheet.rules;
-      var foundRule = false;
-      for (let i = 0; i < rules.length; i++) {
-        if (rules[i].selectorText === '#idea-' + idea.timestamp) {
-          foundRule = true;
-          rules[i].style.cssText = 'transform: ' + idea.transform + ' !important;';
-          break;
-        }
-      }
-      if (!foundRule) {
-        lastSheet.insertRule('#idea-' + idea.timestamp + ' { transform: ' + idea.transform + ' !important; }', lastSheet.cssRules.length);
+      const ideaElement = document.querySelector(`div#idea-${idea.timestamp}`);
+      if (idea.transform) {
+        // remove <Draggable> default transform:
+        ideaElement.style.removeProperty('transform');
+        // set transform from props:
+        ideaElement.style.transform = idea.transform;
+        ideaElement.style.position = 'absolute';
+      } else {
+        ideaElement.style.position = 'static';
       }
     }
   };
@@ -198,11 +198,9 @@ function IdeasWrapper(props) {
           props.ideas.map((idea) =>
             // (Note: wrap in a div inside Draggable.)
             <Draggable key={idea.timestamp}
-                       onStart={() => {deleteTransform(idea);}}
                        onStop={() => {allowListToFillSpace(idea.timestamp);saveTransform(idea);}}
                        handle=".react-markdown>*:not(.vertical-row)">
-              <div id={"idea-" + idea.timestamp}
-                   style={{position: idea.transform ? 'absolute' : 'static'}}>
+              <div id={"idea-" + idea.timestamp}>
                 <Idea displayOptionTimestamp={displayOptionTimestamp}
                       idea={idea}
                       showOptions={showOptions}
