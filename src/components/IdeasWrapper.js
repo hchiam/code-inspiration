@@ -104,11 +104,64 @@ function IdeasWrapper(props) {
     // update Redux store:
     store.dispatch({type: 'UPDATE_INPUT', input: newInput});
   };
-  const allowListToFillSpace = (e, timestamp) => {
+  const allowListToFillSpace = (timestamp) => {
     // allow list to fill space left behind by dragged element:
     const dragged = document.querySelector(`div#idea-${timestamp}`);
     dragged.style.position = 'absolute';
   };
+  const saveTransform = (idea) => {
+    const timestamp = idea.timestamp
+    const newIdeas = [...props.ideas];
+    for (let i = 0; i < props.ideas.length; i++) {
+      if (props.ideas[i].timestamp === timestamp) {
+        const dragged = document.querySelector(`div#idea-${timestamp}`);
+        const transformRegex = /^translate\((.+?)px, (.+?)px\).*/i;
+        const previous = deleteTransform(idea).style.transform.match(transformRegex);
+        const next = dragged.style.transform.match(transformRegex);
+        const newX = previous ? parseInt(previous[1]) + parseInt(next[1]) : next[1];
+        const newY = previous ? parseInt(previous[2]) + parseInt(next[2]) : next[2];
+        newIdeas[i].transform = `translate(${newX}px, ${newY}px)`;
+      }
+    }
+    props.setIdeas(newIdeas);
+    updateIdeasLocalStorage(newIdeas);
+  };
+  const deleteTransform = (idea) => {
+    // Hacky fix: need to dynamically edit CSS sheet to get transform to work:
+    var sheets = window.document.styleSheets;
+    var lastSheet = sheets[0];
+    var rules = lastSheet.cssRules || lastSheet.rules;
+    for (let i = 0; i < rules.length; i++) {
+      if (rules[i].selectorText === '#idea-' + idea.timestamp) {
+        rules[i].style.cssText = 'transform: ' + idea.transform;
+        return rules[i];
+      }
+    }
+  };
+  const applyTransforms = () => {
+    for (let i = 0; i < props.ideas.length; i++) {
+      const idea = props.ideas[i];
+      // Hacky fix: need to dynamically edit CSS sheet to get transform to work:
+      var sheets = window.document.styleSheets;
+      var lastSheet = sheets[0];
+      var rules = lastSheet.cssRules || lastSheet.rules;
+      var foundRule = false;
+      for (let i = 0; i < rules.length; i++) {
+        if (rules[i].selectorText === '#idea-' + idea.timestamp) {
+          foundRule = true;
+          rules[i].style.cssText = 'transform: ' + idea.transform + ' !important;';
+          break;
+        }
+      }
+      if (!foundRule) {
+        lastSheet.insertRule('#idea-' + idea.timestamp + ' { transform: ' + idea.transform + ' !important; }', lastSheet.cssRules.length);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    applyTransforms();
+  });
 
   // prevent dragging in mobile:
   const likelyOnMobile = window.screen.width <= 420;
@@ -148,9 +201,10 @@ function IdeasWrapper(props) {
           props.ideas.map((idea) =>
             // (Note: wrap in a div inside Draggable.)
             <Draggable key={idea.timestamp}
-                       onStop={(e) => allowListToFillSpace(e, idea.timestamp)}
+                       onStop={() => {allowListToFillSpace(idea.timestamp);saveTransform(idea);}}
                        handle=".react-markdown>*:not(.vertical-row)">
-              <div id={"idea-" + idea.timestamp}>
+              <div id={"idea-" + idea.timestamp}
+                   style={{position: idea.transform ? 'absolute' : 'static'}}>
                 <Idea displayOptionTimestamp={displayOptionTimestamp}
                       idea={idea}
                       showOptions={showOptions}

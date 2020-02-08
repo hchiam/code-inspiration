@@ -35,7 +35,11 @@ function ControlPanel(props) {
     }
     setInput('');
     setPreview('');
-    const newIdeas = props.ideas.concat({code: preview, timestamp: new Date().getTime()});
+    const newIdeas = props.ideas.concat({
+      code: preview,
+      timestamp: new Date().getTime(),
+      transform: '',
+    });
     props.setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     textarea.focus();
