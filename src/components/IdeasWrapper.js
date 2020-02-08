@@ -115,12 +115,7 @@ function IdeasWrapper(props) {
     for (let i = 0; i < props.ideas.length; i++) {
       if (props.ideas[i].timestamp === timestamp) {
         const dragged = document.querySelector(`div#idea-${timestamp}`);
-        const transformRegex = /^translate\((.+?)px, (.+?)px\).*/i;
-        const previous = deleteTransform(idea).style.transform.match(transformRegex);
-        const next = dragged.style.transform.match(transformRegex);
-        const newX = previous ? parseInt(previous[1]) + parseInt(next[1]) : next[1];
-        const newY = previous ? parseInt(previous[2]) + parseInt(next[2]) : next[2];
-        newIdeas[i].transform = `translate(${newX}px, ${newY}px)`;
+        newIdeas[i].transform = dragged.style.transform;
       }
     }
     props.setIdeas(newIdeas);
@@ -129,11 +124,13 @@ function IdeasWrapper(props) {
   const deleteTransform = (idea) => {
     // Hacky fix: need to dynamically edit CSS sheet to get transform to work:
     var sheets = window.document.styleSheets;
-    var lastSheet = sheets[0];
+    var lastSheet = sheets[sheets.length - 1];
     var rules = lastSheet.cssRules || lastSheet.rules;
     for (let i = 0; i < rules.length; i++) {
       if (rules[i].selectorText === '#idea-' + idea.timestamp) {
+        const dragged = document.querySelector(`div#idea-${idea.timestamp}`);
         rules[i].style.cssText = 'transform: ' + idea.transform;
+        console.log(dragged.style.transform, idea.transform);
         return rules[i];
       }
     }
@@ -143,7 +140,7 @@ function IdeasWrapper(props) {
       const idea = props.ideas[i];
       // Hacky fix: need to dynamically edit CSS sheet to get transform to work:
       var sheets = window.document.styleSheets;
-      var lastSheet = sheets[0];
+      var lastSheet = sheets[sheets.length - 1];
       var rules = lastSheet.cssRules || lastSheet.rules;
       var foundRule = false;
       for (let i = 0; i < rules.length; i++) {
@@ -201,6 +198,7 @@ function IdeasWrapper(props) {
           props.ideas.map((idea) =>
             // (Note: wrap in a div inside Draggable.)
             <Draggable key={idea.timestamp}
+                       onStart={() => {deleteTransform(idea);}}
                        onStop={() => {allowListToFillSpace(idea.timestamp);saveTransform(idea);}}
                        handle=".react-markdown>*:not(.vertical-row)">
               <div id={"idea-" + idea.timestamp}

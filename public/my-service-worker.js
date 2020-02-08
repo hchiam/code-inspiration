@@ -50,7 +50,7 @@ self.addEventListener('fetch', (event) => {
         if (!response) {
           throw new Error(event.request + ' not found in cache');
         }
-        // console.log(`Service worker fetching resource even though you might be offline: ${url}`);
+        console.log(`Service worker fetching resource even though you might be offline: ${url}`);
         // get resource from cache:
         return response;
       })
@@ -64,7 +64,7 @@ self.addEventListener('fetch', (event) => {
       .catch((error) => {
         return caches.open(SW_VERSION)
           .then((cache) => {
-            // console.log(`Service worker fetching page even though you might be offline: ${url}`);
+            console.log(`Service worker fetching page even though you might be offline: ${url}`);
             // get page from cache:
             return cache.match('index.html');
           });
