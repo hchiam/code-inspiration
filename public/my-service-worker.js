@@ -1,4 +1,4 @@
-const SW_VERSION = 'code-inspiration-version_05'; // also can serve as cache name
+const SW_VERSION = 'code-inspiration-version_06'; // also can serve as cache name
 
 const appShellURLs = [
   '/libraries/notyf.min.js',
@@ -8,10 +8,12 @@ const appShellURLs = [
   '/htc.png',
   '/index.html',
   '/manifest.webmanifest',
-  '/static/js/bundle.js',
-  '/static/js/0.chunk.js',
-  '/static/js/1.chunk.js',
-  '/static/js/main.chunk.js',
+  // '/static/js/bundle.js',
+  // '/static/js/0.chunk.js',
+  // '/static/js/1.chunk.js',
+  // '/static/js/main.chunk.js',
+  '/static/js/2.bdfab1ff.chunk.js',
+  '/static/js/main.be5d551c.chunk.js',
 ];
 
 // when install service worker:

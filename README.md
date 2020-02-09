@@ -1,8 +1,8 @@
-# [Code Inspiration](https://code-inspiration.glitch.me)
+# [Code Inspiration](https://code-inspiration.surge.sh)
 
 Capture snippets of code inspiration while on the go.
 
-<https://code-inspiration.glitch.me>
+<https://code-inspiration.surge.sh>
 
 [![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration)
 
@@ -39,6 +39,6 @@ You can generate a [dependency graph](https://github.com/hchiam/learning-depende
 I can publish to surge.sh with:
 
 ```bash
-npm run prod-build
-# will run: react-scripts build; cd build; surge
+npm run prod-build # -> will run: react-scripts build; cd build; surge;
+# (remember to hit enter when prompted with the project by the surge command)
 ```
