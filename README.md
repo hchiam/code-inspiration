@@ -35,3 +35,10 @@ npm run side-test
 You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with [`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).
 
 ![(Dependency graph.)](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
+
+I can publish to surge.sh with:
+
+```bash
+npm run prod-build
+# will run: react-scripts build; cd build; surge
+```

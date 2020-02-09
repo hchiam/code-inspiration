@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "npm run build; react-scripts start",
-    "prod-build": "react-scripts build",
+    "prod-build": "react-scripts build; cd build; surge;",
     "test": "react-scripts test --env=jsdom",
     "side-test": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" test.side",
     "eject": "react-scripts eject",
