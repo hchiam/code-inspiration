@@ -11,6 +11,10 @@ const appShellURLs = [
   '/static/css/main.44be1784.chunk.css',
   '/static/js/2.bdfab1ff.chunk.js',
   '/static/js/main.be5d551c.chunk.js',
+  // // NEED three for local offline testing:
+  // '/static/js/0.chunk.js',
+  // '/static/js/bundle.js',
+  // '/static/js/main.chunk.js',
 ];
 
 // when install service worker:
