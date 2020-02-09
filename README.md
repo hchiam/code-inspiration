@@ -1,8 +1,8 @@
-# [Code Inspiration](https://code-inspiration.surge.sh)
+# [Code Inspiration](https://code-inspiration.glitch.me)
 
 Capture snippets of code inspiration while on the go.
 
-<https://code-inspiration.surge.sh>
+<https://code-inspiration.glitch.me>
 
 [![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration)
 
