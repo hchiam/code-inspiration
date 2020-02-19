@@ -1,4 +1,4 @@
-const SW_VERSION = 'code-inspiration-version_06'; // also can serve as cache name
+const SW_VERSION = 'code-inspiration-version_07'; // also can serve as cache name
 
 const appShellURLs = [
   '/libraries/notyf.min.js',
@@ -8,9 +8,9 @@ const appShellURLs = [
   '/htc.png',
   '/index.html',
   '/manifest.webmanifest',
-  '/static/css/main.44be1784.chunk.css',
+  '/static/css/main.5d8e0204.chunk.css',
   '/static/js/2.bdfab1ff.chunk.js',
-  '/static/js/main.be5d551c.chunk.js',
+  '/static/js/main.4c3fc34a.chunk.js',
   // // NEED three for local offline testing:
   // '/static/js/0.chunk.js',
   // '/static/js/bundle.js',
