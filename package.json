@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start": "npm run build; react-scripts start",
+    "stop": "killall node",
     "prod-build": "react-scripts build; cd build; surge;",
     "test": "react-scripts test --env=jsdom",
     "side-test": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" test.side",
@@ -41,7 +42,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run reminder; npm run side-test; npm run reminder;"
+      "pre-commit": "npm run start & (npm run reminder; if (npm run side-test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
     }
   }
 }
