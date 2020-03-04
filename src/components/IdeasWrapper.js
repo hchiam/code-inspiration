@@ -169,6 +169,7 @@ function IdeasWrapper(props) {
     return (
       <div id="ideas">
         <p style={{display: props.ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
+        <p style={{display: props.ideas.length > 0 ? 'block' : 'none', padding: 0, margin: 0}}>Ideas:</p>
         {
           props.ideas.map((idea) =>
             <div key={idea.timestamp}>
@@ -194,6 +195,7 @@ function IdeasWrapper(props) {
     return (
       <div id="ideas">
         <p style={{display: props.ideas.length > 0 ? 'block' : 'none'}}>_____________________</p>
+        <p style={{display: props.ideas.length > 0 ? 'block' : 'none', padding: 0, margin: 0}}>Ideas:</p>
         {
           props.ideas.map((idea) =>
             // (Note: wrap in a div inside Draggable.)

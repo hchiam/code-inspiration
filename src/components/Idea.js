@@ -6,7 +6,7 @@ import CollapsingButton from './CollapsingButton';
 
 import PropTypes from 'prop-types';
 
-Ideas.propTypes = {
+Idea.propTypes = {
   displayOptionTimestamp: PropTypes.number.isRequired,
   idea: PropTypes.object.isRequired,
   showOptions: PropTypes.func.isRequired,
@@ -17,7 +17,7 @@ Ideas.propTypes = {
   pasteIdea: PropTypes.func.isRequired,
 };
 
-function Ideas(props) {
+function Idea(props) {
   return (
     <div>
       <pre className="react-markdown"
@@ -54,4 +54,4 @@ function Ideas(props) {
   );
 }
 
-export default Ideas;
+export default Idea;

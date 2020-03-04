@@ -22,6 +22,10 @@ function ShortcutButtonsGroup(props) {
               aria-label="add curly brackets">&#123;&#125;</button>
       <button onClick={() => props.addSpecialCharacters('""')}
               aria-label="add quotation marks">""</button>
+      <button onClick={() => props.addSpecialCharacters('// ', 0)}
+              aria-label="add comment">//</button>
+      <button onClick={() => props.addSpecialCharacters('<>')}
+              aria-label="add angular tag brackets">&lt;&gt;</button>
       <button id="suggestion-button"
               onClick={props.useSuggestion}
               style={{display: props.suggestion.suggestion ? 'inline-block' : 'none'}}
