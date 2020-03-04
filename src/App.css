@@ -35,11 +35,16 @@ code {
   word-wrap: break-word;
 }
 
+#preview pre {
+  max-width: 90vw;
+}
+
 .react-markdown pre {
   background: black !important;
   color: lime !important;
   margin: 0;
   border-radius: 0.5em;
+  max-width: 90vw;
 }
 
 h1 code {
