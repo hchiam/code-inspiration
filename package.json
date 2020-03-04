@@ -25,7 +25,7 @@
     "side-test": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" test.side",
     "eject": "react-scripts eject",
     "build": "mkdir public/src || true; cp -r src/* public/src",
-    "reminder": "echo; echo -e 'Reminders: Did you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to \\033[1;34m[skip ci]\\033[0m?'; echo;"
+    "reminder": "echo; echo 'Reminders: Did you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to \\033[1;34m[skip ci]\\033[0m? \nRemember to \\033[1;34mnpm run stop\\033[0m'; echo;"
   },
   "license": "MIT",
   "browserslist": {
