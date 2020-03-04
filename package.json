@@ -20,7 +20,7 @@
   "scripts": {
     "start": "npm run build; react-scripts start",
     "stop": "killall node",
-    "prod-build": "react-scripts build; cd build; surge;",
+    "prod-build": "react-scripts build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "test": "react-scripts test --env=jsdom",
     "side-test": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" test.side",
     "eject": "react-scripts eject",
