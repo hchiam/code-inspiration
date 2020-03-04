@@ -24,8 +24,7 @@ function IdeasWrapper(props) {
     document.querySelector('textarea').focus();
   };
   const urlAcceptableString = (code) => {
-    const preprocessedCode = code.replace('\n', '<br/>');
-    return encodeURIComponent(preprocessedCode) // handles most
+    return encodeURIComponent(code) // handles most
       .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
       .replace(/"/g, '%22')
       .replace(/#/g, '%23')
@@ -42,6 +41,7 @@ function IdeasWrapper(props) {
       .replace(/>/g, '%3E')
       .replace(/_/g, '%3F')
       .replace(/~/g, '%7E')
+      .replace(/%250A/g, '%0A')
   };
   const updateIdeasLocalStorage = (newIdeas) => {
     localStorage.setItem('ideas', JSON.stringify(newIdeas));
