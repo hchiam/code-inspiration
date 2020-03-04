@@ -24,7 +24,8 @@ function IdeasWrapper(props) {
     document.querySelector('textarea').focus();
   };
   const urlAcceptableString = (code) => {
-    return encodeURIComponent(code) // handles most
+    const preprocessedCode = code.replace('\n', '<br/>');
+    return encodeURIComponent(preprocessedCode) // handles most
       .replace(/!/g, '%21') // handle technically OK but may have meanings depending on context
       .replace(/"/g, '%22')
       .replace(/#/g, '%23')
@@ -63,7 +64,8 @@ function IdeasWrapper(props) {
       alert('Error - could not find code for this idea.');
       return;
     }
-    window.open('mailto:test@example.com?subject=Idea&body=' + urlAcceptableString(idea.code));
+    const processedCode = urlAcceptableString(idea.code);
+    window.open('mailto:test@example.com?subject=Idea&body=' + processedCode);
   };
   const saveIdea = (idea) => {
     if (!idea.code || idea.code === '') {
