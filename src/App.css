@@ -96,10 +96,6 @@ textarea.expand {
   display: inline-block;
 }
 
-#ideas .react-markdown > * {
-  float: left;
-}
-
 .idea-button {
   padding: 0;
   height: 3em;
@@ -108,4 +104,8 @@ textarea.expand {
 
 .vertical-row > * {
   display: block;
+}
+
+.horizontal-row button {
+  margin: 10px;
 }

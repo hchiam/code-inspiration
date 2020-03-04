@@ -24,7 +24,10 @@ function Idea(props) {
             onMouseOver={() => props.showOptions(props.idea.timestamp)}
             onMouseLeave={props.hideOptions}
             title="Psst! You can drag me around the screen.">
-        <div className="vertical-row">
+        <SyntaxHighlighter language="javascript" style={docco}>
+          {props.idea.code}
+        </SyntaxHighlighter>
+        <div className="horizontal-row">
           <CollapsingButton idea={props.idea}
                             buttonText='X'
                             action={props.deleteIdea}
@@ -46,9 +49,6 @@ function Idea(props) {
                             label='Reuse this idea in the input area'
                             displayOptionTimestamp={props.displayOptionTimestamp}/>
         </div>
-        <SyntaxHighlighter language="javascript" style={docco}>
-          {props.idea.code}
-        </SyntaxHighlighter>
       </pre>
     </div>
   );
