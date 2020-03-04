@@ -55,13 +55,23 @@ button {
   background: rgb(37, 39, 41);
   color: whitesmoke;
   padding: 1em;
+  margin: 10px;
   font-weight: bold;
   border-radius: 0.5em;
   border: none;
 }
 
-button:hover {
-  background: lime;
+#shortcut-buttons-group button,
+#add-idea-button {
+  background: transparent;
+  box-shadow: var(--neumorphic-shadows);
+}
+
+button:hover,
+button:focus {
+  background: lime !important;
+  color: black !important;
+  box-shadow: none !important;
 }
 
 textarea {
@@ -80,6 +90,7 @@ textarea,
 }
 
 textarea:hover,
+textarea:focus,
 textarea.expand {
   border-radius: 0;
   min-height: 10em;
