@@ -135,6 +135,7 @@ function ControlPanel(props) {
                   onKeyDown={(e) => checkCommandEnter(e)}
                   value={input}
                   placeholder="type code here"
+                  aria-label="type a new code idea here"
                   autoFocus/>
         <ShortcutButtonsGroup addSpecialCharacters={addSpecialCharacters}
                               useSuggestion={useSuggestion}
