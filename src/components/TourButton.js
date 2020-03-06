@@ -7,10 +7,10 @@ function TourButton() {
   setTimeout(() => {
     setShowButton(true);
     document.getElementById('tour-button').focus();
-    addListeners();
   }, 3000);
   const runTour = () => {
     tour.start();
+    addListeners();
     document.body.classList.add('shepherd-active');
   };
   return (

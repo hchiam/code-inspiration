@@ -14,6 +14,7 @@
     "shepherd.js": "^7.0.3"
   },
   "devDependencies": {
+    "cypress": "^4.1.0",
     "husky": "^4.2.1",
     "react-scripts": "^3.3.1",
     "selenium-side-runner": "^3.16.0"
@@ -24,6 +25,7 @@
     "prod-build": "react-scripts build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "test": "react-scripts test --env=jsdom",
     "side-test": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" test.side",
+    "cypress-test": "npx cypress run",
     "eject": "react-scripts eject",
     "build": "mkdir public/src || true; cp -r src/* public/src",
     "reminder": "echo; echo 'Reminders: Did you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to \\033[1;34m[skip ci]\\033[0m? \nRemember to \\033[1;34mnpm run stop\\033[0m'; echo;"
@@ -43,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run start & (npm run reminder; if (npm run side-test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
+      "pre-commit": "npm run start & (npm run reminder; if (npm run cypress-test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
     }
   }
 }
