@@ -115,14 +115,14 @@ const stepsArrayOfTextsAndIds = [
   {
     text: 'Now click on "Add idea" to add to the list.',
     selector: '#add-idea-button',
-    positionOverride: 'left',
+    positionOverride: 'top',
     buttonsOverride: [
       { text: 'Exit tour', action: customEndTour },
       // { text: 'Back', action: tour.back },
     ],
   },
   {
-    text: 'And finally, each idea has powerful buttons. <br/><br/>For example, you can copy and paste existing ideas! <br/><br/>Try clicking the "Reuse" button.',
+    text: 'And finally, each idea has powerful buttons. <br/><br/>For example, you can copy and paste existing ideas! <br/><br/>Try this: hover/tap on the code to show the idea buttons. <br/><br/>Then hit the "Reuse" button.',
     selector: '#ideas .react-draggable:first-of-type',
   },
 ];
