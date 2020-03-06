@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import '../App.css';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import CollapsingButton from './CollapsingButton';
-
 import PropTypes from 'prop-types';
+
+// wrap lazily loaded components with <Suspense>:
+const CollapsingButton = React.lazy(() => import('./CollapsingButton'));
 
 Idea.propTypes = {
   displayOptionTimestamp: PropTypes.number.isRequired,
@@ -27,28 +28,30 @@ function Idea(props) {
         <SyntaxHighlighter language="javascript" style={docco} tabIndex='0'>
           {props.idea.code}
         </SyntaxHighlighter>
-        <div className="horizontal-row">
-          <CollapsingButton idea={props.idea}
-                            buttonText='X'
-                            action={props.deleteIdea}
-                            label='Delete this idea'
-                            displayOptionTimestamp={props.displayOptionTimestamp}/>
-          <CollapsingButton idea={props.idea}
-                            buttonText='Email'
-                            action={props.emailIdea}
-                            label='Email this idea'
-                            displayOptionTimestamp={props.displayOptionTimestamp}/>
-          <CollapsingButton idea={props.idea}
-                            buttonText='Save'
-                            action={props.saveIdea}
-                            label='Save this idea as a JavaScript file'
-                            displayOptionTimestamp={props.displayOptionTimestamp}/>
-          <CollapsingButton idea={props.idea}
-                            buttonText='Reuse'
-                            action={props.pasteIdea}
-                            label='Reuse this idea in the input area'
-                            displayOptionTimestamp={props.displayOptionTimestamp}/>
-        </div>
+        <Suspense fallback={<div style={{'display':'none'}}></div>}>
+          <div className="horizontal-row">
+            <CollapsingButton idea={props.idea}
+                              buttonText='X'
+                              action={props.deleteIdea}
+                              label='Delete this idea'
+                              displayOptionTimestamp={props.displayOptionTimestamp}/>
+            <CollapsingButton idea={props.idea}
+                              buttonText='Email'
+                              action={props.emailIdea}
+                              label='Email this idea'
+                              displayOptionTimestamp={props.displayOptionTimestamp}/>
+            <CollapsingButton idea={props.idea}
+                              buttonText='Save'
+                              action={props.saveIdea}
+                              label='Save this idea as a JavaScript file'
+                              displayOptionTimestamp={props.displayOptionTimestamp}/>
+            <CollapsingButton idea={props.idea}
+                              buttonText='Reuse'
+                              action={props.pasteIdea}
+                              label='Reuse this idea in the input area'
+                              displayOptionTimestamp={props.displayOptionTimestamp}/>
+          </div>
+        </Suspense>
       </pre>
     </div>
   );

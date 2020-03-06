@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
-import IdeasWrapper from './components/IdeasWrapper';
 import ControlPanel from './components/ControlPanel';
-import TourButton from './components/TourButton';
-
 // import ReactDOMServer from 'react-dom/server';
+
+// wrap lazily loaded components with <Suspense>:
+const IdeasWrapper = React.lazy(() => import('./components/IdeasWrapper'));
+const TourButton = React.lazy(() => import('./components/TourButton'));
 
 function App() {
   const initialIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
@@ -14,9 +15,13 @@ function App() {
       <h1>Capture <code>code</code> ideas:</h1>
       <ControlPanel ideas={ideas}
                     setIdeas={setIdeas}/>
-      <IdeasWrapper ideas={ideas}
-                    setIdeas={setIdeas}/>
-      <TourButton/>
+      <Suspense fallback={<div style={{'display':'none'}}></div>}>
+        <IdeasWrapper ideas={ideas}
+                      setIdeas={setIdeas}/>
+      </Suspense>
+      <Suspense fallback={<div style={{'display':'none'}}></div>}>
+        <TourButton/>
+      </Suspense>
     </div>
   );
 }

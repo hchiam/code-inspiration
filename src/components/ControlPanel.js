@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import '../App.css';
 import ShortcutButtonsGroup from './ShortcutButtonsGroup';
-import Preview from './Preview';
 import expandTextarea from '../helpers/expandTextarea.js';
 import store from '../helpers/useRedux';
-
 import PropTypes from 'prop-types';
+
+// wrap lazily loaded components with <Suspense>:
+const Preview = React.lazy(() => import('./Preview'));
 
 ControlPanel.propTypes = {
   ideas: PropTypes.array.isRequired,
@@ -145,8 +146,10 @@ function ControlPanel(props) {
                 style={{display: input !== '' ? 'block' : 'none', margin: 'auto'}}
                 >Add idea</button>
       </div>
-      <Preview input={input}
-               preview={preview}/>
+      <Suspense fallback={<div style={{'display':'none'}}></div>}>
+        <Preview input={input}
+                 preview={preview}/>
+      </Suspense>
     </div>
   );
 }
