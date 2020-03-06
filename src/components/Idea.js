@@ -21,9 +21,9 @@ function Idea(props) {
   return (
     <div>
       <pre className="react-markdown"
-            onMouseOver={() => props.showOptions(props.idea.timestamp)}
-            onMouseLeave={props.hideOptions}
-            title="Psst! You can drag me around the screen.">
+           onMouseOver={() => props.showOptions(props.idea.timestamp)}
+           onMouseLeave={props.hideOptions}
+           title="Psst! You can drag me around the screen.">
         <SyntaxHighlighter language="javascript" style={docco} tabindex='0'>
           {props.idea.code}
         </SyntaxHighlighter>

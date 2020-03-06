@@ -5,7 +5,7 @@
   "url": "http://localhost:3000",
   "tests": [{
     "id": "5d1cc335-3038-4b09-b992-cf27647a2667",
-    "name": "test",
+    "name": "Core Functionality",
     "commands": [{
       "id": "9f0228e1-3797-4066-aa31-25f93dc61c99",
       "comment": "",
@@ -196,6 +196,167 @@
       "target": "css=.idea-button[title=\"Delete this idea\"]",
       "targets": [],
       "value": ""
+    }]
+  }, {
+    "id": "95c34c53-a9e2-4eb3-b4e2-77afbcab76ba",
+    "name": "Tour",
+    "commands": [{
+      "id": "df978a7e-628d-40ee-9dd7-b8a2ea3acb2e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "80148daa-a2b5-49c2-a0a7-76025624d90a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x643",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "653712dc-b283-4da6-8f37-eb6145e1a294",
+      "comment": "",
+      "command": "pause",
+      "target": "3000",
+      "targets": [],
+      "value": "3000"
+    }, {
+      "id": "b144fd9b-7041-4963-9c56-d056e06ed588",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=tour-button",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "88f6f43a-4f7a-4168-9a80-dec7d0ba3660",
+      "comment": "",
+      "command": "click",
+      "target": "id=tour-button",
+      "targets": [
+        ["id=tour-button", "id"],
+        ["css=#tour-button", "css:finder"],
+        ["xpath=//button[@id='tour-button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/button", "xpath:idRelative"],
+        ["xpath=//body/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'What is this?')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c19f7e8a-1201-469a-969a-e59bd87cdc75",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "2212babd-847b-4f73-a644-1ed95227d564",
+      "comment": "",
+      "command": "click",
+      "target": "css=.shepherd-button:nth-child(2)",
+      "targets": [
+        ["css=.shepherd-has-title:nth-child(11) .shepherd-button:nth-child(2)", "css:finder"],
+        ["xpath=//div[5]/div[2]/footer/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95f83c8c-72fa-481a-81d1-11c5da48a209",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "7120709f-36b5-47fe-b54a-21ba0d3c8ed3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.shepherd-has-title:nth-child(11) .shepherd-button:nth-child(2)",
+      "targets": [
+        ["css=.shepherd-has-title:nth-child(11) .shepherd-button:nth-child(2)", "css:finder"],
+        ["xpath=//div[5]/div[2]/footer/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "accd94c4-be06-4872-a06b-d1266d762a6c",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "c0f556a6-7c38-45e2-a803-b82e777c043a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.shepherd-target",
+      "targets": [
+        ["css=.shepherd-target", "css:finder"],
+        ["xpath=//div[@id='shortcut-buttons-group']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'fn')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "191eb780-e5d3-46c9-aeb4-ae035498d1ef",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "cb0ee8fb-e6c6-40de-b3be-c4db4a6c462f",
+      "comment": "",
+      "command": "click",
+      "target": "id=add-idea-button",
+      "targets": [
+        ["id=add-idea-button", "id"],
+        ["css=#add-idea-button", "css:finder"],
+        ["xpath=//button[@id='add-idea-button']", "xpath:attributes"],
+        ["xpath=//div[@id='control-panel']/button", "xpath:idRelative"],
+        ["xpath=//body/div/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add idea')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "76f67446-d41f-429d-8225-d8f1f85ca231",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "3139337b-ced7-439b-8ba7-3732ac8f0417",
+      "comment": "",
+      "command": "click",
+      "target": "css=.shepherd-active",
+      "targets": [
+        ["css=.shepherd-active", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f8e0ac62-fc6f-40f2-acf3-ac0f1aed0a60",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "f8ad743d-2925-4730-bc77-76a5445a232f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.shepherd-has-title:nth-child(14) .shepherd-button",
+      "targets": [
+        ["css=.shepherd-has-title:nth-child(14) .shepherd-button", "css:finder"],
+        ["xpath=//div[8]/div[2]/footer/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "081c353d-4c45-4c20-81da-8da9a5e43afb",
+      "comment": "",
+      "command": "waitForElementNotVisible",
+      "target": "id=tour-button",
+      "targets": [],
+      "value": "30000"
     }]
   }],
   "suites": [{

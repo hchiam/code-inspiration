@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import IdeasWrapper from './components/IdeasWrapper';
 import ControlPanel from './components/ControlPanel';
+import TourButton from './components/TourButton';
 
 // import ReactDOMServer from 'react-dom/server';
 
@@ -15,6 +16,7 @@ function App() {
                     setIdeas={setIdeas}/>
       <IdeasWrapper ideas={ideas}
                     setIdeas={setIdeas}/>
+      <TourButton/>
     </div>
   );
 }

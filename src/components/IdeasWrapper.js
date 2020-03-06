@@ -122,6 +122,7 @@ function IdeasWrapper(props) {
         const dragged = document.querySelector(`div#idea-${timestamp}`);
         const transformRegex = /^translate\((.+?)px, (.+?)px\).*/i;
         let transform = dragged.style.transform.match(transformRegex);
+        if (!transform) continue;
         let translateX = transform[1];
         let translateY = transform[2];
         // newIdeas[i].transform = dragged.style.transform;

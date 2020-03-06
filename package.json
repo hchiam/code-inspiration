@@ -10,7 +10,8 @@
     "react-dom": "^16.10.2",
     "react-draggable": "^4.2.0",
     "react-syntax-highlighter": "^12.2.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "shepherd.js": "^7.0.3"
   },
   "devDependencies": {
     "husky": "^4.2.1",

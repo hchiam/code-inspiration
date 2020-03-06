@@ -26,13 +26,14 @@
         navigator.serviceWorker.register('my-service-worker.js', {scope: ''})
       }
     </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js" defer></script> -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="root"></div>
 
-    <script type="application/javascript">
+    <script type="application/javascript" defer>
       if (navigator.serviceWorker) {
         var notyf = new Notyf();
         notyf.success({

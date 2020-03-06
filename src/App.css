@@ -120,3 +120,56 @@ textarea.expand {
 .horizontal-row button {
   margin: 10px;
 }
+
+.shepherd-element {
+  z-index: 9001;
+}
+
+.shepherd-content {
+  background-color: white;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+}
+
+.shepherd-modal-overlay-container {
+  display: none;
+}
+
+body.shepherd-active::after {
+  z-index: 1;
+  content: '';
+  display: block;
+  background-color: black;
+  opacity: 0.4;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.shepherd-target {
+  z-index: 3 !important;
+  position: relative !important;
+  background: lightgrey !important;
+  color: black !important;
+}
+
+#shortcut-buttons-group {
+  z-index: 1 !important;
+}
+
+.idea-button.expanded {
+  z-index: 3 !important;
+  position: relative !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  background: rgb(37, 39, 41) !important;
+  color: whitesmoke !important;
+}
+
+.idea-button.expanded:hover,
+.idea-button.expanded:focus {
+  background: lime !important;
+  color: black !important;
+}
