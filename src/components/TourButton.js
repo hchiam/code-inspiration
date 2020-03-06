@@ -6,7 +6,6 @@ function TourButton() {
   const [showButton, setShowButton] = React.useState(false);
   setTimeout(() => {
     setShowButton(true);
-    document.getElementById('tour-button').focus();
   }, 3000);
   const runTour = () => {
     tour.start();
