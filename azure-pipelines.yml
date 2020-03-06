@@ -21,20 +21,6 @@ stages:
         verbose: false
 
     - task: Npm@1
-      displayName: 'install chromedriver'
-      inputs:
-        command: custom
-        verbose: false
-        customCommand: 'install chromedriver'
-
-    - task: Npm@1
-      displayName: 'install selenium-side-runner'
-      inputs:
-        command: custom
-        verbose: false
-        customCommand: 'install selenium-side-runner'
-
-    - task: Npm@1
       displayName: 'install react-scripts'
       inputs:
         command: custom
@@ -44,5 +30,5 @@ stages:
     - script: 'npx react-scripts build'
       displayName: 'build (npx)'
 
-    - script: 'npx react-scripts start & npm run side-test'
+    - script: 'npx react-scripts start & npm run cypress-test'
       displayName: 'start (npx) & side-test'

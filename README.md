@@ -23,13 +23,13 @@ npm start
 
 ## Extra info
 
-You can run a functional test using Selenium IDE and Google Chrome:
+You can run a functional test using Cypress:
 
 ```bash
 # In one CLI terminal:
 npm start
 # And in another CLI terminal:
-npm run side-test
+npm run cypress-test
 ```
 
 You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with [`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).

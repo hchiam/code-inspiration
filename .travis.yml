@@ -15,14 +15,10 @@ cache:
     - node_modules
 
 before_script:
-  # - npm install -g chromedriver
-  # - npm install -g selenium-side-runner
   - npm run build
 
 script:
-  # this doesn't work locally for me, but it works in Travis CI:
-  # - (react-scripts start) & (npm run side-test)
-  - (react-scripts start) & (npm run cypress-test)
+  - (npm run start) & (npm run cypress-test)
 
 notifications:
   email:
