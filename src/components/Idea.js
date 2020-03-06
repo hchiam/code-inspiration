@@ -24,7 +24,7 @@ function Idea(props) {
            onMouseOver={() => props.showOptions(props.idea.timestamp)}
            onMouseLeave={props.hideOptions}
            title="Psst! You can drag me around the screen.">
-        <SyntaxHighlighter language="javascript" style={docco} tabindex='0'>
+        <SyntaxHighlighter language="javascript" style={docco} tabIndex='0'>
           {props.idea.code}
         </SyntaxHighlighter>
         <div className="horizontal-row">
