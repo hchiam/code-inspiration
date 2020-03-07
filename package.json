@@ -16,7 +16,8 @@
   "devDependencies": {
     "cypress": "^4.1.0",
     "husky": "^4.2.1",
-    "react-scripts": "^3.3.1"
+    "react-scripts": "^3.3.1",
+    "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "scripts": {
     "start": "npm run build; react-scripts start",
@@ -24,6 +25,7 @@
     "prod-build": "react-scripts build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "test": "react-scripts test --env=jsdom",
     "cypress-test": "npx cypress run",
+    "selenium-test": "node selenium-test.js",
     "eject": "react-scripts eject",
     "build": "mkdir public/src || true; cp -r src/* public/src",
     "reminder": "echo; echo 'Reminders: Did you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to \\033[1;34m[skip ci]\\033[0m? \nRemember to \\033[1;34mnpm run stop\\033[0m'; echo;"

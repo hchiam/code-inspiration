@@ -9,14 +9,14 @@ const tour = new Shepherd.Tour({
   }
 });
 
-const continueTour = () => {
+const triggerContinueTour = () => {
   setTimeout(() => {
     tour.next();
   }, 10);
 };
 
 const prepareIdeaButtons = () => {
-  continueTour();
+  triggerContinueTour();
   setTimeout(() => {
     const ideaButtons = document.querySelectorAll('.horizontal-row:first-of-type .idea-button');
     for (let ideaButton of ideaButtons) {
@@ -36,14 +36,14 @@ const resetIdeaButtons = () => {
 
 const addListeners = () => {
   document.querySelector('#shortcut-buttons-group [aria-label="add ES6 function"]')
-    .addEventListener('click', continueTour);
+    .addEventListener('click', triggerContinueTour);
   document.querySelector('#add-idea-button')
     .addEventListener('click', prepareIdeaButtons);
 };
 
 const removeListeners = () => {
   document.querySelector('#shortcut-buttons-group [aria-label="add ES6 function"]')
-    .removeEventListener('click', continueTour);
+    .removeEventListener('click', triggerContinueTour);
   document.querySelector('#add-idea-button')
     .removeEventListener('click', prepareIdeaButtons);
   resetIdeaButtons();
@@ -52,7 +52,7 @@ const removeListeners = () => {
 const customEndTour = () => {
   removeListeners();
   document.body.classList.remove('shepherd-active');
-  tour.cancel();
+  tour.complete();
   document.getElementById('tour-button').style.display = 'none';
 };
 
