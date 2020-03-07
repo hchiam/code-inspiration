@@ -8,11 +8,6 @@ async function delayedStop(driver) {
   driver.quit();
 }
 
-async function scrollIntoView(driver, element) {
-  driver.executeScript("arguments[0].scrollIntoView()", element);
-  driver.sleep(300);
-}
-
 async function coreTest() {
   const driver = await new Builder().forBrowser('firefox').build();
   await driver.get('http://localhost:3000/');
@@ -33,7 +28,7 @@ async function coreTest() {
   driver.sleep(1000);
   await driver.wait(until.alertIsPresent());
   let alert = await driver.switchTo().alert();
-  let alertText = await alert.getText();
+  // let alertText = await alert.getText();
   await alert.accept();
 
   await driver.findElement(By.css('button[aria-label="add comment"]')).click();
@@ -45,6 +40,10 @@ async function coreTest() {
   await driver.findElement(By.css('#ideas .react-markdown:nth-of-type(1)')).click(); // .trigger('mouseover')
   // click again to collapse input and bring buttons into view:
   await driver.findElement(By.css('#ideas .react-markdown:nth-of-type(1)')).click(); // .trigger('mouseover')
+  // just in case, trigger a mouseover:
+  await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
+    driver.actions().move({origin: element}).perform();
+  });
   await driver.findElement(By.css('.idea-button[title="Reuse this idea in the input area"]')).click();
 
   delayedStop(driver);
@@ -54,19 +53,22 @@ async function tourTest() {
   const driver = await new Builder().forBrowser('firefox').build();
   await driver.get('http://localhost:3000/');
 
-  await driver.sleep(3000); // tour button has a setTimeout
+  await driver.sleep(3000); // tour button appears after 3 seconds
   await driver.findElement(By.id('tour-button')).click();
   await driver.findElement(By.css(visibleTourElementCss))
     .findElement(By.xpath('//*[contains(text(), "Next")]')).click();
-  // await driver.findElement(By.css('.shepherd-element:not([hidden]) .shepherd-button:nth-of-type(2)')).click();
   await driver.findElement(By.xpath(
     visibleTourElementXPath + tourButtonXPathParts[0] + 'Next' + tourButtonXPathParts[1]
   )).click();
   await driver.findElement(By.css('.shepherd-target')).click();
   await driver.findElement(By.css('.shepherd-target')).click();
-  // await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).click(); // .trigger('mouseover')
-  // await driver.findElement(By.css('.shepherd-target'))
-  //   .findElement(By.xpath('//*[contains(text(), "Reuse")]')).click();
+  await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
+    driver.actions().move({origin: element}).perform();
+  });
+  await driver.sleep(1000); // just in case
+  await driver.findElement(By.xpath(
+    '//*[contains(@class, "shepherd-target")]//*[contains(text(), "Reuse")]'
+  )).click();
   await driver.findElement(By.xpath(
     visibleTourElementXPath + tourButtonXPathParts[0] + 'Exit tour' + tourButtonXPathParts[1]
   )).click();
