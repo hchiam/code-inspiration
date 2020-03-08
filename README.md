@@ -25,7 +25,7 @@ npm start
 
 ## Extra info
 
-You can run E2E tests using Cypress:
+You can run E2E tests using Cypress: (good for rapid feedback)
 
 ```bash
 # In one CLI terminal:
@@ -34,7 +34,7 @@ npm start
 npm run cypress-test
 ```
 
-You can run E2E tests using Selenium WebDriver:
+You can run E2E tests using Selenium WebDriver: (good for testing on a variety of browsers)
 
 ```bash
 # In one CLI terminal:
