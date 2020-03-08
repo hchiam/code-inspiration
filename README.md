@@ -1,6 +1,6 @@
 # [Code Inspiration](https://code-inspiration.surge.sh)
 
-Capture snippets of code inspiration while on the go.
+Capture snippets of code inspiration while on the go. It works offline too! (After your first visit.)
 
 <https://code-inspiration.surge.sh>
 
@@ -11,6 +11,8 @@ Capture snippets of code inspiration while on the go.
 Just once:
 
 ```bash
+git clone https://github.com/hchiam/code-inspiration.git
+cd code-inspiration
 npm install
 ```
 
@@ -23,13 +25,22 @@ npm start
 
 ## Extra info
 
-You can run a functional test using Cypress:
+You can run E2E tests using Cypress:
 
 ```bash
 # In one CLI terminal:
 npm start
 # And in another CLI terminal:
 npm run cypress-test
+```
+
+You can run E2E tests using Selenium WebDriver:
+
+```bash
+# In one CLI terminal:
+npm start
+# And in another CLI terminal:
+npm run selenium-test
 ```
 
 You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with [`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).
@@ -39,6 +50,7 @@ You can generate a [dependency graph](https://github.com/hchiam/learning-depende
 I can publish to surge.sh with:
 
 ```bash
-npm run prod-build # -> will run: react-scripts build; cd build; surge;
-# (remember to hit enter when prompted with the project by the surge command)
+npm run prod-build
 ```
+
+⬆️ That will run `react-scripts build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh`
