@@ -85,10 +85,9 @@ async function tourTest() {
         driver.actions().move({origin: element}).perform();
       });
       await driver.sleep(1000); // just in case
-      await driver.findElement(By.css('.idea-button[title="Reuse this idea in the input area"]')).click();
-      // await driver.findElement(By.xpath(
-      //   '//*[contains(@class, "shepherd-target")]//*[contains(text(), "Reuse")]'
-      // )).click();
+      await driver.findElement(By.xpath(
+        '//*[contains(@class, "shepherd-target")]//*[contains(text(), "Reuse")]'
+      )).click();
       await driver.findElement(By.xpath(
         visibleTourElementXPath + tourButtonXPathParts[0] + 'Exit tour' + tourButtonXPathParts[1]
       )).click();
