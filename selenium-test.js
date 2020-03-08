@@ -42,6 +42,7 @@ async function coreTest() {
       await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
         driver.actions().move({origin: element}).perform();
       });
+      await driver.sleep(1000); // just in case
       await driver.findElement(By.css('.idea-button[title="Delete this idea"]')).click();
 
       driver.sleep(1000);
@@ -62,6 +63,7 @@ async function coreTest() {
       await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
         driver.actions().move({origin: element}).perform();
       });
+      await driver.sleep(1000); // just in case
       await driver.findElement(By.css('.idea-button[title="Reuse this idea in the input area"]')).click();
 
     } finally {
@@ -93,6 +95,7 @@ async function tourTest() {
         visibleTourElementXPath + tourButtonXPathParts[0] + 'Next' + tourButtonXPathParts[1]
       )).click();
       await driver.findElement(By.css('.shepherd-target')).click();
+      await driver.sleep(1000); // just in case
       await driver.findElement(By.css('.shepherd-target')).click();
       await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
         driver.actions().move({origin: element}).perform();

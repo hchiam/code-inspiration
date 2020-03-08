@@ -105,7 +105,7 @@ const stepsArrayOfTextsAndIds = [
     selector: '#shortcut-buttons-group',
   },
   {
-    text: 'Try clicking on the "function" button.',
+    text: 'Try clicking on the "fn" button.',
     selector: '#shortcut-buttons-group [aria-label="add ES6 function"]',
     buttonsOverride: [
       { text: 'Exit tour', action: customEndTour },

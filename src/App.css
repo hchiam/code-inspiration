@@ -151,7 +151,12 @@ body.shepherd-active::after {
 .shepherd-target {
   z-index: 3 !important;
   position: relative !important;
-  background: lightgrey !important;
+  background: yellow !important;
+  color: black !important;
+}
+
+.shepherd-target > * {
+  background: yellow !important;
   color: black !important;
 }
 
