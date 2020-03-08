@@ -8,6 +8,8 @@ const appShellURLs = [
   '/htc.png',
   '/index.html',
   '/manifest.webmanifest',
+  // START OF AUTOMATICALLY-ENTERED LINES:
+
   '/static/css/main.fdb79f6a.chunk.css',
   '/static/js/0.b2c3bdd3.chunk.js',
   '/static/js/3.1c7293ab.chunk.js',
@@ -18,10 +20,8 @@ const appShellURLs = [
   '/static/js/8.9827c393.chunk.js',
   '/static/js/9.5d36ea85.chunk.js',
   '/static/js/main.9cac82ef.chunk.js',
-  // // NEED three for local offline testing:
-  // '/static/js/0.chunk.js',
-  // '/static/js/bundle.js',
-  // '/static/js/main.chunk.js',
+
+  // END OF AUTOMATICALLY-ENTERED LINES
 ];
 
 // when install service worker:

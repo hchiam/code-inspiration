@@ -22,13 +22,14 @@
   "scripts": {
     "start": "npm run build; react-scripts start",
     "stop": "killall node",
-    "pre-prod-build": "react-scripts build",
-    "prod-build": "react-scripts build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
+    "pre-prod-build": "react-scripts build; npm run sw-chunks;",
+    "prod-build": "npm run pre-prod-build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "test": "react-scripts test --env=jsdom",
     "cypress-test": "npx cypress run",
     "selenium-test": "node selenium-test.js",
     "eject": "react-scripts eject",
-    "build": "mkdir public/src || true; cp -r src/* public/src",
+    "build": "mkdir public/src || true; cp -r src/* public/src; npm run sw-chunks;",
+    "sw-chunks": "bash copy-chunks-to-service-worker.sh",
     "reminder": "echo; echo 'Reminders: \n\nDid you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to update the \\033[1;34mservice worker\\033[0m? \nDo you need to \\033[1;34m[skip ci]\\033[0m? \nRemember to \\033[1;34mnpm run stop\\033[0m'; echo;"
   },
   "license": "MIT",
