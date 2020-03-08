@@ -1,4 +1,5 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
+const firefox = require('selenium-webdriver/firefox');
 const visibleTourElementCss = '.shepherd-element:not([hidden])';
 const visibleTourElementXPath = '//*[contains(@class, "shepherd-element") and not(@hidden)]';
 const tourButtonXPathParts = ['//*[contains(@class, "shepherd-button") and contains(text(), "', '")]'];
@@ -17,7 +18,11 @@ async function coreTest() {
   (async function() {
     let driver;
     try {
-      driver = await new Builder().forBrowser('firefox').build();
+      driver = await new Builder()
+        .forBrowser('firefox')
+        .setFirefoxOptions(
+          new firefox.Options().headless())
+        .build();
 
       await driver.get('http://localhost:3000/');
 
@@ -31,7 +36,12 @@ async function coreTest() {
       await driver.findElement(By.css('button[aria-label="add quotation marks"]')).click();
       await driver.findElement(By.css('#input')).sendKeys('Hi!', Key.ARROW_RIGHT, Key.ARROW_RIGHT, ';');
       await driver.findElement(By.css('#add-idea-button')).click();
-      await driver.findElement(By.css('#ideas .react-markdown:nth-of-type(1)')).click(); // .trigger('mouseover')
+      // click to collapse input textarea:
+      await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).click();
+      // hover/mouseover:
+      await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
+        driver.actions().move({origin: element}).perform();
+      });
       await driver.findElement(By.css('.idea-button[title="Delete this idea"]')).click();
 
       driver.sleep(1000);
@@ -46,10 +56,9 @@ async function coreTest() {
       await driver.findElement(By.css('button[aria-label="add curly brackets"]')).click();
       await driver.findElement(By.css('button[aria-label="add angular tag brackets"]')).click();
       await driver.findElement(By.css('#add-idea-button')).click();
-      await driver.findElement(By.css('#ideas .react-markdown:nth-of-type(1)')).click(); // .trigger('mouseover')
-      // click again to collapse input and bring buttons into view:
-      await driver.findElement(By.css('#ideas .react-markdown:nth-of-type(1)')).click(); // .trigger('mouseover')
-      // just in case, trigger a mouseover:
+      // click to collapse input textarea:
+      await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).click();
+      // hover/mouseover:
       await driver.findElement(By.css('#ideas .react-markdown:first-of-type')).then((element) => {
         driver.actions().move({origin: element}).perform();
       });
@@ -59,7 +68,7 @@ async function coreTest() {
       await driver && driver.quit();
     }
   })().then(_ => console.log('\nSUCCESS\n'), err => {
-    console.error('\nERROR: ' + err + '\n');
+    console.error('\nERROR: coreTest: ' + err + '\n');
     process.exit(1);
   });
 }
@@ -68,7 +77,11 @@ async function tourTest() {
   (async function() {
     let driver;
     try {
-      driver = await new Builder().forBrowser('firefox').build();
+      driver = await new Builder()
+        .forBrowser('firefox')
+        .setFirefoxOptions(
+          new firefox.Options().headless())
+        .build();
 
       await driver.get('http://localhost:3000/');
 
@@ -96,7 +109,7 @@ async function tourTest() {
       await driver && driver.quit();
     }
   })().then(_ => console.log('\nSUCCESS\n'), err => {
-    console.error('\nERROR: ' + err + '\n');
+    console.error('\nERROR: tourTest: ' + err + '\n');
     process.exit(1);
   });
 }
