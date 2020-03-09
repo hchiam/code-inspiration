@@ -19,7 +19,7 @@ const appShellURLs = [
   '/static/js/7.fdfe64d5.chunk.js',
   '/static/js/8.9827c393.chunk.js',
   '/static/js/9.5d36ea85.chunk.js',
-  '/static/js/main.9cac82ef.chunk.js',
+  '/static/js/main.836e64cf.chunk.js',
 
   // END OF AUTOMATICALLY-ENTERED LINES
 ];
