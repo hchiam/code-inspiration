@@ -20,7 +20,7 @@ ControlPanel.defaultProps = {
 function ControlPanel(props) {
   const initialInput = '';
   const initialSuggestion = {suggestion: '', start: -1, stop: -1};
-  const [input, setInput] = React.useState(initialInput); // also updatePreview
+  const [input, setInput] = React.useState(initialInput); // also updatePreview and suggestCombinedCamelCase
   const [preview, setPreview] = React.useState('');
   const [suggestion, setSuggestion] = React.useState(initialSuggestion);
   const updateIdeasLocalStorage = (newIdeas) => {
@@ -59,30 +59,40 @@ function ControlPanel(props) {
     if (punctuationExceptAFewThings.test(word)) return true;
     return false;
   };
-  const combineCamelCase = (overrideInput) => {
-    const words = (overrideInput || input).split(' ');
-    if (words.length < 2) return;
-    // TODO: search around where user typed, not blindly through the whole thing
-    for (let i = 0; i < words.length - 1; i++) {
-      const left = words[i];
-      const right = words[i+1];
-      const alreadySeparateWords = left && /\W$/.test(left);
-      if (left && right && !alreadySeparateWords && !isSpecialWord(left) && !isSpecialWord(right)) {
-        const newSuggestion = left + right[0].toUpperCase() + right.slice(1);
-        const startSelection = words.slice(0, i).join(' ').length + (i===0 ? 0 : 1);
-        const stopSelection = startSelection + words[i].length + 1 + words[i+1].length;
-        setSuggestion({
-          suggestion: newSuggestion,
-          start: startSelection,
-          stop: stopSelection,
-        });
-        const ariaLabel = `use suggestion: "${newSuggestion}", with no spaces between`
-        document.getElementById('suggestion-button').setAttribute('aria-label', ariaLabel);
+  const suggestCombinedCamelCase = (overrideInput) => {
+    const commentRegex = /^\s*\/\//i
+    let lines = (overrideInput || input).split('\n');
+    // start from the bottom line of code:
+    for (let i = lines.length - 1; i >= 0; i--) {
+      let line = lines[i];
+      if (line.match(commentRegex)) continue;
+      let words = line.split(' ');
+      const atStartOfCode = (i === 0);
+      // scan word pairs right-to-left:
+      for (let w = words.length - 1; w > 0; w--) {
+        const right = words[w];
+        const left = words[w-1];
+        const alreadySeparateWords = left && /\W$/.test(left);
+        if (left && right && !alreadySeparateWords && !isSpecialWord(left) && !isSpecialWord(right)) {
+          const newSuggestion = left + right[0].toUpperCase() + right.slice(1);
+          const atStartOfLine = (w === 1);
+          const lengthOfPrecedingLines = atStartOfCode ? 0 : lines.slice(0, i).join('\n').length + 1; // + 1 for preceding \n not covered by join
+          const lengthOfPrecedingWords = atStartOfLine ? 0 : words.slice(0, w - 1).join(' ').length + 1; // + 1 for preceding space not covered by join
+          const startSelection = lengthOfPrecedingLines + lengthOfPrecedingWords;
+          const stopSelection = startSelection + left.length + 1 + right.length; // + 1 for space between
+          setSuggestion({
+            suggestion: newSuggestion,
+            start: startSelection,
+            stop: stopSelection,
+          });
+          const ariaLabel = `use suggestion: "${newSuggestion}", with no spaces between`
+          document.getElementById('suggestion-button').setAttribute('aria-label', ariaLabel);
+          return;
+        }
       }
     }
   };
   const updatePreview = (overrideInput) => { // (overrideInput is optional)
-    combineCamelCase(overrideInput);
     setPreview(overrideInput || input);
   };
   const replaceRange = (original, start, stop, substitute) => {
@@ -122,17 +132,24 @@ function ControlPanel(props) {
     textarea.setSelectionRange(start, end);
     expandTextarea();
   };
+  const respondToInput = (newInput) => {
+    expandTextarea();
+    setInput(newInput);
+    updatePreview(newInput);
+    suggestCombinedCamelCase(newInput);
+  };
   // listen for changes to Redux store:
   store.subscribe(() => {
     const newInput = store.getState().input;
     setInput(newInput);
     updatePreview(newInput);
+    suggestCombinedCamelCase(newInput);
   });
   return (
     <div id="split-container" className="wrap-elements-if-too-wide">
       <div id="control-panel">
         <textarea id="input"
-                  onChange={(e) => {expandTextarea();setInput(e.target.value);updatePreview(e.target.value);}}
+                  onChange={(e) => {respondToInput(e.target.value)}}
                   onKeyDown={(e) => checkCommandEnter(e)}
                   value={input}
                   placeholder="type code here"

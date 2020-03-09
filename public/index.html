@@ -34,7 +34,7 @@
     <div id="root"></div>
 
     <script type="application/javascript" defer>
-      if (navigator.serviceWorker) {
+      if (navigator.serviceWorker && typeof Notyf !== 'undefined') {
         var notyf = new Notyf();
         notyf.success({
           message: `BTW: This page now works offline!`,

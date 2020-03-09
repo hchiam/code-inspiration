@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "npm run build; react-scripts start",
-    "stop": "killall node",
+    "stop": "killall node; killall firefox;",
     "pre-prod-build": "npm run sw-chunks; react-scripts build;",
     "prod-build": "npm run pre-prod-build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "test": "react-scripts test --env=jsdom",
