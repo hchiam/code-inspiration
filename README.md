@@ -4,7 +4,7 @@ Capture snippets of code inspiration while on the go. It works offline too! (Aft
 
 <https://code-inspiration.surge.sh>
 
-[![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration)
+![version](https://img.shields.io/github/release/hchiam/code-inspiration) [![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration)
 
 ## Run locally
 
