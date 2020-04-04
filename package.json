@@ -22,7 +22,7 @@
   "scripts": {
     "start": "npm run build; react-scripts start",
     "stop": "killall node; killall firefox;",
-    "pre-prod-build": "npm run sw-chunks; react-scripts build;",
+    "pre-prod-build": "react-scripts build; npm run sw-chunks;",
     "prod-build": "npm run pre-prod-build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "test": "react-scripts test --env=jsdom",
     "cypress-test": "npx cypress run",
