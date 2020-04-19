@@ -1,6 +1,6 @@
 {
   "name": "code-inspiration",
-  "version": "1.0.0",
+  "version": "0.10.6",
   "private": true,
   "description": "Capture snippets of code inspiration while on the go.",
   "dependencies": {

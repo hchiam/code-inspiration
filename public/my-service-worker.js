@@ -1,4 +1,4 @@
-const SW_VERSION = 'code-inspiration-version_11'; // also can serve as cache name
+const SW_VERSION = 'code-inspiration-version_12'; // also can serve as cache name
 
 const appShellURLs = [
   '/libraries/notyf.min.js',
@@ -19,7 +19,7 @@ const appShellURLs = [
   '/static/js/7.fdfe64d5.chunk.js',
   '/static/js/8.9827c393.chunk.js',
   '/static/js/9.5d36ea85.chunk.js',
-  '/static/js/main.836e64cf.chunk.js',
+  '/static/js/main.a696702c.chunk.js',
 
   // END OF AUTOMATICALLY-ENTERED LINES
 ];
@@ -39,13 +39,13 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys() // cache names (caches)
-      .then((cacheKeys) => { // cache entries (keys/entries in a single cache)
-        const oldKeys = cacheKeys.filter((key) => key.indexOf(SW_VERSION) !== 0);
-        // promise to delete all old keys in this cache:
-        const promisesToDeleteOldKeys = oldKeys.map((oldKey) => caches.delete(oldKey));
-        // don't continue until ALL old keys are deleted:
-        return Promise.all(promisesToDeleteOldKeys);
-      })
+    .then((cacheKeys) => { // cache entries (keys/entries in a single cache)
+      const oldKeys = cacheKeys.filter((key) => key.indexOf(SW_VERSION) !== 0);
+      // promise to delete all old keys in this cache:
+      const promisesToDeleteOldKeys = oldKeys.map((oldKey) => caches.delete(oldKey));
+      // don't continue until ALL old keys are deleted:
+      return Promise.all(promisesToDeleteOldKeys);
+    })
   );
 });
 

@@ -154,6 +154,7 @@ function ControlPanel(props) {
                   value={input}
                   placeholder="type code here"
                   aria-label="type a new code idea here"
+                  autoCapitalize="off"
                   autoFocus/>
         <ShortcutButtonsGroup addSpecialCharacters={addSpecialCharacters}
                               useSuggestion={useSuggestion}
