@@ -2,33 +2,33 @@
 # (YAML partially generated from classic visual editor)
 
 trigger:
-- master
+  - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
   name: Azure Pipelines
   demands: npm
 
 stages:
-- stage: Test
-  jobs:
-  - job: TestJob
-    displayName: Agent Job 1
-    steps:
-    - task: Npm@1
-      displayName: install
-      inputs:
-        verbose: false
+  - stage: Test
+    jobs:
+      - job: TestJob
+        displayName: Agent Job 1
+        steps:
+          - task: Npm@1
+            displayName: install
+            inputs:
+              verbose: false
 
-    - task: Npm@1
-      displayName: 'install react-scripts'
-      inputs:
-        command: custom
-        verbose: false
-        customCommand: 'install react-scripts'
+          - task: Npm@1
+            displayName: "install react-scripts"
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: "install react-scripts"
 
-    - script: 'npx react-scripts build'
-      displayName: 'build (npx)'
+          - script: "npx react-scripts build"
+            displayName: "build (npx)"
 
-    - script: 'npx react-scripts start & npm run cypress-test'
-      displayName: 'start (npx) & side-test'
+          - script: "npx react-scripts start & npm run cypress-test"
+            displayName: "start (npx) & side-test"

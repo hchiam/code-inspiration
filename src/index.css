@@ -1,6 +1,7 @@
 :root {
   --main-color: #282c34;
-  --neumorphic-shadows: -3px -3px 3px 0 rgba(255, 255, 255, 0.1), 3px 3px 3px 0 rgba(0, 0, 0, 0.2);
+  --neumorphic-shadows: -3px -3px 3px 0 rgba(255, 255, 255, 0.1),
+    3px 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 html {

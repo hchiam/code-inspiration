@@ -1,9 +1,9 @@
 const expandTextarea = () => {
-  const textarea = document.querySelector('textarea');
+  const textarea = document.querySelector("textarea");
   if (textarea.value) {
-    textarea.classList.add('expand');
+    textarea.classList.add("expand");
   } else {
-    textarea.classList.remove('expand');
+    textarea.classList.remove("expand");
   }
 };
 

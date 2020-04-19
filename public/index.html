@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Code Inspiration</title>
-    <link rel="shortcut icon" href="htc.png">
-    <link rel="apple-touch-icon" href="htc_apple-touch-icon.png">
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="shortcut icon" href="htc.png" />
+    <link rel="apple-touch-icon" href="htc_apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <script href="src/components/CollapsingButton.js" defer></script>
     <script href="src/components/ControlPanel.js"></script>
     <script href="src/components/Idea.js"></script>
@@ -16,14 +16,14 @@
     <script href="src/components/ShortcutButtonsGroup.js"></script>
     <script href="src/helpers/expandTextarea.js"></script>
     <script src="libraries/notyf.min.js"></script>
-    <link rel="stylesheet" href="libraries/notyf.min.css">
-    <link rel="stylesheet" href="src/App.css">
+    <link rel="stylesheet" href="libraries/notyf.min.css" />
+    <link rel="stylesheet" href="src/App.css" />
     <script href="src/App.js"></script>
-    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="src/index.css" />
     <script href="src/index.js"></script>
     <script>
       if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('my-service-worker.js', {scope: ''})
+        navigator.serviceWorker.register("my-service-worker.js", { scope: "" });
       }
     </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js" defer></script> -->
@@ -34,7 +34,7 @@
     <div id="root"></div>
 
     <script type="application/javascript" defer>
-      if (navigator.serviceWorker && typeof Notyf !== 'undefined') {
+      if (navigator.serviceWorker && typeof Notyf !== "undefined") {
         var notyf = new Notyf();
         notyf.success({
           message: `BTW: This page now works offline!`,
