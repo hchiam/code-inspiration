@@ -20,7 +20,7 @@
 </script>
 
 <button
-  onClick={() => action(idea)}
+  on:click={() => action(idea)}
   className="idea-button"
   style={{ width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0, height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0, color: matchesTimestamp(idea.timestamp) ? 'whitesmoke' : 'transparent' }}
   aria-label={label}

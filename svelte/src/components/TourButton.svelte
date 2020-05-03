@@ -15,7 +15,7 @@
 
 <button
   id="tour-button"
-  onClick={runTour}
+  on:click={runTour}
   style={{ display: showButton ? 'block' : 'none', background: 'blue' }}>
   What is this?
 </button>

@@ -10,16 +10,7 @@ const appShellURLs = [
   "/manifest.webmanifest",
   // START OF AUTOMATICALLY-ENTERED LINES:
 
-  '/static/css/main.f8c25a6c.chunk.css',
-  '/static/js/0.b2c3bdd3.chunk.js',
-  '/static/js/3.1c7293ab.chunk.js',
-  '/static/js/4.e3197044.chunk.js',
-  '/static/js/5.6e22f372.chunk.js',
-  '/static/js/6.aa39a471.chunk.js',
-  '/static/js/7.002da13f.chunk.js',
-  '/static/js/8.3c171b5b.chunk.js',
-  '/static/js/9.5d36ea85.chunk.js',
-  '/static/js/main.70e3ca4b.chunk.js',
+
 
   // END OF AUTOMATICALLY-ENTERED LINES
 ];

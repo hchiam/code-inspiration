@@ -33,8 +33,8 @@
 <div>
   <pre
     className="react-markdown"
-    onMouseOver={() => showOptions(idea.timestamp)}
-    onMouseLeave={hideOptions}
+    on:mouseover={() => showOptions(idea.timestamp)}
+    on:mouseleave={hideOptions}
     title="Psst! You can drag me around the screen.">
     <!-- <SyntaxHighlighter language="javascript" style={docco} tabIndex="0"> -->
     {idea.code}

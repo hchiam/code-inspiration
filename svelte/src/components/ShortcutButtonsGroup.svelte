@@ -14,43 +14,43 @@
 
 <div id="shortcut-buttons-group">
   <button
-    onClick={() => addSpecialCharacters('const  = () => {\n  \n};', 16)}
+    on:click={() => addSpecialCharacters('const  = () => {\n  \n};', 16)}
     aria-label="add ES6 function">
     fn
   </button>
   <button
-    onClick={() => addSpecialCharacters('()')}
+    on:click={() => addSpecialCharacters('()')}
     aria-label="add round brackets">
     ()
   </button>
   <button
-    onClick={() => addSpecialCharacters('[]')}
+    on:click={() => addSpecialCharacters('[]')}
     aria-label="add square brackets">
     []
   </button>
   <button
-    onClick={() => addSpecialCharacters('{}')}
+    on:click={() => addSpecialCharacters('{}')}
     aria-label="add curly brackets">
     &#123;&#125;
   </button>
   <button
-    onClick={() => addSpecialCharacters('""')}
+    on:click={() => addSpecialCharacters('""')}
     aria-label="add quotation marks">
     ""
   </button>
   <button
-    onClick={() => addSpecialCharacters('// ', 0)}
+    on:click={() => addSpecialCharacters('// ', 0)}
     aria-label="add comment">
     //
   </button>
   <button
-    onClick={() => addSpecialCharacters('<>')}
+    on:click={() => addSpecialCharacters('<>')}
     aria-label="add angular tag brackets">
     &lt;&gt;
   </button>
   <button
     id="suggestion-button"
-    onClick={useSuggestion}
+    on:click={useSuggestion}
     style={{ display: suggestion.suggestion ? 'inline-block' : 'none' }}
     aria-label="use suggestion">
     {suggestion.suggestion}

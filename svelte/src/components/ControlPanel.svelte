@@ -170,10 +170,10 @@
   <div id="control-panel">
     <textarea
       id="input"
-      onChange={e => {
+      on:keyup={e => {
         respondToInput(e.target.value);
       }}
-      onKeyDown={e => checkCommandEnter(e)}
+      on:keydown={e => checkCommandEnter(e)}
       value={input}
       placeholder="type code here"
       aria-label="type a new code idea here"
@@ -181,7 +181,7 @@
     <ShortcutButtonsGroup {addSpecialCharacters} {useSuggestion} {suggestion} />
     <button
       id="add-idea-button"
-      onClick={addIdea}
+      on:click={addIdea}
       style={{ display: input !== '' ? 'block' : 'none', margin: 'auto' }}>
       Add idea
     </button>
