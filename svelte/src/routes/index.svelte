@@ -1,0 +1,30 @@
+<script>
+  import ControlPanel from "../components/ControlPanel.svelte";
+  import IdeasWrapper from "../components/IdeasWrapper.svelte";
+  import TourButton from "../components/TourButton.svelte";
+
+  // wrap lazily loaded components with <Suspense>:
+  // const IdeasWrapper = React.lazy(() => import("./components/IdeasWrapper"));
+  // const TourButton = React.lazy(() => import("./components/TourButton"));
+
+  let ideas = [];
+</script>
+
+<svelte:head>
+  <title>Code Inspiration</title>
+</svelte:head>
+
+<div className="App">
+  <h1>
+    Capture
+    <code>code</code>
+    ideas:
+  </h1>
+  <ControlPanel {ideas} />
+  <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
+  <IdeasWrapper {ideas} />
+  <!-- </Suspense> -->
+  <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
+  <TourButton />
+  <!-- </Suspense> -->
+</div>

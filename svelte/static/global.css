@@ -1,0 +1,194 @@
+:root {
+  --main-color: #282c34;
+  --neumorphic-shadows: -3px -3px 3px 0 rgba(255, 255, 255, 0.1),
+    3px 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+html {
+  background: var(--main-color);
+}
+
+body {
+  background: var(--main-color);
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+* {
+  transition: 0.25s;
+}
+
+#split-container {
+  display: flex;
+}
+
+#split-container > * {
+  flex: 1;
+}
+
+.wrap-elements-if-too-wide {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+code {
+  background: black;
+  color: lime;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  max-width: 50em;
+  word-wrap: break-word;
+}
+
+#preview pre {
+  max-width: 90vw;
+}
+
+.react-markdown pre {
+  background: black !important;
+  color: lime !important;
+  margin: 0;
+  border-radius: 0.5em;
+  max-width: 90vw;
+}
+
+h1 code {
+  padding: 0.1em;
+}
+
+button {
+  background: rgb(37, 39, 41);
+  color: whitesmoke;
+  padding: 1em;
+  margin: 10px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  border: none;
+}
+
+#shortcut-buttons-group button,
+#add-idea-button {
+  background: transparent;
+  box-shadow: var(--neumorphic-shadows);
+}
+
+button:hover,
+button:focus {
+  background: lime !important;
+  color: black !important;
+  box-shadow: none !important;
+}
+
+textarea {
+  min-height: 1em;
+  background: rgb(24, 26, 27);
+  color: whitesmoke;
+  font-size: 1em;
+}
+
+textarea,
+.react-markdown {
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+textarea:hover,
+textarea:focus,
+textarea.expand {
+  border-radius: 0;
+  min-height: 10em;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.react-markdown {
+  text-align: left;
+  background: black;
+  display: inline-block;
+}
+
+.react-markdown code {
+  display: inline-block;
+}
+
+.idea-button {
+  padding: 0;
+  height: 3em;
+  border: none;
+}
+
+.vertical-row > * {
+  display: block;
+}
+
+.horizontal-row button {
+  margin: 10px;
+}
+
+.shepherd-element {
+  z-index: 9001;
+}
+
+.shepherd-content {
+  background-color: white;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+}
+
+.shepherd-modal-overlay-container {
+  display: none;
+}
+
+body.shepherd-active::after {
+  z-index: 1;
+  content: "";
+  display: block;
+  background-color: black;
+  opacity: 0.4;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.shepherd-target {
+  z-index: 3 !important;
+  position: relative !important;
+  background: yellow !important;
+  color: black !important;
+}
+
+.shepherd-target > * {
+  background: yellow !important;
+  color: black !important;
+}
+
+#shortcut-buttons-group {
+  z-index: 1 !important;
+}
+
+.idea-button.expanded {
+  z-index: 3 !important;
+  position: relative !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  background: rgb(37, 39, 41) !important;
+  color: whitesmoke !important;
+}
+
+.idea-button.expanded:hover,
+.idea-button.expanded:focus {
+  background: lime !important;
+  color: black !important;
+}
