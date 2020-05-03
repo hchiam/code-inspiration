@@ -1,13 +1,20 @@
 <script>
   export let ideas = [];
+  export let setIdeas;
 
   // import React from "react";
   // import Draggable from "react-draggable";
   import Idea from "./Idea.svelte";
   import expandTextarea from "../helpers/expandTextarea";
-  // import store from "../helpers/useRedux";
+  import store from "../helpers/useRedux";
 
   // import PropTypes from "prop-types";
+
+  store.subscribe(() => {
+    const newInput = store.getState().input;
+    console.log(newInput);
+    // input = newInput;
+  });
 
   let displayOptionTimestamp = -1;
   let showOptions = timestamp => {
@@ -54,6 +61,7 @@
     const timestampOfIdeaToDelete = idea.timestamp;
     const newIdeas = ideas.filter(e => e.timestamp !== timestampOfIdeaToDelete);
     ideas = newIdeas;
+    setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     displayOptionTimestamp = -1;
     focusTextArea();
@@ -153,6 +161,7 @@
       }
     }
     ideas = newIdeas;
+    setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
   };
   const applyTransforms = () => {
@@ -215,7 +224,7 @@
       Ideas:
     </p>
     {#each ideas as idea}
-      // (Note: wrap in a div inside Draggable.)
+      <!-- (Note: wrap in a div inside Draggable.) -->
       <!-- <Draggable
         key={idea.timestamp}
         onStop={() => {

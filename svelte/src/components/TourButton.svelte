@@ -1,5 +1,5 @@
 <script>
-  // import { tour, addListeners } from "../helpers/tour";
+  // import { tour, addListeners } from "../helpers/tour.js";
 
   let showButton = false;
   setTimeout(() => {

@@ -5,6 +5,7 @@
   // import PropTypes from "prop-types";
 
   export let ideas = [];
+  export let setIdeas;
 
   // wrap lazily loaded components with <Suspense>:
   // const Preview = React.lazy(() => import("./Preview"));
@@ -24,16 +25,17 @@
       textarea.focus();
       return;
     }
-    input = "";
-    preview = "";
     const newIdeas = ideas.concat({
       code: preview,
       timestamp: new Date().getTime(),
       transform: ""
     });
     ideas = newIdeas;
+    setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     textarea.focus();
+    input = "";
+    preview = "";
   };
   const checkCommandEnter = event => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {

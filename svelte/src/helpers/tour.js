@@ -1,4 +1,5 @@
 import Shepherd from "shepherd.js";
+// import Shepherd from "../../node_modules/shepherd.js";
 
 const tour = new Shepherd.Tour({
   defaultStepOptions: {

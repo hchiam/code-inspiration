@@ -8,6 +8,9 @@
   // const TourButton = React.lazy(() => import("./components/TourButton"));
 
   let ideas = [];
+  const setIdeas = function(newIdeas) {
+    ideas = newIdeas;
+  };
 </script>
 
 <svelte:head>
@@ -20,9 +23,9 @@
     <code>code</code>
     ideas:
   </h1>
-  <ControlPanel {ideas} />
+  <ControlPanel {ideas} {setIdeas} />
   <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
-  <IdeasWrapper {ideas} />
+  <IdeasWrapper {ideas} {setIdeas} />
   <!-- </Suspense> -->
   <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
   <TourButton />
