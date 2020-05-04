@@ -48,11 +48,12 @@
     aria-label="add angular tag brackets">
     &lt;&gt;
   </button>
-  <button
-    id="suggestion-button"
-    on:click={useSuggestion}
-    style={{ display: suggestion.suggestion ? 'inline-block' : 'none' }}
-    aria-label="use suggestion">
-    {suggestion.suggestion}
-  </button>
+  {#if suggestion.suggestion}
+    <button
+      id="suggestion-button"
+      on:click={useSuggestion}
+      aria-label="use suggestion">
+      {suggestion.suggestion}
+    </button>
+  {/if}
 </div>

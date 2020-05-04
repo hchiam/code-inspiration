@@ -136,7 +136,7 @@
       suggestion.start + getLengthBeforePunctuation(suggestion.suggestion);
     textarea.setSelectionRange(suggestion.start, newCursorPos);
     // reset
-    suggestion = initialSuggestion;
+    suggestion = "";
   };
   const addSpecialCharacters = (characters, putCursorBack) => {
     const cursorPosition = document.querySelector("textarea").selectionStart;
@@ -168,7 +168,26 @@
   });
 </script>
 
-<div id="split-container" className="wrap-elements-if-too-wide">
+<style>
+  #split-container {
+    display: flex;
+  }
+
+  #split-container > * {
+    flex: 1;
+  }
+
+  .wrap-elements-if-too-wide {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #add-idea-button {
+    margin: auto;
+  }
+</style>
+
+<div id="split-container" class="wrap-elements-if-too-wide">
   <div id="control-panel">
     <textarea
       id="input"
@@ -181,12 +200,9 @@
       aria-label="type a new code idea here"
       autoCapitalize="off" />
     <ShortcutButtonsGroup {addSpecialCharacters} {useSuggestion} {suggestion} />
-    <button
-      id="add-idea-button"
-      on:click={addIdea}
-      style={{ display: input !== '' ? 'block' : 'none', margin: 'auto' }}>
-      Add idea
-    </button>
+    {#if input !== ''}
+      <button id="add-idea-button" on:click={addIdea}>Add idea</button>
+    {/if}
   </div>
   <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
   <Preview {input} {preview} />

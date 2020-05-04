@@ -32,7 +32,7 @@
 
 <div>
   <pre
-    className="react-markdown"
+    class="react-markdown"
     on:mouseover={() => showOptions(idea.timestamp)}
     on:mouseleave={hideOptions}
     title="Psst! You can drag me around the screen.">
@@ -40,7 +40,7 @@
     {idea.code}
     <!-- </SyntaxHighlighter> -->
     <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
-    <div className="horizontal-row">
+    <div class="horizontal-row">
       <CollapsingButton
         {idea}
         buttonText="X"

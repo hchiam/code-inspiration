@@ -13,9 +13,12 @@
   };
 </script>
 
-<button
-  id="tour-button"
-  on:click={runTour}
-  style={{ display: showButton ? 'block' : 'none', background: 'blue' }}>
-  What is this?
-</button>
+<style>
+  #tour-button {
+    background: blue;
+  }
+</style>
+
+{#if showButton}
+  <button id="tour-button" on:click={runTour}>What is this?</button>
+{/if}

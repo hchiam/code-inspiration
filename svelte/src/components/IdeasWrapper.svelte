@@ -187,16 +187,22 @@
   const likelyOnMobile = window.screen.width <= 420;
 </script>
 
+<style>
+  #ideas-heading {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+
 {#if likelyOnMobile}
   <!-- mobile version (no Draggable): -->
   <div id="ideas">
-    <p style={{ display: ideas.length > 0 ? 'block' : 'none' }}>
-      _____________________
-    </p>
-    <p
-      style={{ display: ideas.length > 0 ? 'block' : 'none', padding: 0, margin: 0 }}>
-      Ideas:
-    </p>
+    {#if ideas.length > 0}
+      <p>_____________________</p>
+    {/if}
+    {#if ideas.length > 0}
+      <p id="ideas-heading">Ideas:</p>
+    {/if}
     {#each ideas as idea}
       <div key={idea.timestamp}>
         <div id={'idea-' + idea.timestamp}>

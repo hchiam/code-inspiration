@@ -12,11 +12,23 @@
   // };
 </script>
 
-<pre
-  id="preview"
-  className="react-markdown"
-  style={{ display: input !== '' ? 'block' : 'none' }}>
-  <!-- <SyntaxHighlighter language="javascript" style={docco}> -->
-  {preview}
-  <!-- </SyntaxHighlighter> -->
-</pre>
+<style>
+  pre {
+    background: black;
+    color: lime;
+    border-radius: 0.25em;
+    padding: 0.5em;
+    margin: 0.5em;
+    text-align: left;
+    height: 100%;
+    max-width: 90vw;
+  }
+</style>
+
+{#if input !== ''}
+  <pre id="preview" class="react-markdown">
+    <!-- <SyntaxHighlighter language="javascript" style={docco}> -->
+    {preview}
+    <!-- </SyntaxHighlighter> -->
+  </pre>
+{/if}

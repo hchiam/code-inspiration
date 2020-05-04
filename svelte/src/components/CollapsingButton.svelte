@@ -21,7 +21,7 @@
 
 <button
   on:click={() => action(idea)}
-  className="idea-button"
+  class="idea-button"
   style={{ width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0, height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0, color: matchesTimestamp(idea.timestamp) ? 'whitesmoke' : 'transparent' }}
   aria-label={label}
   title={label}>
