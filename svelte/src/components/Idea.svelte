@@ -30,14 +30,19 @@
   export let pasteIdea;
 </script>
 
+<style>
+  .horizontal-row {
+  }
+</style>
+
 <div>
-  <pre
+  <div
     class="react-markdown"
     on:mouseover={() => showOptions(idea.timestamp)}
     on:mouseleave={hideOptions}
     title="Psst! You can drag me around the screen.">
     <!-- <SyntaxHighlighter language="javascript" style={docco} tabIndex="0"> -->
-    {idea.code}
+    <pre>{idea.code}</pre>
     <!-- </SyntaxHighlighter> -->
     <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
     <div class="horizontal-row">
@@ -67,5 +72,5 @@
         {displayOptionTimestamp} />
     </div>
     <!-- </Suspense> -->
-  </pre>
+  </div>
 </div>

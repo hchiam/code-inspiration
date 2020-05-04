@@ -14,15 +14,28 @@
   //   buttonText: PropTypes.string.isRequired
   // };
 
-  const matchesTimestamp = timestamp => {
-    return displayOptionTimestamp === timestamp;
-  };
+  let matchesTimestamp = false;
+  $: matchesTimestamp = displayOptionTimestamp === idea.timestamp;
 </script>
+
+<style>
+  .idea-button {
+    width: 0;
+    height: 0;
+    color: transparent;
+  }
+
+  .isHovered {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: whitesmoke;
+  }
+</style>
 
 <button
   on:click={() => action(idea)}
   class="idea-button"
-  style={{ width: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0, height: matchesTimestamp(idea.timestamp) ? '2.5rem' : 0, color: matchesTimestamp(idea.timestamp) ? 'whitesmoke' : 'transparent' }}
+  class:isHovered={matchesTimestamp}
   aria-label={label}
   title={label}>
   {buttonText}

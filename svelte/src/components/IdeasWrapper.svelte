@@ -199,8 +199,6 @@
   <div id="ideas">
     {#if ideas.length > 0}
       <p>_____________________</p>
-    {/if}
-    {#if ideas.length > 0}
       <p id="ideas-heading">Ideas:</p>
     {/if}
     {#each ideas as idea}
@@ -222,13 +220,10 @@
 {:else}
   <!-- desktop version (has Draggable): -->
   <div id="ideas">
-    <p style={{ display: ideas.length > 0 ? 'block' : 'none' }}>
-      _____________________
-    </p>
-    <p
-      style={{ display: ideas.length > 0 ? 'block' : 'none', padding: 0, margin: 0 }}>
-      Ideas:
-    </p>
+    {#if ideas.length > 0}
+      <p>_____________________</p>
+      <p id="ideas-heading">Ideas:</p>
+    {/if}
     {#each ideas as idea}
       <!-- (Note: wrap in a div inside Draggable.) -->
       <!-- <Draggable
