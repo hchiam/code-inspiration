@@ -1,8 +1,9 @@
 <script>
   export let input = "";
   export let preview = "";
-  // import SyntaxHighlighter from "react-syntax-highlighter";
-  // import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+  import Highlight from "svelte-highlight";
+  import { javascript } from "svelte-highlight/languages";
 
   // import PropTypes from "prop-types";
 
@@ -13,22 +14,11 @@
 </script>
 
 <style>
-  pre {
-    background: black;
-    color: lime;
-    border-radius: 0.25em;
-    padding: 0.5em;
-    margin: 0.5em;
-    text-align: left;
-    height: 100%;
-    max-width: 90vw;
+  .hide {
+    display: none;
   }
 </style>
 
-{#if input !== ''}
-  <pre id="preview" class="react-markdown">
-    <!-- <SyntaxHighlighter language="javascript" style={docco}> -->
-    {preview}
-    <!-- </SyntaxHighlighter> -->
-  </pre>
-{/if}
+<div class:hide={input === ''}>
+  <Highlight language={javascript} code={preview} />
+</div>

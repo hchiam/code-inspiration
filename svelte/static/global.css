@@ -27,13 +27,24 @@ body {
   transition: 0.25s;
 }
 
+pre.svelte-highlight {
+  background: black;
+  color: lime;
+  border-radius: 0.25em;
+  padding: 0.5em;
+  margin: 0.5em;
+  text-align: left;
+  height: 100%;
+  max-width: 90vw;
+}
+
 code {
   background: black;
   color: lime;
-  padding: 0.5em;
   border-radius: 0.5em;
   max-width: 50em;
   word-wrap: break-word;
+  text-align: left;
 }
 
 .react-markdown pre {

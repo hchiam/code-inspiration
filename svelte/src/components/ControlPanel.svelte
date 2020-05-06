@@ -98,9 +98,10 @@
             stop: stopSelection
           };
           const ariaLabel = `use suggestion: "${newSuggestion}", with no spaces between`;
-          document
-            .getElementById("suggestion-button")
-            .setAttribute("aria-label", ariaLabel);
+          const suggestionButton = document.getElementById("suggestion-button");
+          if (suggestionButton) {
+            suggestionButton.setAttribute("aria-label", ariaLabel);
+          }
           return;
         }
       }

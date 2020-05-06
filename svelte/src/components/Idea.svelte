@@ -1,6 +1,7 @@
 <script>
-  // import SyntaxHighlighter from "react-syntax-highlighter";
-  // import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+  import Highlight from "svelte-highlight";
+  import { javascript } from "svelte-highlight/languages";
+
   // import PropTypes from "prop-types";
 
   // wrap lazily loaded components with <Suspense>:
@@ -30,20 +31,13 @@
   export let pasteIdea;
 </script>
 
-<style>
-  .horizontal-row {
-  }
-</style>
-
 <div>
   <div
     class="react-markdown"
     on:mouseover={() => showOptions(idea.timestamp)}
     on:mouseleave={hideOptions}
     title="Psst! You can drag me around the screen.">
-    <!-- <SyntaxHighlighter language="javascript" style={docco} tabIndex="0"> -->
-    <pre>{idea.code}</pre>
-    <!-- </SyntaxHighlighter> -->
+    <Highlight language={javascript} code={idea.code} />
     <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
     <div class="horizontal-row">
       <CollapsingButton

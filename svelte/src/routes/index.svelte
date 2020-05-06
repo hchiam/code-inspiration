@@ -11,6 +11,11 @@
   const setIdeas = function(newIdeas) {
     ideas = newIdeas;
   };
+
+  import { onMount } from "svelte";
+  onMount(() => {
+    ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+  });
 </script>
 
 <svelte:head>

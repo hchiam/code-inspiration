@@ -2,19 +2,12 @@
   export let ideas = [];
   export let setIdeas;
 
-  // import React from "react";
   // import Draggable from "react-draggable";
   import Idea from "./Idea.svelte";
   import expandTextarea from "../helpers/expandTextarea";
   import store from "../helpers/useRedux";
 
   // import PropTypes from "prop-types";
-
-  store.subscribe(() => {
-    const newInput = store.getState().input;
-    console.log(newInput);
-    // input = newInput;
-  });
 
   let displayOptionTimestamp = -1;
   let showOptions = timestamp => {
