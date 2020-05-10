@@ -14,8 +14,7 @@ function makeElementDraggable(element, dragStopCallback) {
     document.onmousemove = dragElement;
   }
 
-  function stopDragging(event) {
-    let e = event || window.event;
+  function stopDragging() {
     document.onmouseup = null;
     document.onmousemove = null;
     if (dragStopCallback) dragStopCallback(element.id);
