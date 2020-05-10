@@ -4,6 +4,7 @@
 
   import Highlight from "svelte-highlight";
   import { javascript } from "svelte-highlight/languages";
+  import { github } from "svelte-highlight/styles";
 
   // import PropTypes from "prop-types";
 
@@ -19,6 +20,9 @@
   }
 </style>
 
+<svelte:head>
+  {@html github}
+</svelte:head>
 <div class:hide={input === ''}>
   <Highlight language={javascript} code={preview} />
 </div>
