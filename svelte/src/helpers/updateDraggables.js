@@ -13,28 +13,32 @@ const ideasChanged = (setTrueOrFalse) => {
   }
 };
 
-const updateDraggables = () => {
+const updateDraggables = (dragStopCallback) => {
   const renderedIdeas = document.getElementsByClassName("idea");
   if (!ideasChanged()) return;
-  Array.from(renderedIdeas).map((idea) => {
-    idea.style.all = "initial";
+  Array.from(renderedIdeas).map((idea, i) => {
+    const left = idea.style.left;
+    const top = idea.style.top;
+    idea.style.all = "initial"; // this will reset left and top too
+    idea.style.left = left;
+    idea.style.top = top;
     idea.style.fontSize = "calc(10px + 2vmin)";
-    makeElementDraggable(idea);
+    makeElementDraggable(idea, dragStopCallback);
   });
   flagThatIdeasChanged(false);
 };
 
-const updateDraggablesWhenFirstRender = () => {
+const updateDraggablesWhenFirstRender = (dragStopCallback) => {
   onMount(async () => {
     flagThatIdeasChanged(true); // to get past the check for the first render only
     await tick();
-    updateDraggables();
+    updateDraggables(dragStopCallback);
   });
 };
 
-const updateDraggablesWhenRenderUpdates = () => {
+const updateDraggablesWhenRenderUpdates = (dragStopCallback) => {
   afterUpdate(() => {
-    updateDraggables();
+    updateDraggables(dragStopCallback);
   });
 };
 

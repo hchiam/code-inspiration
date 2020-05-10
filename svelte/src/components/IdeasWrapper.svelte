@@ -6,10 +6,9 @@
   import { updateDraggablesWhenFirstRender } from "../helpers/updateDraggables";
   import expandTextarea from "../helpers/expandTextarea";
   import store from "../helpers/useRedux";
+  import { onMount } from "svelte";
 
   // import PropTypes from "prop-types";
-
-  updateDraggablesWhenFirstRender();
 
   let displayOptionTimestamp = -1;
   let showOptions = timestamp => {
@@ -120,39 +119,16 @@
     const dragged = document.querySelector(`div#idea-${timestamp}`);
     dragged.style.position = "absolute";
   };
-  const saveTransform = idea => {
-    const timestamp = idea.timestamp;
+  const saveTransform = elementId => {
+    const timestamp = elementId.replace("idea-", ""); //idea.timestamp;
     const newIdeas = [...ideas];
     for (let i = 0; i < ideas.length; i++) {
-      if (ideas[i].timestamp === timestamp) {
+      if (ideas[i].timestamp.toString() === timestamp) {
         const dragged = document.querySelector(`div#idea-${timestamp}`);
-        const transformRegex = /^translate\((.+?)px, (.+?)px\).*/i;
-        let transform = dragged.style.transform.match(transformRegex);
-        if (!transform) continue;
-        let translateX = transform[1];
-        let translateY = transform[2];
-        // newIdeas[i].transform = dragged.style.transform;
-        newIdeas[i].translateX = translateX;
-        newIdeas[i].translateY = translateY;
-        if (translateX < -window.innerWidth / 2 + dragged.offsetWidth / 2) {
-          translateX = -window.innerWidth / 2 + dragged.offsetWidth / 2;
-        } else if (
-          translateX >
-          window.innerWidth / 2 - dragged.offsetWidth / 2
-        ) {
-          translateX = window.innerWidth / 2 - dragged.offsetWidth / 2;
-        }
-        if (translateY < -window.innerHeight / 2 + dragged.offsetHeight / 2) {
-          translateY = -window.innerHeight / 2 + dragged.offsetHeight / 2;
-        } else if (
-          translateY >
-          window.innerHeight / 2 - dragged.offsetHeight / 2
-        ) {
-          translateY = window.innerHeight / 2 - dragged.offsetHeight / 2;
-        }
-        transform = `translate(${translateX}px, ${translateY}px)`;
-        newIdeas[i].transform = transform;
-        dragged.style.transform = transform;
+        const left = dragged.style.left;
+        const top = dragged.style.top;
+        newIdeas[i].left = left;
+        newIdeas[i].top = top;
       }
     }
     ideas = newIdeas;
@@ -163,11 +139,10 @@
     for (let i = 0; i < ideas.length; i++) {
       const idea = ideas[i];
       const ideaElement = document.querySelector(`div#idea-${idea.timestamp}`);
-      if (idea.transform) {
-        // remove <Draggable> default transform:
-        ideaElement.style.removeProperty("transform");
+      if (idea.left || idea.top) {
         // set transform from props:
-        ideaElement.style.transform = idea.transform;
+        ideaElement.style.left = idea.left;
+        ideaElement.style.top = idea.top;
         ideaElement.style.position = "absolute";
       } else {
         ideaElement.style.position = "static";
@@ -175,9 +150,11 @@
     }
   };
 
-  // React.useEffect(() => {
-  applyTransforms();
-  // });
+  onMount(() => {
+    applyTransforms();
+  });
+
+  updateDraggablesWhenFirstRender(saveTransform);
 
   const likelyOnMobile = window.screen.width <= 420;
 </script>
@@ -224,27 +201,24 @@
       <p id="ideas-heading">Ideas:</p>
     {/if}
     {#each ideas as idea}
-      <!-- (Note: wrap in a div inside Draggable.) -->
       <!-- <Draggable
-        key={idea.timestamp}
         onStop={() => {
           allowListToFillSpace(idea.timestamp);
-          saveTransform(idea);
         }}
         handle=".react-markdown>*:not(.vertical-row)"> -->
-      <div class="idea" id={'idea-' + idea.timestamp}>
-        <!-- on:mousedown={dragOnMouseDown} -->
-        <Idea
-          {displayOptionTimestamp}
-          {idea}
-          {showOptions}
-          {hideOptions}
-          {deleteIdea}
-          {emailIdea}
-          {saveIdea}
-          {pasteIdea} />
+      <div key={idea.timestamp}>
+        <div id={'idea-' + idea.timestamp} class="idea">
+          <Idea
+            {displayOptionTimestamp}
+            {idea}
+            {showOptions}
+            {hideOptions}
+            {deleteIdea}
+            {emailIdea}
+            {saveIdea}
+            {pasteIdea} />
+        </div>
       </div>
-      <!-- </Draggable> -->
     {/each}
   </div>
 {/if}

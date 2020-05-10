@@ -34,7 +34,8 @@
     const newIdeas = ideas.concat({
       code: preview,
       timestamp: new Date().getTime(),
-      transform: ""
+      left: "",
+      top: ""
     });
     ideas = newIdeas;
     setIdeas(newIdeas);
