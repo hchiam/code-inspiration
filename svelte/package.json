@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "sapper dev",
+    "prod": "npm run build && npm start # I added this based on the README",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
