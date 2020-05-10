@@ -2,12 +2,14 @@
   export let ideas = [];
   export let setIdeas;
 
-  // import Draggable from "react-draggable";
   import Idea from "./Idea.svelte";
+  import { updateDraggablesWhenFirstRender } from "../helpers/updateDraggables";
   import expandTextarea from "../helpers/expandTextarea";
   import store from "../helpers/useRedux";
 
   // import PropTypes from "prop-types";
+
+  updateDraggablesWhenFirstRender();
 
   let displayOptionTimestamp = -1;
   let showOptions = timestamp => {
@@ -185,6 +187,10 @@
     padding: 0;
     margin: 0;
   }
+
+  .idea {
+    position: absolute;
+  }
 </style>
 
 {#if likelyOnMobile}
@@ -226,7 +232,8 @@
           saveTransform(idea);
         }}
         handle=".react-markdown>*:not(.vertical-row)"> -->
-      <div id={'idea-' + idea.timestamp}>
+      <div class="idea" id={'idea-' + idea.timestamp}>
+        <!-- on:mousedown={dragOnMouseDown} -->
         <Idea
           {displayOptionTimestamp}
           {idea}

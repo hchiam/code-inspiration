@@ -1,11 +1,17 @@
 <script>
   import ShortcutButtonsGroup from "./ShortcutButtonsGroup.svelte";
+  import {
+    ideasChanged,
+    updateDraggablesWhenRenderUpdates
+  } from "../helpers/updateDraggables";
   import expandTextarea from "../helpers/expandTextarea.js";
   import store from "../helpers/useRedux";
   // import PropTypes from "prop-types";
 
   export let ideas = [];
   export let setIdeas;
+
+  updateDraggablesWhenRenderUpdates();
 
   // wrap lazily loaded components with <Suspense>:
   // const Preview = React.lazy(() => import("./Preview"));
@@ -36,6 +42,7 @@
     textarea.focus();
     input = "";
     preview = "";
+    ideasChanged(true);
   };
   const checkCommandEnter = event => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
