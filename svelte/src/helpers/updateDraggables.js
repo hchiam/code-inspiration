@@ -26,6 +26,7 @@ const updateDraggables = () => {
 
 const updateDraggablesWhenFirstRender = () => {
   onMount(async () => {
+    flagThatIdeasChanged(true); // to get past the check for the first render only
     await tick();
     updateDraggables();
   });
