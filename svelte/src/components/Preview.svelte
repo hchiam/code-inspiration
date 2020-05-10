@@ -18,6 +18,10 @@
   .hide {
     display: none;
   }
+
+  div {
+    margin: 0 auto;
+  }
 </style>
 
 <svelte:head>
