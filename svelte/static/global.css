@@ -135,6 +135,7 @@ textarea.expand {
 
 .shepherd-content {
   background-color: white;
+  color: black;
   border-radius: 3px;
   padding: 0.5em 1em;
 }
