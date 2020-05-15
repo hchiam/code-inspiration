@@ -8,7 +8,7 @@ Capture snippets of code inspiration while on the go. It works offline too! (Aft
 
 and <https://code-inspiration.surge.sh> (built with [React](https://github.com/hchiam/learning-reactjs) and `create-react-app`)
 
-## Run locally
+## Run locally (note: commands use [`yarn`](https://github.com/hchiam/learning-yarn) instead of `npm`)
 
 Just once:
 
