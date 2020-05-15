@@ -20,15 +20,5 @@ stages:
             inputs:
               verbose: false
 
-          - task: Npm@1
-            displayName: "install react-scripts"
-            inputs:
-              command: custom
-              verbose: false
-              customCommand: "install react-scripts"
-
-          - script: "npx react-scripts build"
-            displayName: "build (npx)"
-
-          - script: "npx react-scripts start & npm run cypress-test"
-            displayName: "start (npx) & side-test"
+          - script: "test"
+            displayName: "npm run test"
