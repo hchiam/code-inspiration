@@ -1,3 +1,5 @@
+exit 1 # this script is no longer necessary when using Sapper, which auto-generates a service worker for you
+
 entries=()
 
 for entry in "build/static/css"/*

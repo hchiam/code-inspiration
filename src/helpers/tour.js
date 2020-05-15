@@ -23,7 +23,6 @@ const prepareIdeaButtons = () => {
     );
     for (let ideaButton of ideaButtons) {
       ideaButton.classList.add("expanded");
-      ideaButton.addEventListener("click", customEndTour);
     }
   }, 10);
 };
@@ -39,23 +38,45 @@ const resetIdeaButtons = () => {
 };
 
 const addListeners = () => {
-  document
-    .querySelector('#shortcut-buttons-group [aria-label="add ES6 function"]')
-    .addEventListener("click", triggerContinueTour);
-  document
-    .querySelector("#add-idea-button")
-    .addEventListener("click", prepareIdeaButtons);
+  const fnButton = document.querySelector(
+    '#shortcut-buttons-group [aria-label="add ES6 function"]'
+  );
+  if (fnButton) {
+    fnButton.addEventListener("click", triggerContinueTour);
+  }
+
+  const addIdeaButton = document.querySelector("#add-idea-button");
+  if (addIdeaButton) {
+    addIdeaButton.addEventListener("click", prepareIdeaButtons);
+  }
+
+  document.addEventListener("click", someListener);
 };
 
 const removeListeners = () => {
-  document
-    .querySelector('#shortcut-buttons-group [aria-label="add ES6 function"]')
-    .removeEventListener("click", triggerContinueTour);
-  document
-    .querySelector("#add-idea-button")
-    .removeEventListener("click", prepareIdeaButtons);
+  const fnButton = document.querySelector(
+    '#shortcut-buttons-group [aria-label="add ES6 function"]'
+  );
+  if (fnButton) {
+    fnButton.removeEventListener("click", triggerContinueTour);
+  }
+
+  const addIdeaButton = document.querySelector("#add-idea-button");
+  if (addIdeaButton) {
+    addIdeaButton.removeEventListener("click", prepareIdeaButtons);
+  }
+
+  document.removeEventListener("click", someListener);
+
   resetIdeaButtons();
 };
+
+function someListener(event) {
+  var element = event.target;
+  if (element.id === "add-idea-button") {
+    prepareIdeaButtons();
+  }
+}
 
 const customEndTour = () => {
   removeListeners();
@@ -131,7 +152,7 @@ const stepsArrayOfTextsAndIds = [
   {
     text:
       'And finally, each idea has powerful buttons. <br/><br/>For example, you can copy and paste existing ideas! <br/><br/>Try this: hover/tap on the code to show the idea buttons. <br/><br/>Then hit the "Reuse" button.',
-    selector: "#ideas .react-draggable:first-of-type",
+    selector: "#ideas .idea:first-of-type",
   },
 ];
 

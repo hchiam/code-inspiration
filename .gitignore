@@ -1,21 +1,6 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
 .DS_Store
-.env
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-your_first_commit.sh
-
-public/src
+/node_modules/
+/src/node_modules/@sapper/
+yarn-error.log
+/cypress/screenshots/
+/__sapper__/

@@ -1,29 +1,25 @@
-import React, { Suspense } from "react";
-import "../App.css";
-import ShortcutButtonsGroup from "./ShortcutButtonsGroup";
-import expandTextarea from "../helpers/expandTextarea.js";
-import store from "../helpers/useRedux";
-import PropTypes from "prop-types";
+<script>
+  import ShortcutButtonsGroup from "./ShortcutButtonsGroup.svelte";
+  import {
+    ideasChanged,
+    updateDraggablesWhenRenderUpdates
+  } from "../helpers/updateDraggables";
+  import expandTextarea from "../helpers/expandTextarea.js";
+  import store from "../helpers/useRedux";
+  // import PropTypes from "prop-types";
 
-// wrap lazily loaded components with <Suspense>:
-const Preview = React.lazy(() => import("./Preview"));
+  export let ideas = [];
+  export let setIdeas;
 
-ControlPanel.propTypes = {
-  ideas: PropTypes.array.isRequired,
-  setIdeas: PropTypes.func.isRequired,
-};
+  updateDraggablesWhenRenderUpdates();
 
-ControlPanel.defaultProps = {
-  ideas: [],
-};
+  import Lazy from "svelte-lazy";
+  import Preview from "./Preview.svelte";
 
-function ControlPanel(props) {
-  const initialInput = "";
-  const initialSuggestion = { suggestion: "", start: -1, stop: -1 };
-  const [input, setInput] = React.useState(initialInput); // also updatePreview and suggestCombinedCamelCase
-  const [preview, setPreview] = React.useState("");
-  const [suggestion, setSuggestion] = React.useState(initialSuggestion);
-  const updateIdeasLocalStorage = (newIdeas) => {
+  let input = "";
+  let suggestion = { suggestion: "", start: -1, stop: -1 };
+  let preview = "";
+  const updateIdeasLocalStorage = newIdeas => {
     localStorage.setItem("ideas", JSON.stringify(newIdeas));
   };
   const addIdea = () => {
@@ -34,23 +30,26 @@ function ControlPanel(props) {
       textarea.focus();
       return;
     }
-    setInput("");
-    setPreview("");
-    const newIdeas = props.ideas.concat({
+    const newIdeas = ideas.concat({
       code: preview,
       timestamp: new Date().getTime(),
-      transform: "",
+      left: "",
+      top: ""
     });
-    props.setIdeas(newIdeas);
+    ideas = newIdeas;
+    setIdeas(newIdeas);
     updateIdeasLocalStorage(newIdeas);
     textarea.focus();
+    input = "";
+    preview = "";
+    ideasChanged(true);
   };
-  const checkCommandEnter = (event) => {
+  const checkCommandEnter = event => {
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 13) {
       addIdea();
     }
   };
-  const isSpecialWord = (word) => {
+  const isSpecialWord = word => {
     const keyWords = [
       "const",
       "let",
@@ -61,14 +60,14 @@ function ControlPanel(props) {
       "import",
       "from",
       "export",
-      "default",
+      "default"
     ];
     if (keyWords.includes(word)) return true;
     const punctuationExceptAFewThings = /[^\w\s,()]/g;
     if (punctuationExceptAFewThings.test(word)) return true;
     return false;
   };
-  const suggestCombinedCamelCase = (overrideInput) => {
+  const suggestCombinedCamelCase = overrideInput => {
     const commentRegex = /^\s*\/\//i;
     let lines = (overrideInput || input).split("\n");
     // start from the bottom line of code:
@@ -100,28 +99,29 @@ function ControlPanel(props) {
           const startSelection =
             lengthOfPrecedingLines + lengthOfPrecedingWords;
           const stopSelection = startSelection + left.length + 1 + right.length; // + 1 for space between
-          setSuggestion({
+          suggestion = {
             suggestion: newSuggestion,
             start: startSelection,
-            stop: stopSelection,
-          });
+            stop: stopSelection
+          };
           const ariaLabel = `use suggestion: "${newSuggestion}", with no spaces between`;
-          document
-            .getElementById("suggestion-button")
-            .setAttribute("aria-label", ariaLabel);
+          const suggestionButton = document.getElementById("suggestion-button");
+          if (suggestionButton) {
+            suggestionButton.setAttribute("aria-label", ariaLabel);
+          }
           return;
         }
       }
     }
   };
-  const updatePreview = (overrideInput) => {
+  const updatePreview = overrideInput => {
     // (overrideInput is optional)
-    setPreview(overrideInput || input);
+    preview = overrideInput || input;
   };
   const replaceRange = (original, start, stop, substitute) => {
     return original.substring(0, start) + substitute + original.substring(stop);
   };
-  const getLengthBeforePunctuation = (str) => {
+  const getLengthBeforePunctuation = str => {
     // ignore first character (in case it's punctuation)
     for (let i = str.length - 1; i > 0; i--) {
       if (/\W/.test(str[i])) return i;
@@ -135,8 +135,8 @@ function ControlPanel(props) {
       suggestion.stop,
       suggestion.suggestion
     );
-    setInput(newInput);
-    setPreview(newInput);
+    input = newInput;
+    preview = newInput;
     const textarea = document.getElementById("input");
     textarea.value = newInput;
     textarea.focus();
@@ -144,15 +144,15 @@ function ControlPanel(props) {
       suggestion.start + getLengthBeforePunctuation(suggestion.suggestion);
     textarea.setSelectionRange(suggestion.start, newCursorPos);
     // reset
-    setSuggestion(initialSuggestion);
+    suggestion = "";
   };
   const addSpecialCharacters = (characters, putCursorBack) => {
     const cursorPosition = document.querySelector("textarea").selectionStart;
     let newInput = input.split("");
     newInput.splice(cursorPosition, 0, characters);
     newInput = newInput.join("");
-    setInput(newInput);
-    setPreview(newInput);
+    input = newInput;
+    preview = newInput;
     const textarea = document.getElementById("input");
     textarea.value = newInput;
     textarea.focus();
@@ -161,52 +161,58 @@ function ControlPanel(props) {
     textarea.setSelectionRange(start, end);
     expandTextarea();
   };
-  const respondToInput = (newInput) => {
+  const respondToInput = newInput => {
     expandTextarea();
-    setInput(newInput);
+    input = newInput;
     updatePreview(newInput);
     suggestCombinedCamelCase(newInput);
   };
   // listen for changes to Redux store:
   store.subscribe(() => {
     const newInput = store.getState().input;
-    setInput(newInput);
+    input = newInput;
     updatePreview(newInput);
     suggestCombinedCamelCase(newInput);
   });
-  return (
-    <div id="split-container" className="wrap-elements-if-too-wide">
-      <div id="control-panel">
-        <textarea
-          id="input"
-          onChange={(e) => {
-            respondToInput(e.target.value);
-          }}
-          onKeyDown={(e) => checkCommandEnter(e)}
-          value={input}
-          placeholder="type code here"
-          aria-label="type a new code idea here"
-          autoCapitalize="off"
-          autoFocus
-        />
-        <ShortcutButtonsGroup
-          addSpecialCharacters={addSpecialCharacters}
-          useSuggestion={useSuggestion}
-          suggestion={suggestion}
-        />
-        <button
-          id="add-idea-button"
-          onClick={addIdea}
-          style={{ display: input !== "" ? "block" : "none", margin: "auto" }}
-        >
-          Add idea
-        </button>
-      </div>
-      <Suspense fallback={<div style={{ display: "none" }}></div>}>
-        <Preview input={input} preview={preview} />
-      </Suspense>
-    </div>
-  );
-}
+</script>
 
-export default ControlPanel;
+<style>
+  #split-container {
+    display: flex;
+  }
+
+  #split-container > * {
+    flex: 1;
+  }
+
+  .wrap-elements-if-too-wide {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #add-idea-button {
+    margin: auto;
+  }
+</style>
+
+<div id="split-container" class="wrap-elements-if-too-wide">
+  <div id="control-panel">
+    <textarea
+      id="input"
+      on:keyup={e => {
+        respondToInput(e.target.value);
+      }}
+      on:keydown={e => checkCommandEnter(e)}
+      value={input}
+      placeholder="type code here"
+      aria-label="type a new code idea here"
+      autoCapitalize="off" />
+    <ShortcutButtonsGroup {addSpecialCharacters} {useSuggestion} {suggestion} />
+    {#if input !== ''}
+      <button id="add-idea-button" on:click={addIdea}>Add idea</button>
+    {/if}
+  </div>
+  <Lazy>
+    <Preview {input} {preview} />
+  </Lazy>
+</div>

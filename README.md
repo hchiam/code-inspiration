@@ -1,56 +1,59 @@
 # [Code Inspiration](https://code-inspiration.surge.sh)
 
-Capture snippets of code inspiration while on the go. It works offline too! (After your first visit.)
-
-<https://code-inspiration.surge.sh>
-
 ![version](https://img.shields.io/github/release/hchiam/code-inspiration) [![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration)
 
-## Run locally
+Capture snippets of code inspiration while on the go. It works offline too! (After your first visit.)
+
+<https://code-inspiration.surge.sh> (built with [Svelte](https://github.com/hchiam/learning-svelte) and its [Sapper](https://github.com/hchiam/learning-sapper) framework)
+
+and <https://code-inspiration-old.surge.sh> (built with [React](https://github.com/hchiam/learning-reactjs) and `create-react-app`)
+
+You can run PageSpeed tests: [on the Svelte version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration.surge.sh) and [on the React version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration-old.surge.sh)
+
+## Run locally (note: commands use [`yarn`](https://github.com/hchiam/learning-yarn) instead of `npm`)
 
 Just once:
 
 ```bash
 git clone https://github.com/hchiam/code-inspiration.git
 cd code-inspiration
-npm install
+yarn
 ```
 
 and then:
 
 ```bash
-npm run build
-npm start
+yarn dev
 ```
 
-## Extra info
-
-You can run E2E tests using Cypress: (good for rapid feedback)
+## Test
 
 ```bash
-# In one CLI terminal:
-npm start
-# And in another CLI terminal:
-npm run cypress-test
+yarn test
 ```
 
-You can run E2E tests using Selenium WebDriver: (good for testing on a variety of browsers)
+## [Dependency graph](https://github.com/hchiam/learning-dependency-cruiser)
 
-```bash
-# In one CLI terminal:
-npm start
-# And in another CLI terminal:
-npm run selenium-test
-```
-
-You can generate a [dependency graph](https://github.com/hchiam/learning-dependency-cruiser) with [`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).
+[`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).
 
 ![(Dependency graph.)](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
 
-I can publish to surge.sh with:
+## Build production version (you can `run` it locally too)
 
 ```bash
-npm run prod-build
+yarn build
 ```
 
-⬆️ That will run `react-scripts build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh`
+## Export in prep for static site hosting
+
+```bash
+npx sapper export
+```
+
+## Or just publish to static site hosting in one step
+
+```bash
+yarn surge
+```
+
+⬆️ That will run `npx sapper export; surge __sapper__/export https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh`

@@ -1,8 +1,18 @@
-* {
-  transition: 0.25s;
+:root {
+  --main-color: #282c34;
+  --neumorphic-shadows: -3px -3px 3px 0 rgba(255, 255, 255, 0.1),
+    3px 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-.App {
+html {
+  background: var(--main-color);
+}
+
+body {
+  background: var(--main-color);
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
   text-align: center;
   background-color: #282c34;
   display: flex;
@@ -13,30 +23,28 @@
   color: white;
 }
 
-#split-container {
-  display: flex;
+* {
+  transition: 0.25s;
 }
 
-#split-container > * {
-  flex: 1;
-}
-
-.wrap-elements-if-too-wide {
-  display: flex;
-  flex-wrap: wrap;
+pre.svelte-highlight {
+  background: black;
+  color: lime;
+  border-radius: 0.25em;
+  padding: 0.5em;
+  margin: 0.5em;
+  text-align: left;
+  height: 100%;
+  max-width: 90vw;
 }
 
 code {
   background: black;
   color: lime;
-  padding: 0.5em;
   border-radius: 0.5em;
   max-width: 50em;
   word-wrap: break-word;
-}
-
-#preview pre {
-  max-width: 90vw;
+  text-align: left;
 }
 
 .react-markdown pre {
@@ -127,6 +135,7 @@ textarea.expand {
 
 .shepherd-content {
   background-color: white;
+  color: black;
   border-radius: 3px;
   padding: 0.5em 1em;
 }
