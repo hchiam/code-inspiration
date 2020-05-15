@@ -43,11 +43,6 @@
     aria-label="add comment">
     //
   </button>
-  <button
-    on:click={() => addSpecialCharacters('<>')}
-    aria-label="add angular tag brackets">
-    &lt;&gt;
-  </button>
   {#if suggestion.suggestion}
     <button
       id="suggestion-button"

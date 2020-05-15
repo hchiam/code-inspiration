@@ -18,7 +18,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run start & (npm run reminder; sleep 3; if (npm run test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
+      "pre-commit": "npm run dev & (npm run reminder; sleep 3; if (npm run test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
     }
   },
   "dependencies": {

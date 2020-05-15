@@ -33,8 +33,6 @@ describe("Core functionality", () => {
       .click()
       .get('button[aria-label="add curly brackets"]')
       .click()
-      .get('button[aria-label="add angular tag brackets"]')
-      .click()
       .get("#add-idea-button")
       .click()
       .get(".horizontal-row")
