@@ -2,10 +2,7 @@
   import ControlPanel from "../components/ControlPanel.svelte";
   import IdeasWrapper from "../components/IdeasWrapper.svelte";
   import TourButton from "../components/TourButton.svelte";
-
-  // wrap lazily loaded components with <Suspense>:
-  // const IdeasWrapper = React.lazy(() => import("./components/IdeasWrapper"));
-  // const TourButton = React.lazy(() => import("./components/TourButton"));
+  import Lazy from "svelte-lazy";
 
   let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
   const setIdeas = function(newIdeas) {
@@ -25,10 +22,10 @@
     ideas:
   </h1>
   <ControlPanel {ideas} {setIdeas} />
-  <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
-  <IdeasWrapper {ideas} {setIdeas} />
-  <!-- </Suspense> -->
-  <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
-  <TourButton />
-  <!-- </Suspense> -->
+  <Lazy>
+    <IdeasWrapper {ideas} {setIdeas} />
+  </Lazy>
+  <Lazy>
+    <TourButton />
+  </Lazy>
 </div>

@@ -13,8 +13,7 @@
 
   updateDraggablesWhenRenderUpdates();
 
-  // wrap lazily loaded components with <Suspense>:
-  // const Preview = React.lazy(() => import("./Preview"));
+  import Lazy from "svelte-lazy";
   import Preview from "./Preview.svelte";
 
   let input = "";
@@ -213,7 +212,7 @@
       <button id="add-idea-button" on:click={addIdea}>Add idea</button>
     {/if}
   </div>
-  <!-- <Suspense fallback={<div style={{ display: "none" }}></div>}> -->
-  <Preview {input} {preview} />
-  <!-- </Suspense> -->
+  <Lazy>
+    <Preview {input} {preview} />
+  </Lazy>
 </div>
