@@ -13,7 +13,7 @@ function testGetNoSuggestion(input) {
     .clear() // very important!
     .type(input)
     .get("#suggestion-button")
-    .should("have.value", "");
+    .should("not.be.visible");
 }
 
 describe("Suggestions appear and replace correctly", () => {
@@ -24,7 +24,15 @@ describe("Suggestions appear and replace correctly", () => {
   });
 
   it("does not suggest anything on blank input", () => {
-    cy.get("#suggestion-button").should("have.value", "");
+    // https://docs.cypress.io/guides/core-concepts/conditional-testing.html
+    // this test won't be flaky because events leading to it are totally synchronous:
+    cy.get("body").then(($body) => {
+      if ($body.find("#suggestion-button").length) {
+        cy.get("#suggestion-button").should("have.value", "");
+      } else {
+        cy.get("#suggestion-button").should("not.be.visible");
+      }
+    });
   });
 
   it("works on the simplest case", () => {

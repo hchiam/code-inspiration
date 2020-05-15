@@ -23,7 +23,6 @@ const prepareIdeaButtons = () => {
     );
     for (let ideaButton of ideaButtons) {
       ideaButton.classList.add("expanded");
-      ideaButton.addEventListener("click", customEndTour);
     }
   }, 10);
 };

@@ -15,7 +15,7 @@ describe("Onboarding tour", () => {
       .get(".shepherd-target")
       .click();
     cy.get(".horizontal-row")
-      .trigger("mouseover")
+      // .trigger("mouseover")
       .get("button")
       .contains("Reuse")
       .click();
