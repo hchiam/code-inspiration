@@ -4,9 +4,11 @@
 
 Capture snippets of code inspiration while on the go. It works offline too! (After your first visit.)
 
-<https://code-inspiration-v2.surge.sh> (built with [Svelte](https://github.com/hchiam/learning-svelte) and its [Sapper](https://github.com/hchiam/learning-sapper) framework)
+<https://code-inspiration.surge.sh> (built with [Svelte](https://github.com/hchiam/learning-svelte) and its [Sapper](https://github.com/hchiam/learning-sapper) framework)
 
-and <https://code-inspiration.surge.sh> (built with [React](https://github.com/hchiam/learning-reactjs) and `create-react-app`)
+and <https://code-inspiration-old.surge.sh> (built with [React](https://github.com/hchiam/learning-reactjs) and `create-react-app`)
+
+You can run PageSpeed tests: [on the Svelte version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration.surge.sh) and [on the React version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration-old.surge.sh)
 
 ## Run locally (note: commands use [`yarn`](https://github.com/hchiam/learning-yarn) instead of `npm`)
 
@@ -45,13 +47,13 @@ yarn build
 ## Export in prep for static site hosting
 
 ```bash
-yarn export
+npx sapper export
 ```
 
-## Publish
+## Or just publish to static site hosting in one step
 
 ```bash
 yarn surge
 ```
 
-⬆️ That will run `npx sapper export; surge __sapper__/export https://code-inspiration-v2.surge.sh; open https://code-inspiration-v2.surge.sh`
+⬆️ That will run `npx sapper export; surge __sapper__/export https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh`
