@@ -10,8 +10,8 @@
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open",
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open",
     "test": "run-p --race dev cy:run",
     "surge": "npx sapper export; surge __sapper__/export https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
     "reminder": "echo; echo 'Reminders: \n\nDid you do \\033[1;34myarn build\\033[0m or \\033[1;34myarn export\\033[0m or \\033[1;34myarn surge\\033[0m first? \n\nDo you need to \\033[1;34m[skip ci]\\033[0m?'; echo;"
