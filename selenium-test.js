@@ -1,3 +1,5 @@
+// this is old (use the Cypress tests inside the integration folder instead)
+
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const firefox = require("selenium-webdriver/firefox");
 const visibleTourElementCss = ".shepherd-element:not([hidden])";

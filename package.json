@@ -1,53 +1,51 @@
 {
   "name": "code-inspiration",
-  "version": "0.10.6",
-  "private": true,
   "description": "Capture snippets of code inspiration while on the go.",
-  "dependencies": {
-    "create-react-app": "^3.2.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.10.2",
-    "react-draggable": "^4.2.0",
-    "react-syntax-highlighter": "^12.2.1",
-    "redux": "^4.0.5",
-    "shepherd.js": "^7.0.3"
-  },
-  "devDependencies": {
-    "cypress": "^4.3.0",
-    "husky": "^4.2.1",
-    "react-scripts": "^3.3.1",
-    "selenium-webdriver": "^4.0.0-alpha.7"
-  },
-  "scripts": {
-    "start": "npm run build; react-scripts start",
-    "stop": "killall node; killall firefox;",
-    "pre-prod-build": "react-scripts build; npm run sw-chunks;",
-    "prod-build": "npm run pre-prod-build; surge build https://code-inspiration.surge.sh; open https://code-inspiration.surge.sh",
-    "test": "react-scripts test --env=jsdom",
-    "cypress-test": "npx cypress run",
-    "selenium-test": "node selenium-test.js",
-    "eject": "react-scripts eject",
-    "build": "mkdir public/src || true; cp -r src/* public/src; npm run sw-chunks;",
-    "sw-chunks": "bash copy-chunks-to-service-worker.sh",
-    "reminder": "echo; echo 'Reminders: \n\nDid you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to update the \\033[1;34mservice worker\\033[0m? \nDo you need to \\033[1;34m[skip ci]\\033[0m? \nRemember to \\033[1;34mnpm run stop\\033[0m'; echo;"
-  },
+  "version": "1.0.0",
+  "private": true,
   "license": "MIT",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "scripts": {
+    "dev": "sapper dev",
+    "prod": "npm run build && npm start # I added this based on the README",
+    "build": "sapper build --legacy",
+    "export": "sapper export --legacy",
+    "start": "node __sapper__/build",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test": "run-p --race dev cy:run",
+    "surge": "npx sapper export; surge __sapper__/export https://code-inspiration-v2.surge.sh; open https://code-inspiration-v2.surge.sh",
+    "reminder": "echo; echo 'Reminders: \n\nDid you do \\033[1;34mnpm run build\\033[0m first? \nDo you need to update the \\033[1;34mservice worker\\033[0m? \nDo you need to \\033[1;34m[skip ci]\\033[0m? \nRemember to \\033[1;34mnpm run stop\\033[0m'; echo;"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run start & (npm run reminder; sleep 3; if (npm run selenium-test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
+      "pre-commit": "npm run start & (npm run reminder; sleep 3; if (npm run test); then (npm run reminder); else (npm run reminder && exit 1); fi;);"
     }
+  },
+  "dependencies": {
+    "compression": "^1.7.1",
+    "polka": "next",
+    "redux": "^4.0.5",
+    "shepherd.js": "^7.1.5",
+    "sirv": "^0.4.0",
+    "svelte-highlight": "^0.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "@rollup/plugin-commonjs": "11.0.2",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-replace": "^2.2.0",
+    "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.20.0",
+    "rollup-plugin-babel": "^4.0.2",
+    "rollup-plugin-svelte": "^5.0.1",
+    "rollup-plugin-terser": "^5.3.0",
+    "sapper": "^0.27.0",
+    "svelte": "^3.0.0",
+    "svelte-lazy": "^0.1.11"
   }
 }
