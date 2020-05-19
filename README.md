@@ -36,6 +36,12 @@ yarn test
 
 [`bash show_dep_graph.sh`](https://github.com/hchiam/code-inspiration/blob/master/show_dep_graph.sh).
 
+### Old: (React version)
+
+![(Dependency graph.)](https://github.com/hchiam/code-inspiration/blob/react/dependencygraph.svg)
+
+### New: (Svelte version)
+
 ![(Dependency graph.)](https://github.com/hchiam/code-inspiration/blob/master/dependencygraph.svg)
 
 ## Build production version (you can `run` it locally too)
