@@ -4,11 +4,15 @@
 
 Capture snippets of code inspiration while on the go. It works offline too! (After your first visit.)
 
-<https://code-inspiration.surge.sh> (built with [Svelte](https://github.com/hchiam/learning-svelte) and its [Sapper](https://github.com/hchiam/learning-sapper) framework)
+<https://code-inspiration.surge.sh>
 
-and <https://code-inspiration-old.surge.sh> (built with [React](https://github.com/hchiam/learning-reactjs) and `create-react-app`)
+## Older demos
 
-You can run PageSpeed tests: [on the Svelte version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration.surge.sh) and [on the React version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration-old.surge.sh)
+<https://code-inspiration-svelte.surge.sh> (built with [Svelte](https://github.com/hchiam/learning-svelte) and its [Sapper](https://github.com/hchiam/learning-sapper) framework)
+
+and <https://code-inspiration-react.surge.sh> (built with [React](https://github.com/hchiam/learning-reactjs) and `create-react-app`)
+
+You can run PageSpeed tests: [for the Svelte version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration-svelte.surge.sh) and [for the React version](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fcode-inspiration-react.surge.sh)
 
 ## Run locally (note: commands use [`yarn`](https://github.com/hchiam/learning-yarn) instead of `npm`)
 
