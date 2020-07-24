@@ -1,6 +1,6 @@
 # [Code Inspiration](https://code-inspiration.surge.sh)
 
-![version](https://img.shields.io/github/release/hchiam/code-inspiration) [![Build Status](https://travis-ci.org/hchiam/code-inspiration.svg?branch=master)](https://travis-ci.org/hchiam/code-inspiration) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/)
+![version](https://img.shields.io/github/release/hchiam/code-inspiration?style=for-the-badge) [![Build Status](https://img.shields.io/travis/hchiam/code-inspiration/master?style=for-the-badge)](https://travis-ci.org/hchiam/code-inspiration) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT) [![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg?style=for-the-badge)](https://www.cypress.io/)
 
 Capture snippets of code inspiration while on the go. It works offline too! (After your first visit.)
 
